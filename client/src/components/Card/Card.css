@@ -1,0 +1,10 @@
+.course-card{
+  border-radius: 15px;
+  width:1000px;
+  background-color: blueviolet;
+  color:aliceblue;
+  transition: 0.3s;
+}
+.course-card:hover{
+  box-shadow: -1px 0px 10px 10px rgba(180, 94, 233, 0.2);
+}

@@ -1,0 +1,60 @@
+.background-radial-gradient {
+  background-color: hsl(286, 41%, 43%);
+  background-image:   radial-gradient(1250px circle at 100% 100%,
+  hsl(286, 71%, 64%) 15%,
+  hsl(284, 40%, 50%) 35%,
+  hsl(276, 41%, 45%) 75%,
+  hsl(276, 39%, 40%) 80%,
+  transparent 100%),
+    radial-gradient(1250px circle at 100% 100%,
+      hsl(286, 71%, 64%) 15%,
+      hsl(284, 40%, 50%) 35%,
+      hsl(276, 41%, 45%) 75%,
+      hsl(276, 39%, 40%) 80%,
+      transparent 100%);
+}
+
+#radius-shape-1 {
+  height: 220px;
+  width: 220px;
+  top: -60px;
+  left: -130px;
+  background: radial-gradient(#502669, #a51fff);
+  overflow: hidden;
+}
+
+#radius-shape-2 {
+  border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+  bottom: -60px;
+  right: -110px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(#54296d, #8b1fff);
+  overflow: hidden;
+}
+
+.bg-glass {
+  background-color: hsla(0, 0%, 100%, 0.9) !important;
+  backdrop-filter: saturate(200%) blur(25px);
+}
+.shadow{
+  color:rgb(149, 116, 219);
+  width: 500px;
+}
+.shadow-title{
+  text-align: center;
+}
+a{
+  color:rgb(149, 116, 219);
+}
+.text{
+  font-weight: 500;
+  color:rgb(149, 116, 219);
+}
+.bbb{
+  border:none;
+  background-color: rgb(149, 116, 219);;
+}
+.bbb:hover{
+  background-color: rgb(224, 213, 244);
+}
