@@ -18,11 +18,12 @@ export const Registry=()=>{
               <Card.Body>
                 <div className="mb-3 mt-md-4">
                   <div className="shadow-title">
-                  <h3 className="mb-1 text-uppercase ">Авторизация</h3>
+                  <h3 className="mb-1 text-uppercase ">Регистрация</h3>
                   </div>
                   <div className="mb-2">
                     <Form>
                       <Form.Group className="mb-2" controlId="formBasicEmail">
+                        <img src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp' alt="" />
                         <Form.Label className="text-center">
                           Логин
                         </Form.Label>
