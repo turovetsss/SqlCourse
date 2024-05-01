@@ -1,4 +1,4 @@
-import React, {useContext,useEffect} from 'react';
+import React, {useContext,useEffect,useState} from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import "./css/Trainer.css"
 import {Context} from "../index";
@@ -7,15 +7,25 @@ import { Navbarr } from "../components/Navbarr";
 import {fetchTrainer} from "../http/itemAPI";
 export const Trainer= observer(() =>{
   const {course} = useContext(Context)
+  const [searchTerm, setSearchTerm] = useState('');
   useEffect(() => {
     fetchTrainer().then(data => course.setTrainers(data))
 
 }, [])
+const filteredTraners = course.trainers.filter(trainer => {
+  return trainer.description.toLowerCase().includes(searchTerm.toLowerCase());
+});
 
   return(
     <><Navbarr /> <div className="background-radial-gradient overflow-hidden"><div className="content"><div className="task-list"><div className="title-cont"><h2 className='title'>Доступные задания 
-    </h2> <input type="text" className='input-group2' placeholder='Поиск по заданиям'/> </div><ListGroup className="list">
-     {course.trainers.map(trainer =>
+    </h2>  <input 
+                  type="text" 
+                  className='input-group2' 
+                  placeholder='Поиск по задачам'
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />  </div><ListGroup className="list">
+     {filteredTraners.map(trainer =>
                           <ListGroup.Item key={trainer.id}  className="item"><div className="name">#{trainer.id} {trainer.description}</div><div className="high"> Сложность: {trainer.complexity}</div> </ListGroup.Item>
 
                     )} 
