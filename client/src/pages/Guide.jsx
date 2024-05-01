@@ -1,4 +1,4 @@
-import React, {useContext,useEffect} from 'react';
+import React, {useContext,useEffect,useState} from 'react';
 import Tab from 'react-bootstrap/Tab';
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
@@ -13,11 +13,17 @@ import './css/Guide.css'
 import { Navbarr } from "../components/Navbarr";
 export const Guide = observer(() => {
   const {course} = useContext(Context)
+  const [searchTerm, setSearchTerm] = useState('');
+
   useEffect(() => {
     fetchFunc().then(data => course.setFuncs(data))
 
 }, [])
 
+
+const filteredFuncs = course.funcs.filter(func => {
+  return func.name.toLowerCase().includes(searchTerm.toLowerCase());
+});
 
   return(<>
 <Navbarr />
@@ -30,7 +36,6 @@ export const Guide = observer(() => {
 
           </Container>
     <div> 
-   
     <div style={{padding:'50px 300px'}}className="background-radial-gradient overflow-hidden"> 
     <div className="title-group">
     <h1 className='title'>Справочник по функциям</h1>
@@ -42,20 +47,27 @@ export const Guide = observer(() => {
       <button className="group">Строки</button>
       <button className="group">Даты</button>
       <button className="group">Объединения</button>
+      
     </div>
     <Card className="card2">
     <Tab.Container id="left-tabs-example" defaultActiveKey="first">
         <Row>
             <Col sm={3} className='col1'>
-            <input type="text" className='input-group' placeholder='Поиск'/>
-                <Nav variant="pills" className="flex-column">
-                    {course.funcs.map(func =>
-                        <Nav.Item key={func.id} className="item2">
-                            <Nav.Link eventKey={func.id}>{func.name}</Nav.Link>
-                           
-                        </Nav.Item>
-                    )}
+            <input 
+                  type="text" 
+                  className='input-group' 
+                  placeholder='Поиск'
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                   <Nav variant="pills" className="flex-column">
+                  {filteredFuncs.map(func =>
+                    <Nav.Item key={func.id} className="item2">
+                      <Nav.Link eventKey={func.id}>{func.name}</Nav.Link>
+                    </Nav.Item>
+                  )}
                 </Nav>
+             
             </Col>          
             <Col sm={9}>
             <div className="pils">
