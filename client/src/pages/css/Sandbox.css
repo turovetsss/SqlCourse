@@ -1,0 +1,31 @@
+.task{
+  width: 700px;
+  border:1px solid rgb(192, 188, 188);
+  height: 550px;
+}
+.btn-back{
+  display: block;
+  width: 50px;
+  height: 50px;
+}
+.editor{
+  height: 275px;
+  display:flex;
+  border:1px solid rgb(192, 188, 188);
+}
+.code-editor{
+  width: 1000px;
+}
+.outpud{
+height: 275px;
+border:1px solid rgb(192, 188, 188);
+}
+.table1{
+height: 550px;
+  display:flex;
+  border:1px solid rgb(192, 188, 188);
+}
+.sandbox{
+  display:flex;
+  width: 100%;
+}

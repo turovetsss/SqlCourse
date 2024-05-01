@@ -5,18 +5,18 @@ import Navbar from 'react-bootstrap/Navbar';
 import './Navbarr.css'
 export const Navbarr =()=>{
   return( <>
-<Navbar >
+<Navbar className="navv">
   <Container>
-    <Navbar.Brand href="#home">SQL</Navbar.Brand>
+    <Navbar.Brand className='navbrand'href="#home">SQL</Navbar.Brand>
     <Nav className="me-left">
-    <Nav.Link className='navlink' href="#home">Курс</Nav.Link>
-      <Nav.Link className='navlink' href="#home">Тренажер</Nav.Link>
-      <Nav.Link className='navlink' href="#features">Песочница</Nav.Link>
-      <Nav.Link className='navlink' href="#pricing">Справочник</Nav.Link>
+    <Nav.Link className='navlink' href="http://localhost:3000/course">Курс</Nav.Link>
+      <Nav.Link className='navlink' href="http://localhost:3000/trainer">Тренажер</Nav.Link>
+      <Nav.Link className='navlink' href="http://localhost:3000/sandbox">Песочница</Nav.Link>
+      <Nav.Link className='navlink' href="http://localhost:3000/guide">Справочник</Nav.Link>
     </Nav>
     <Nav className="me-right">
-   <button className='nav-link-login' href="#pricing">Вход</button>
-   <button className='nav-link-reg' href="#pricing">Регистрация</button>
+    <a href="http://localhost:3000/login"><button className='nav-link-login' >Вход</button></a>
+    <a href="http://localhost:3000/registry"><button className='nav-link-reg' >Регистрация</button></a>
     </Nav>
   </Container>
 </Navbar>

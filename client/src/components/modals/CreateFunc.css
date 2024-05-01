@@ -1,0 +1,8 @@
+.select-option{
+  background-color:  rgb(155, 124, 222);
+  color:white;
+ margin-left: 8px;
+  border-radius: 10px;
+  border:none;
+  padding: 5px 8px;
+}

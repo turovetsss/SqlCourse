@@ -1,0 +1,93 @@
+body::-webkit-scrollbar {
+  width: 3px;               /* ширина scrollbar */
+}
+body::-webkit-scrollbar-track {
+  background: initial;        /* цвет дорожки */
+}
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(49, 19, 57);    /* цвет плашки */
+  border-radius: 20px;       /* закругления плашки */
+}
+.book{
+  padding: 15px;
+  border-radius: 20px;
+  background-color: aliceblue;
+}
+.card2{
+  margin-left: -50px;
+  height: 616px;
+  width: 800px;
+  border-radius: 15px;
+}
+.func{
+  width: 300px;
+  display: flex;
+  text-align: center;
+  height: 100px;
+  margin: 10px;
+  transform: 0.4s;
+  border: 1px solid  hsl(286, 57%, 75%);
+}
+.group{
+  margin-right: 5px;
+  border-radius: 10px;
+  border:none;
+ color:rgb(250, 250, 250);
+ background-color:rgb(149, 116, 219);
+ padding:5px 20px;
+ transition: 0.4s;
+ margin: 10px;
+}
+.group:hover{
+  border:none;
+  color: rgb(255, 255, 255);
+  background-color:rgb(224, 213, 244);
+}
+.content{
+  padding: 20px;
+  height: 100vh; /* задаем фиксированную высоту для блока с контентом */
+  overflow: hidden; /* скрываем вертикальную прокрутку */
+
+}
+.primer{
+  font-family:  Mono,Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(230, 229, 229);
+}
+.item2{
+  padding:5px
+}
+.col1{
+  border-right: 1px solid grey;
+}
+.tabfunc{
+}
+.col1 {
+  height: 100vh; /* задаем высоту элемента */
+  overflow-y: auto; /* добавляем вертикальную прокрутку */
+}
+
+.col1::-webkit-scrollbar {
+  width: 3px;               /* ширина scrollbar */
+  height: auto;
+}
+.col1::-webkit-scrollbar-track {
+  background: initial;        /* цвет дорожки */
+}
+.col1::-webkit-scrollbar-thumb {
+  background-color: rgb(110, 50, 150);    /* цвет плашки */
+  border-radius: 20px;       /* закругления плашки */
+}
+.pils{
+  position: absolute;
+}
+.func:hover{
+  border: 1.5px solid  hsl(286, 57%, 75%);
+}
+.hhh{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; 
+  margin: 15px auto;
+}

@@ -1,10 +1,61 @@
 .course-card{
   border-radius: 15px;
   width:1000px;
-  background-color: blueviolet;
+  background-color: rgb(201, 175, 225);
   color:aliceblue;
   transition: 0.3s;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+.title-card{
+  display:flex;
+}
+.button-arrow{
+  font-size: 20px;
+  font-weight: 600;
+  background-color: rgb(211, 193, 228);
+  border-radius: 30px;
+  padding: 5px 10px;
+  margin-left: auto;
+  display: flex;
+}
+.body-card{
+  display: flex;
 }
 .course-card:hover{
+  box-shadow: -1px 0px 10px 10px rgba(180, 94, 233, 0.2);
+}
+.sandbox-area{
+  padding: 10px;
+  margin-top: 30px;
+  border-radius: 5px;
+  background-color:rgb(69, 51, 86);;
+}
+.sandbox-card{
+  border-radius: 15px;
+  width:400px;
+  background-color: rgb(201, 175, 225);
+  color:aliceblue;
+  transition: 0.3s;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+.sandbox-card:hover{
+  box-shadow: -1px 0px 10px 10px rgba(180, 94, 233, 0.2);
+}
+.two-level{
+  display: flex;
+}
+.guide-card{
+  margin-left: 20px;
+  border-radius: 15px;
+  width:580px;
+  background-color: rgb(201, 175, 225);
+  color:aliceblue;
+  transition: 0.3s;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+.guide-card:hover{
   box-shadow: -1px 0px 10px 10px rgba(180, 94, 233, 0.2);
 }

@@ -1,0 +1,31 @@
+.list{width: 800px;
+margin-top: 50px;}
+.content{
+  display: flex;
+  padding: 40px;
+}
+.check-item{
+  display: block;
+  margin-top: 10px;
+}
+
+.filters{
+  margin-left: 50px;
+  width: 200px;
+}
+.item{
+  width: 750px;
+  height: 70px;
+  margin-top: 10px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+.item:hover{
+  box-shadow: -1px 0px 10px 10px rgba(238, 237, 239, 0.2);
+}
+.task-list{
+  margin-left: 40px;
+}
+.check-in{
+  
+}
