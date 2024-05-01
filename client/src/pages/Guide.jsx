@@ -29,9 +29,14 @@ export const Guide = observer(() => {
           <div id="radius-shape-2" className="position-absolute shadow-5-strong"></div>
 
           </Container>
-    <div>
+    <div> 
+   
     <div style={{padding:'50px 300px'}}className="background-radial-gradient overflow-hidden"> 
-    <div className="button-group">
+    <div className="title-group">
+    <h1 className='title'>Справочник по функциям</h1>
+   
+    </div>
+    <div className="button-group"> 
       <button className="group">Oсновные</button>
       <button className="group">Математика</button>
       <button className="group">Строки</button>
@@ -42,6 +47,7 @@ export const Guide = observer(() => {
     <Tab.Container id="left-tabs-example" defaultActiveKey="first">
         <Row>
             <Col sm={3} className='col1'>
+            <input type="text" className='input-group' placeholder='Поиск'/>
                 <Nav variant="pills" className="flex-column">
                     {course.funcs.map(func =>
                         <Nav.Item key={func.id} className="item2">
@@ -56,7 +62,7 @@ export const Guide = observer(() => {
                 <Tab.Content className="content">
                     {course.funcs.map(func =>
                         <Tab.Pane key={func.id} eventKey={func.id}>
-                          <h3> Функция {func.name}</h3>
+                          <h3> Функция "{func.name}"</h3>
                             {func.description}
                             <h5>
                             Синтаксис
@@ -65,9 +71,11 @@ export const Guide = observer(() => {
                             <h5>
                             Пример 1
                             </h5>
+                            <div className="primer">{func.name}</div>
                             <h5>
                             Пример 2
                             </h5>
+                            <div className="primer">{func.name}</div>
                         </Tab.Pane>
                     )}
                 </Tab.Content>

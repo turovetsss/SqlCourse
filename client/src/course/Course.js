@@ -3,6 +3,7 @@ import {makeAutoObservable} from "mobx";
 export default class СourseCourse {
   constructor(){
     this._funcs = []
+    this._trainers = []
     this._brands = []
     this._items = []
 
@@ -21,6 +22,14 @@ setFuncs(funcs){
 get funcs(){
     return this._funcs
 }
+
+setTrainers(trainers){
+  this._trainers = trainers 
+}
+get trainers(){
+  return this._trainers
+}
+
 setSelectedType(type){ //setter
     this._setSelectedType = type
 }

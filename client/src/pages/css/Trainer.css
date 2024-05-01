@@ -1,21 +1,60 @@
 .list{width: 800px;
-margin-top: 50px;}
+margin-top: 50px;
+}
 .content{
   display: flex;
   padding: 40px;
+}
+.name{
+  font-size: 18px;
+  font-weight: 600;
+  margin: 3px;
+}
+.input-group2{
+  display: flex;
+  width: 240px;
+  margin-right: 5px;
+  border-radius: 10px;
+  border:none;
+ color:rgb(250, 250, 250);
+ background-color:rgb(231, 227, 241);
+ padding:5px 20px;
+ transition: 0.4s;
+ margin: 10px;
+}
+.high{
+  color:rgb(211, 160, 238);
+}
+.title{
+  color:white;
+  margin-left: 20px;
+  margin-right: 50px;
+}
+.title-cont{
+  display:flex;
+}
+.text-input{
+  color:#D9534F;
+  border:none;
+  font-size: 13px;
+  border-radius: 10px;
+  padding: 5px 10px;
 }
 .check-item{
   display: block;
   margin-top: 10px;
 }
-
+.filter{
+  color: beige;
+}
 .filters{
   margin-left: 50px;
   width: 200px;
 }
 .item{
-  width: 750px;
-  height: 70px;
+  padding: 8px 8px 8px 8px;
+  width: 700px;
+  height: 80px;
   margin-top: 10px;
   border-radius: 8px;
   transition: 0.3s;
@@ -27,5 +66,31 @@ margin-top: 50px;}
   margin-left: 40px;
 }
 .check-in{
-  
+  color: blueviolet;
+}
+input[type="checkbox"] {
+  display: block;
+}
+input[type="checkbox"] {
+  display: inline-block;
+  position: relative;
+  top: -1px;
+  width: 18px;
+  height: 18px;
+  margin: -1px 0px 0 0;
+  vertical-align: middle;
+  color:aquamarine;
+  background-color:aqua;
+  background: rgb(202, 30, 30) left top no-repeat;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+input[type="checkbox"]:checked {
+  background-color:aqua;
+  background: rgb(202, 30, 30) left top no-repeat;
+  color:brown;
+  background: #D9534F -19px top no-repeat;
+}
+input[type="checkbox"] {
+  margin-right: 4px;
 }

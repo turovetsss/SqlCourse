@@ -1,21 +1,30 @@
-import {makeAutoObservable} from "mobx";
+import {makeAutoObservable} from 'mobx'
 
-export default class UserCourse {
-    constructor() {
-        makeAutoObservable(this)
+//глобальное хранилище и можно в любом месте проверить авторизован ли юзер
+//выносим логику переменной isAuth в отдельный класс так как много где будем использовать
+//работа с mobx
+export default class UserStore{
+    constructor(){
+        this._isAuth = false// _ - условно закрытая переменная
+        this._user = {}
+        makeAutoObservable(this)//теперь mobx следит за изменением этих переменных
     }
 
-    setIsAuth(bool) {
+    setIsAuth(bool){
         this._isAuth = bool
     }
-    setUser(user) {
+
+    setUser(user){
         this._user = user
     }
 
-    get isAuth() {
+    //геттер и сеттеры для переменных
+
+    get isAuth(){
         return this._isAuth
     }
-    get user() {
+
+    get user(){
         return this._user
     }
 }

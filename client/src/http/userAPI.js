@@ -19,5 +19,9 @@ export const login = async (email, password) => {
 }
 
 export const check = async () => {//функция вызывается при обновлении странцы и проверяет есть ли у юзера валидный токен
+     //в response помещаем ответ
+     const {data} = await $authHost.get('api/user/auth')//AuthHost - к запросу прикрепляем токен
+     localStorage.setItem('token',data.token)//сохраняем токен на стороне юзера
+     return jwtDecode(data.token)
  
 }

@@ -20,6 +20,8 @@ const CreateFunc= observer(({show, onHide}) =>{
           setDescription('')
           setType('')
           onHide()
+          alert('Задача добавлена успешно')
+          window.location.reload();
       })
   }
 
