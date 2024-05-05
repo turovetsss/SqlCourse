@@ -79,15 +79,18 @@ const filteredFuncs = course.funcs.filter(func => {
                             <h5>
                             Синтаксис
                             </h5>
-                            <div className="primer">{func.name}</div>
+                            <div className="primer">{func.script}</div>
                             <h5>
                             Пример 1
                             </h5>
-                            <div className="primer">{func.name}</div>
+                            <p>{func.example1Info}</p>
+                            <div className="primer">{func.example1}</div>
                             <h5>
                             Пример 2
                             </h5>
-                            <div className="primer">{func.name}</div>
+                            <p>{func.example2Info}</p>
+                            <div className="primer">{func.example2}</div>
+             
                         </Tab.Pane>
                     )}
                 </Tab.Content>

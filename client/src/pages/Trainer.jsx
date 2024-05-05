@@ -6,6 +6,7 @@ import {observer} from "mobx-react-lite";
 import { Navbarr } from "../components/Navbarr";
 import {fetchTrainer} from "../http/itemAPI";
 export const Trainer= observer(() =>{
+
   const {course} = useContext(Context)
   const [searchTerm, setSearchTerm] = useState('');
   useEffect(() => {
@@ -15,6 +16,8 @@ export const Trainer= observer(() =>{
 const filteredTraners = course.trainers.filter(trainer => {
   return trainer.description.toLowerCase().includes(searchTerm.toLowerCase());
 });
+
+
 
   return(
     <><Navbarr /> <div className="background-radial-gradient overflow-hidden"><div className="content"><div className="task-list"><div className="title-cont"><h2 className='title'>Доступные задания 
@@ -26,7 +29,11 @@ const filteredTraners = course.trainers.filter(trainer => {
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />  </div><ListGroup className="list">
      {filteredTraners.map(trainer =>
-                          <ListGroup.Item key={trainer.id}  className="item"><div className="name">#{trainer.id} {trainer.description}</div><div className="high"> Сложность: {trainer.complexity}</div> </ListGroup.Item>
+                           <ListGroup.Item key={trainer.id}  className="item"><div className="name">#{trainer.id} {trainer.description}</div><div className="high"> Сложность: {trainer.complexity} 
+                           <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                           
+                           <circle cx="8" cy="8" r="8"/>
+                         </svg></div> </ListGroup.Item>
 
                     )} 
   </ListGroup> </div>
@@ -40,8 +47,9 @@ const filteredTraners = course.trainers.filter(trainer => {
     <input type="checkbox"/>
     <label  className='filter' htmlFor="checkbox">Нерешенные</label>
     </div><hr />
-   <h4 className='filter'> Cложность </h4> <div className="check-item">
+   <h4 className='filter'> Cложность </h4>  <div className="check-item">
    <div className="check-item">
+    
     <input type="checkbox" className="custom-checkbox" />
     <label htmlFor="checkbox">Легкие</label>
     </div>

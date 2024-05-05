@@ -35,7 +35,7 @@ export const Navbarr= observer( () => {
     </Nav>
     <Nav className="me-right">
     <a href="http://localhost:3000/login" onClick={()=>logOut()}><button className='nav-link-login' >Выйти</button></a>
-    <a href=""><button className='nav-link-login' disabled={true} >Профиль</button></a>
+    <a href=""><div className='nav-link-login' disabled={true} ><img width="16" height="16" src="https://img.icons8.com/small/16/000000/user.png" alt="user"/>Профиль</div></a>
  
  </Nav>
   </Container>

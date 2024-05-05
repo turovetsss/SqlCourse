@@ -2,8 +2,8 @@ const{Func}=require('../models/models')
 const ApiError = require('../error/ApiError')
 class FuncController{
   async create(req,res){
-    const {type,name,description} = req.body
-    const func = await Func.create({type,name,description})
+    const {type,name,description,script,example1Info,example1,example2Info,example2} = req.body
+    const func = await Func.create({type,name,description,script,example1Info,example1,example2Info,example2})
     return res.json(func)
   }
 
@@ -13,8 +13,8 @@ class FuncController{
     return res.json(func)
 }
 async edit(req, res){
-    const {type,name,description} = req.body;//забираем id и name из запроса
-    const func = await Func.update({ type:type, name: name, description:description }, { where: { id: id } });
+    const {type,name,description,script,example1Info,example1,example2Info,example2} = req.body;//забираем id и name из запроса
+    const func = await Func.update({ type:type, name: name, description:description,script:script,example1Info:example1Info,example1:example1,example2Info:example2Info,example2 :example2 }, { where: { id: id } });
     return res.json(func);
 }
 

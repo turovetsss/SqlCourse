@@ -1,13 +1,17 @@
-import React, {useState,useContext,useEffect} from 'react';
+import React, {useState} from 'react';
 import Modal from "react-bootstrap/Modal";
-import {Context} from "../../index";
 import {observer} from "mobx-react-lite";
-import {Button, Form,Dropdown, DropdownItem} from "react-bootstrap";
-import { createFunc,fetchFunc} from "../../http/itemAPI";
+import {Button, Form,} from "react-bootstrap";
+import { createFunc} from "../../http/itemAPI";
 import './CreateFunc.css'
 const CreateFunc= observer(({show, onHide}) =>{
   const[type, setType] = useState('')
   const [value, setValue] = useState('')
+  const [script,setScript]=useState('')
+  const [example1Info,setExample1Info]=useState('')
+  const [example2Info,setExample2Info]=useState('')
+  const [example1,setExample1]=useState('')
+  const [example2,setExample2]=useState('')
   const [description, setDescription] = useState('')
 
   const handleDropdownChange = (event) => {
@@ -15,10 +19,15 @@ const CreateFunc= observer(({show, onHide}) =>{
   }
 
   const addFunc = () => {
-      createFunc({name: value, description:description,type:type}).then(data => {
+      createFunc({name: value, description:description,type:type, script:script,example1Info:example1Info,example1:example1,example2Info:example2Info,example2 :example2}).then(data => {
           setValue('')
           setDescription('')
           setType('')
+          setScript('')
+          setExample1Info('')
+          setExample1('')
+          setExample2Info('')
+          setExample2('')
           onHide()
           alert('Задача добавлена успешно')
           window.location.reload();
@@ -55,6 +64,32 @@ const CreateFunc= observer(({show, onHide}) =>{
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                         placeholder={"Введите Описание функции"}
+                    />
+                       <Form.Control className='mt-2 mb-2'
+                        value={script}
+                        onChange={e => setScript(e.target.value)}
+                        placeholder={"Введите скрипт функции"}
+                    />
+                    <p>Также нужно добавить пару примеров:</p>
+                    <Form.Control className='mt-2 mb-2'
+                        value={example1Info}
+                        onChange={e => setExample1Info(e.target.value)}
+                        placeholder={"Введите "}
+                    />
+                     <Form.Control className='mt-2 mb-2'
+                        value={example1}
+                        onChange={e => setExample1(e.target.value)}
+                        placeholder={"Введите пример 1"}
+                    />
+                       <Form.Control className='mt-2 mb-2'
+                        value={example2Info}
+                        onChange={e => setExample2Info(e.target.value)}
+                        placeholder={"Введите "}
+                    />
+                     <Form.Control className='mt-2 mb-2'
+                        value={example2}
+                        onChange={e => setExample2(e.target.value)}
+                        placeholder={"Введите пример 2"}
                     />
                 </Form>
             </Modal.Body>

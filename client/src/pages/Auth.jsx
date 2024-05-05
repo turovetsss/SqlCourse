@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {LOGIN_ROUTE, REGISTRATION_ROUTE, GUIDE_ROUTE} from "../utils/consts";
+import {LOGIN_ROUTE, REGISTRATION_ROUTE, COURSE_ROUTE} from "../utils/consts";
 import {useLocation, useNavigate} from "react-router-dom";
 import {Row,Container,Col,Card,Form,Button} from 'react-bootstrap';
 import {login, registration} from "../http/userAPI";
@@ -32,7 +32,7 @@ export const Auth= observer(() => {
         }
         user.setUser(data.user)
         user.setIsAuth(true)
-        navigate(GUIDE_ROUTE)//если всё ок - переводим авторизованного юзера на главную
+        navigate(COURSE_ROUTE)//если всё ок - переводим авторизованного юзера на главную
     } catch (e){
       document.getElementById('error').textContent = e.response.data.message
       
