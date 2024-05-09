@@ -9,6 +9,7 @@ module.exports = function(role) {
             const token = req.headers.authorization.split(' ')[1] // Bearer asfasnfkajsfnjk
             if (!token) {
                 return res.status(401).json({message: "Не авторизован"})
+               
             }
             const decoded = jwt.verify(token, process.env.SECRET_KEY)
             if (decoded.role !== role) {
@@ -17,6 +18,8 @@ module.exports = function(role) {
             req.user = decoded;
             next()
         } catch (e) {
-          console.log('che')}
+          console.log('не авторизован')
+            res.status(401).json({message: "Не авторизован"})
+        }
     };
 }

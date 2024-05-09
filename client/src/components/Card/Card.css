@@ -7,6 +7,9 @@
   margin-bottom: 30px;
   margin-top: 30px;
 }
+a{
+  text-decoration: none;
+}
 .title-card{
   display:flex;
 }

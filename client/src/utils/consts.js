@@ -7,3 +7,4 @@ export const GUIDE_ROUTE='/guide';
 export const SANDBOX_ROUTE='/sandbox';
 export const TRAINER_ROUTE='/trainer';
 export const COURSEPAGE_ROUTE ='/coursepage'
+export const COURSECARD_ROUTE='./coursecard'

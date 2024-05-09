@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import {LOGIN_ROUTE, REGISTRATION_ROUTE, COURSE_ROUTE} from "../utils/consts";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useLocation, useNavigate,useHistory} from "react-router-dom";
 import {Row,Container,Col,Card,Form,Button} from 'react-bootstrap';
 import {login, registration} from "../http/userAPI";
 import {observer} from "mobx-react-lite";
@@ -8,37 +8,33 @@ import {Context} from "../index";
 import { Navbarr } from "../components/Navbarr";
 import './css/Auth.css'
 export const Auth= observer(() => {
-
-
   const {user} = useContext(Context)
+   
     const navigate = useNavigate()//данный хук возращает нам маршрут из строки запроса
-
-
     const location = useLocation()//данный хук возращает нам маршрут из строки запроса
     const isLogin = location.pathname === LOGIN_ROUTE;//если станица логина то isLogin = true
-
-    //состояния:
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
     const click = async () => {
-      try{
-        let data;
+      let data;
+      try {
+          if (isLogin){
+              data = await login(email, password)
+          }else{
+              data = await registration(email, password)
+          }
+          user.setUser(data)
+          user.setIsAuth(true)
+          navigate(COURSE_ROUTE)
+      }catch (e) {
+          alert(e.response.data.message)
+      }
+  
+    }
     
-        if (isLogin){
-            data = await login(email, password);
-        }else{
-            data = await registration(email, password);
-        }
-        user.setUser(data.user)
-        user.setIsAuth(true)
-        navigate(COURSE_ROUTE)//если всё ок - переводим авторизованного юзера на главную
-    } catch (e){
-      document.getElementById('error').textContent = e.response.data.message
       
-    }
 
-    }
+    
 
   return(<>
   <Navbarr/>
@@ -47,6 +43,7 @@ export const Auth= observer(() => {
       <div>   <div md='6' className='text-center text-md-start d-flex flex-column justify-content-center'></div>
   
       <Container className='position-relative'>
+        
       <div id="radius-shape-1" className="position-absolute rounded-circle shadow-5-strong"></div>
             <div id="radius-shape-2" className="position-absolute shadow-5-strong"></div>
           <Row className="vh-100 d-flex justify-content-center align-items-center">
@@ -99,10 +96,10 @@ export const Auth= observer(() => {
                 }
                      
                       </div>
+                      <p className='error-message' id={'error'}></p>
                     </div>
                   </div>
-                  <h6 className='error-message' id={"error"}></h6>
-                </Card.Body>
+</Card.Body>
               </Card>
             </Col>
           </Row>

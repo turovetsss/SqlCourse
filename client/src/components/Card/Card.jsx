@@ -2,9 +2,10 @@ import React from "react";
 import Card from 'react-bootstrap/Card';
 
 import './Card.css'
+import { COURSECARD_ROUTE, SANDBOX_ROUTE, TRAINER_ROUTE } from "../../utils/consts";
 export const Cardd=()=>{
   return(
-    <>  <Card className='course-card' >
+    <> <a href={COURSECARD_ROUTE}><Card className='course-card' >
     <Card.Body>
       <div className="title-card">
       <Card.Title>Вводный курс по SQL</Card.Title> <div className="button-arrow">⭢</div>
@@ -14,7 +15,9 @@ export const Cardd=()=>{
       </Card.Text>
        </Card.Body>
   </Card>
+  </a> 
   <div className="two-level">
+    <a href={SANDBOX_ROUTE}>
   <Card className='sandbox-card' >
     <Card.Body>
     <div className="title-card">
@@ -24,6 +27,8 @@ export const Cardd=()=>{
       Пространство для свободного знакомства со структурой наших баз данных</Card.Text>
        </Card.Body>
   </Card>
+  </a>
+  <a href={TRAINER_ROUTE}>
   <Card className='guide-card' >
     <Card.Body>
     <div className="title-card">
@@ -31,9 +36,9 @@ export const Cardd=()=>{
 </div>
 
      <Card.Text>
-    <div className="sandbox-area"> > SELECT </div>
+    <div className="sandbox-area"> SELECT </div>
       </Card.Text>
        </Card.Body>
-  </Card></div></>
+  </Card></a></div></>
   )
 }

@@ -3,8 +3,10 @@ import {Routes, Route, Navigate} from 'react-router-dom';
 import {authRoutes, publicRoutes} from "../routes";
 import {COURSE_ROUTE} from "../utils/consts";
 import {Context} from "../index";
-export const AppRouter = () => {
-    const {user} = useContext(Context) //авториз юзер или нет, получаем переменную из UserStore
+import {observer} from "mobx-react-lite";
+export const AppRouter  = observer(() =>{
+    const {user} = useContext(Context)
+    console.log(user) //авториз юзер или нет, получаем переменную из UserStore
     return (
         <Routes>
         {user.isAuth && authRoutes.map(({path, Component})=> //оживление роутинга для массива авторизованного пользователя, пробегаем по массиву ->
@@ -21,6 +23,6 @@ export const AppRouter = () => {
 
         </Routes>
     );
-};
+});
 
 export default AppRouter;

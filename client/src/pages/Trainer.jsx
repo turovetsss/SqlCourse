@@ -30,10 +30,7 @@ const filteredTraners = course.trainers.filter(trainer => {
                 />  </div><ListGroup className="list">
      {filteredTraners.map(trainer =>
                            <ListGroup.Item key={trainer.id}  className="item"><div className="name">#{trainer.id} {trainer.description}</div><div className="high"> Сложность: {trainer.complexity} 
-                           <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
-                           
-                           <circle cx="8" cy="8" r="8"/>
-                         </svg></div> </ListGroup.Item>
+                         </div> </ListGroup.Item>
 
                     )} 
   </ListGroup> </div>

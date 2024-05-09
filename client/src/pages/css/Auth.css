@@ -1,3 +1,4 @@
+
 .background-radial-gradient {
   background-color: hsl(286, 41%, 43%);
   background-image:   radial-gradient(1250px circle at 100% 100%,
@@ -14,7 +15,10 @@
       transparent 100%);
 }
 .error-message{
-  color: red;
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 8px;
+  color: rgb(202, 59, 33);;
   text-align: center;
 }
 #radius-shape-1 {

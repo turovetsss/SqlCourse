@@ -2,7 +2,6 @@ import React, {useContext,useEffect,useState} from 'react';
 import Tab from 'react-bootstrap/Tab';
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
-import Tabs from 'react-bootstrap/Tabs';
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
@@ -21,9 +20,11 @@ export const Guide = observer(() => {
 }, [])
 
 
+
 const filteredFuncs = course.funcs.filter(func => {
   return func.name.toLowerCase().includes(searchTerm.toLowerCase());
 });
+
 
   return(<>
 <Navbarr />
@@ -41,14 +42,13 @@ const filteredFuncs = course.funcs.filter(func => {
     <h1 className='title'>Справочник по функциям</h1>
    
     </div>
-    <div className="button-group"> 
-      <button className="group">Oсновные</button>
-      <button className="group">Математика</button>
-      <button className="group">Строки</button>
-      <button className="group">Даты</button>
-      <button className="group">Объединения</button>
-      
-    </div>
+    <div className="button-group">
+        <button className="group">Основные</button>
+        <button className="group">Математика</button>
+        <button className="group">Строки</button>
+        <button className="group">Даты</button>
+        <button className="group">Объединения</button>
+      </div>
     <Card className="card2">
     <Tab.Container id="left-tabs-example" defaultActiveKey="first">
         <Row>
@@ -60,6 +60,7 @@ const filteredFuncs = course.funcs.filter(func => {
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
+               
                    <Nav variant="pills" className="flex-column">
                   {filteredFuncs.map(func =>
                     <Nav.Item key={func.id} className="item2">
@@ -67,7 +68,7 @@ const filteredFuncs = course.funcs.filter(func => {
                     </Nav.Item>
                   )}
                 </Nav>
-             
+              
             </Col>          
             <Col sm={9}>
             <div className="pils">
