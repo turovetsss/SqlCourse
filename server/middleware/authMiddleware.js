@@ -1,20 +1,21 @@
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 
-module.exports = function (req, res, next) {
-    if (req.method == "OPTIONS") {
-        next()
+const authMiddleware = (req, res, next) => {
+    if (req.method === "OPTIONS") {
+        next();
     }
     try {
-        const token = req.headers.authorization.split(' ')[1] // Bearer asfasnfkajsfnjk
+        const token = req.headers.authorization.split(' ')[1]; // Bearer asfasnfkajsfnjk
         if (!token) {
-            return res.status(401).json({message: "Не авторизован"})
-        
+            return res.status(401).json({ message: "Не авторизован" });
         }
-        const decoded = jwt.verify(token, process.env.SECRET_KEY)
-        req.user = decoded
-        next()
-       
-    } catch (e) {
-      console.log('не авторизован')
- }
+        const decoded = jwt.verify(token, process.env.SECRET_KEY);
+        req.user = decoded;
+        next();
+    } catch (error) {
+        console.log('hehe');
+        
+    }
 };
+
+module.exports = authMiddleware;

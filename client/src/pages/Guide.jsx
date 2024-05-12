@@ -13,6 +13,7 @@ import { Navbarr } from "../components/Navbarr";
 export const Guide = observer(() => {
   const {course} = useContext(Context)
   const [searchTerm, setSearchTerm] = useState('');
+  const [buttonTerm, setButtonTerm] = useState('')
 
   useEffect(() => {
     fetchFunc().then(data => course.setFuncs(data))
@@ -20,9 +21,14 @@ export const Guide = observer(() => {
 }, [])
 
 
-
 const filteredFuncs = course.funcs.filter(func => {
-  return func.name.toLowerCase().includes(searchTerm.toLowerCase());
+  if(buttonTerm =='Все'){
+   console.log('hui')  
+   return func.name.replaceAll() && func.name.toLowerCase().includes(searchTerm.toLowerCase());
+  }
+  else{
+  return func.type.toLowerCase().includes(buttonTerm.toLowerCase()) && func.name.toLowerCase().includes(searchTerm.toLowerCase());
+  }
 });
 
 
@@ -37,17 +43,18 @@ const filteredFuncs = course.funcs.filter(func => {
 
           </Container>
     <div> 
-    <div style={{padding:'50px 300px'}}className="background-radial-gradient overflow-hidden"> 
+    <div style={{padding:'20px 280px'}}className="background-radial-gradient overflow-hidden"> 
     <div className="title-group">
     <h1 className='title'>Справочник по функциям</h1>
    
     </div>
     <div className="button-group">
-        <button className="group">Основные</button>
-        <button className="group">Математика</button>
-        <button className="group">Строки</button>
-        <button className="group">Даты</button>
-        <button className="group">Объединения</button>
+    <button className="group" value={'Все'}  onClick={(e) => setButtonTerm('Все')}>Все</button>
+        <button className="group" value={'Основные'}  onClick={(e) => setButtonTerm("Основные")}>Основные</button>
+        <button className="group" value={'Математика'}  onClick={(e) => setButtonTerm("Математика")}>Математика</button>
+        <button className="group" value={'Строки'} onClick={(e) => setButtonTerm("Строки")}>Строки</button>
+        <button className="group" value={'Даты'} onClick={(e) => setButtonTerm("Даты")}>Даты</button>
+        <button className="group" value={'Объединения'} onClick={(e) => setButtonTerm("Объединения")}>Объединения</button>
       </div>
     <Card className="card2">
     <Tab.Container id="left-tabs-example" defaultActiveKey="first">

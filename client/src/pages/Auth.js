@@ -5,6 +5,8 @@ import {Row,Container,Col,Card,Form,Button} from 'react-bootstrap';
 import {login, registration} from "../http/userAPI";
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
+import {$authHost} from "../http";
+
 import { Navbarr } from "../components/Navbarr";
 import './css/Auth.css'
 export const Auth= observer(() => {

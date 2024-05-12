@@ -40,7 +40,7 @@ body::-webkit-scrollbar-thumb {
  background-color:rgb(149, 116, 219);
  padding:5px 20px;
  transition: 0.4s;
- margin: 10px;
+ margin: 5px;
 }
 .title-group{
   display: flex;
@@ -48,7 +48,9 @@ body::-webkit-scrollbar-thumb {
 h1{
   display: flex;
 }
-.button-group{}
+.button-group{
+  padding: 0px;
+}
 .input-group{
   display: flex;
   width: 160px;
