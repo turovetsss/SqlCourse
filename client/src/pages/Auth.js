@@ -15,6 +15,7 @@ export const Auth= observer(() => {
     const navigate = useNavigate()//данный хук возращает нам маршрут из строки запроса
     const location = useLocation()//данный хук возращает нам маршрут из строки запроса
     const isLogin = location.pathname === LOGIN_ROUTE;//если станица логина то isLogin = true
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const click = async () => {
@@ -22,8 +23,10 @@ export const Auth= observer(() => {
       try {
           if (isLogin){
               data = await login(email, password)
+              console.log(data)
           }else{
               data = await registration(email, password)
+              console.log(data)
           }
           user.setUser(data)
           user.setIsAuth(true)
@@ -60,7 +63,17 @@ export const Auth= observer(() => {
                     </div>
                     <div className="mb-2">
                       <Form>
-                      
+                      {isLogin ?
+                      <></>
+                   :
+                  <Form.Group className="mb-2" controlId="formBasicEmail">
+                          
+                 <Form.Label className="text-center">
+                   Имя
+                 </Form.Label>
+                 <Form.Control type="email" placeholder="Введите имя"  value={name} onChange={e => setName(e.target.value)}/>
+               </Form.Group> 
+                }
                         <Form.Group className="mb-2" controlId="formBasicEmail">
                           
                           <Form.Label className="text-center">

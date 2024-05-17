@@ -1,15 +1,13 @@
 import React, {useState,useEffect,useContext} from 'react';
-import {Button, Container} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 import CreateFunc from "../components/modals/CreateFunc";
 import CreateTrainer from "../components/modals/CreateTrainer";
 import Table from 'react-bootstrap/Table';
-import {editFunc,fetchFunc,deleteFunc, deleteTrainer,fetchTrainer} from "../http/itemAPI";
+import {fetchFunc,deleteFunc, deleteTrainer,fetchTrainer} from "../http/itemAPI";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
-
-import ListGroup from 'react-bootstrap/ListGroup';
 
 import './css/Admin.css'
 import { AdminNavbar } from '../components/AdminNavbar';
@@ -20,10 +18,11 @@ export const Admin= observer(() => {
   const[funcEditVisible,setFuncEditVisible]=useState(false)
     const [funcVisible, setFuncVisible] = useState(false)
     const [trainerVisible, setTrainerVisible] = useState(false)
+    console.log(value)
     useEffect(() => {
       fetchFunc().then(data => course.setFuncs(data))
       fetchTrainer().then(data=>course.setTrainers(data))
-  }, [])
+  }, [course])
 
   const removeFunc = (id) => {
     console.log(id)

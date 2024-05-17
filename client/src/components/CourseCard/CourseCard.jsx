@@ -15,7 +15,7 @@ export const CourseCard=()=>{
         <div>В этом коротком модуле мы познакомимся с тем как работает платформа данного курса и узнаем как получить максимум от него. А также получим информацию о нашем сообществе.</div>
         </div>
         <div className="structure">
-         <a href=""><div className="structure-btn">—  Введение</div></a>
+         <div className="structure-btn">—  Введение</div>
           <div className="structure-btn">—  Структура курса</div>
           <div className="structure-btn">—   Сообщество</div>
         </div>

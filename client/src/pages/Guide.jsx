@@ -18,11 +18,11 @@ export const Guide = observer(() => {
   useEffect(() => {
     fetchFunc().then(data => course.setFuncs(data))
 
-}, [])
+}, [course])
 
 
 const filteredFuncs = course.funcs.filter(func => {
-  if(buttonTerm =='Все'){
+  if(buttonTerm ==='Все'){
    console.log('hui')  
    return func.name.replaceAll() && func.name.toLowerCase().includes(searchTerm.toLowerCase());
   }

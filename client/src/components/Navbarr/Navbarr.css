@@ -7,6 +7,12 @@
   color:rgb(155, 124, 222);
   margin-left: 15px;
 }
+.div-account{
+  display: inline;
+  font-size: 18px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
 .navbrand{
 
   color:rgb(155, 124, 222);

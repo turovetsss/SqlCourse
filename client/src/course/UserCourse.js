@@ -1,32 +1,40 @@
 import {makeAutoObservable} from "mobx";
+import {jwtDecode} from "jwt-decode";
 
-export default class UserStore{
+export default class UserStore {
     constructor() {
-        this._isUser = {}
-        this._isAuth = false
-        this._isRole = {}
-
-        makeAutoObservable(this)
-    }
-    setIsUser(bool){
-        this._isUser = bool
+        this._isAuth = false;
+        this._user = {};
+        makeAutoObservable(this);
+        this.checkValidToken = this.checkValidToken.bind(this);
     }
 
-    setIsAuth(bool){
-        this._isAuth = bool
+    checkValidToken() {
+        let isExpired = false;
+        const token = localStorage.getItem('token');
+        const decodedToken = jwtDecode(token);
+        const dateNow = new Date();
+
+        if (decodedToken.exp < dateNow.getTime()){
+            isExpired = true;
+        }
+
+        return isExpired;
     }
 
-    setUser(bool){
-        this._isRole = bool
+    setIsAuth(bool) {
+        this._isAuth = bool;
+    }
+
+    setUser(user) {
+        this._user = user;
     }
 
     get isAuth() {
-        return this._isAuth
+        return this._isAuth;
     }
-    get isUser(){
-        return this._isUser
-    }
-    get isRole(){
-        return this._isRole
+
+    get User() {
+        return this._user;
     }
 }

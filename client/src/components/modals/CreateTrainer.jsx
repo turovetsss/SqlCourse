@@ -1,9 +1,8 @@
-import React, {useState,useContext,useEffect} from 'react';
+import React, {useState} from 'react';
 import Modal from "react-bootstrap/Modal";
-import {Context} from "../../index";
 import {observer} from "mobx-react-lite";
-import {Button, Form,Dropdown, DropdownItem} from "react-bootstrap";
-import { createTrainer,fetchTrainer} from "../../http/itemAPI";
+import {Button, Form} from "react-bootstrap";
+import { createTrainer} from "../../http/itemAPI";
 import './CreateFunc.css'
 const CreateTrainer= observer(({show, onHide}) =>{
   const [solution, setSolution] = useState('')

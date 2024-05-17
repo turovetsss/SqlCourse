@@ -12,7 +12,7 @@ export const Trainer= observer(() =>{
   useEffect(() => {
     fetchTrainer().then(data => course.setTrainers(data))
 
-}, [])
+}, [course])
 const filteredTraners = course.trainers.filter(trainer => {
   return trainer.description.toLowerCase().includes(searchTerm.toLowerCase());
 });

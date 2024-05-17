@@ -1,8 +1,7 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import Container from 'react-bootstrap/Container';
 import { Context } from '../../index';
-import {ABOUT_ROUTE, ADMIN_ROUTE, BASKET_ROUTE, LOGIN_ROUTE, COURSE_ROUTE} from "../../utils/consts";
-
+import Dropdown from 'react-bootstrap/Dropdown';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import {observer} from "mobx-react-lite";
@@ -34,8 +33,22 @@ export const Navbarr= observer( () => {
       <Nav.Link className='navlink' href="http://localhost:3000/guide">Справочник</Nav.Link>
     </Nav>
     <Nav className="me-right">
-    <a href="http://localhost:3000/login" onClick={()=>logOut()}><button className='nav-link-login' >Выйти</button></a>
-    <a href=""><div className='nav-link-login' disabled={true} ><img width="16" height="16" src="https://img.icons8.com/small/16/000000/user.png" alt="user"/>Профиль</div></a>
+    <Dropdown  data-bs-theme="light" height="100px">
+        <Dropdown.Toggle id="dropdown-button-light-example1" variant="first">
+        <div className='div-account'><img width="30" height="30" src="https://img.icons8.com/small/30/000000/user.png" alt="user"/>user.name</div>
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <Dropdown.Item href="#/action-1" active>
+            Action
+          </Dropdown.Item>
+          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item href="#/action-4"><a href="http://localhost:3000/login" onClick={()=>logOut()}><button className='nav-link-login' >Выйти</button></a></Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+
  
  </Nav>
   </Container>

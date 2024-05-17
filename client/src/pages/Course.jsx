@@ -2,15 +2,7 @@ import React from "react";
 import { Navbarr } from "../components/Navbarr";
 import { Cardd } from "../components/Card";
 import { CourseCard } from "../components/CourseCard";
-import Card from 'react-bootstrap/Card';
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tabs';
-import Col from 'react-bootstrap/Col';
-import Nav from 'react-bootstrap/Nav';
-import Row from 'react-bootstrap/Row';
-import { Container } from 'react-bootstrap';
-import "./css/Course.css";
-import { COURSEPAGE_ROUTE } from "../utils/consts";
+
 export const Course=()=>{
   return(
     <div>

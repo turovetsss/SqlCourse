@@ -1,9 +1,8 @@
-import React, {useState,useContext,useEffect} from 'react';
+import React, {useState} from 'react';
 import Modal from "react-bootstrap/Modal";
-import {Context} from "../../index";
 import {observer} from "mobx-react-lite";
-import {Button, Form,Dropdown, DropdownItem} from "react-bootstrap";
-import { editFunc,fetchFunc} from "../../http/itemAPI";
+import {Button, Form} from "react-bootstrap";
+import { editFunc} from "../../http/itemAPI";
 import './CreateFunc.css'
 export const EditFunc= observer(({show, onHide}) =>{
   const[type, setType] = useState('')
