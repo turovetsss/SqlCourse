@@ -1,11 +1,10 @@
 import React, {useContext, useState} from 'react';
 import {LOGIN_ROUTE, REGISTRATION_ROUTE, COURSE_ROUTE} from "../utils/consts";
-import {useLocation, useNavigate,useHistory} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {Row,Container,Col,Card,Form,Button} from 'react-bootstrap';
 import {login, registration} from "../http/userAPI";
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
-import {$authHost} from "../http";
 
 import { Navbarr } from "../components/Navbarr";
 import './css/Auth.css'
@@ -24,15 +23,19 @@ export const Auth= observer(() => {
           if (isLogin){
               data = await login(email, password)
               console.log(data)
+              alert("C возвращением!")
+              
           }else{
               data = await registration(email, password)
               console.log(data)
+              alert("Добро пожаловать!")
           }
           user.setUser(data)
           user.setIsAuth(true)
           navigate(COURSE_ROUTE)
       }catch (e) {
           alert(e.response.data.message)
+    
       }
   
     }
@@ -79,7 +82,7 @@ export const Auth= observer(() => {
                           <Form.Label className="text-center">
                             Email
                           </Form.Label>
-                          <Form.Control type="email" placeholder="Введите email"  value={email} onChange={e => setEmail(e.target.value)}/>
+                          <Form.Control type="email"  placeholder="Введите email"  value={email} onChange={e => setEmail(e.target.value)}/>
                         </Form.Group>
   
                         <Form.Group
@@ -87,7 +90,7 @@ export const Auth= observer(() => {
                           controlId="formBasicPassword"
                         >
                           <Form.Label>Пароль</Form.Label>
-                          <Form.Control type="password" placeholder="Введите пароль" value={password} onChange={e=>setPassword(e.target.value)} />
+                          <Form.Control type="password"  placeholder="Введите пароль" value={password} onChange={e=>setPassword(e.target.value)} />
                         </Form.Group>
                       
                         <Form.Group
@@ -111,7 +114,7 @@ export const Auth= observer(() => {
                 }
                      
                       </div>
-                      <p className='error-message' id={'error'}></p>
+                      <p id={"error"}></p>
                     </div>
                   </div>
 </Card.Body>

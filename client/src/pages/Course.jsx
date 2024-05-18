@@ -2,7 +2,7 @@ import React from "react";
 import { Navbarr } from "../components/Navbarr";
 import { Cardd } from "../components/Card";
 import { CourseCard } from "../components/CourseCard";
-
+import "./css/Course.css";
 export const Course=()=>{
   return(
     <div>
