@@ -46,9 +46,6 @@ get brands(){
     return this._brands
 }
 
-get items(){
-    return this._items
-}
 setItems(item){
     this._items = item
 }

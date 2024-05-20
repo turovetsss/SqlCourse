@@ -15,14 +15,10 @@ const Account = sequelize.define('account',{
 })
 const Func = sequelize.define('func',{
   id:{type:DataTypes.INTEGER,primaryKey:true,autoIncrement:true},
-  type:{type:DataTypes.STRING,allowNull:false,defaultValue:"String"},
-  name:{type:DataTypes.STRING,allowNull:false,defaultValue:"Func1"},
-  description:{type:DataTypes.STRING,allowNull:false,defaultValue:"opis"},
- script:{type:DataTypes.STRING,allowNull:false,defaultValue:"script"},
- example1Info:{type:DataTypes.STRING,allowNull:false,defaultValue:"exampleinfo1"},
- example1:{type:DataTypes.STRING,allowNull:false,defaultValue:"example1"},
- example2Info:{type:DataTypes.STRING,allowNull:false,defaultValue:"exampleinfo2"},
- example2:{type:DataTypes.STRING,allowNull:false,defaultValue:"example2"},
+  type:{type:DataTypes.STRING,allowNull:false},
+  name:{type:DataTypes.STRING,allowNull:false},
+  description:{type:DataTypes.STRING,allowNull:false},
+ script:{type:DataTypes.STRING,allowNull:false},
 })
 
 const Trainer = sequelize.define('trainer',{
@@ -32,10 +28,17 @@ const Trainer = sequelize.define('trainer',{
   complexity:{type:DataTypes.STRING,allowNull:false},
   solved:{type:DataTypes.STRING},
 })
+const FuncInfo = sequelize.define('func_info', {
+  id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+  title: {type: DataTypes.STRING, allowNull: false,defaultValue:"example2"},
+  description: {type: DataTypes.STRING, allowNull: false,defaultValue:"example2"},
+})
 
 User.hasOne(Account)
 Account.belongsTo(User);
 
+Func.hasMany(FuncInfo, {as: 'info'});
+FuncInfo.belongsTo(Func)
 
 
 Account.hasMany(Trainer),
@@ -43,6 +46,6 @@ Trainer.belongsTo(Account)
 
 
 module.exports={
-  User,Func,Trainer,Account,
+  User,Func,Trainer,Account,FuncInfo,
 }
  

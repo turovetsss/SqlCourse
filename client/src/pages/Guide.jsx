@@ -1,25 +1,33 @@
 import React, {useContext,useEffect,useState} from 'react';
 import Tab from 'react-bootstrap/Tab';
 import {Context} from "../index";
+import {useParams,useNavigate} from 'react-router-dom';
 import {observer} from "mobx-react-lite";
+import {GUIDEBOOK_ROUTE} from "../utils/consts";
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import { Container } from 'react-bootstrap';
-import {fetchFunc} from "../http/itemAPI";
+import {fetchFunc,fetchOneFunc} from "../http/itemAPI";
 import './css/Guide.css'
 import { Navbarr } from "../components/Navbarr";
+import { GuideBook } from './GuideBook';
 export const Guide = observer(() => {
   const {course} = useContext(Context)
+  const navigate = useNavigate()
+  const [func, setFunc] = useState({info: []});    
   const [searchTerm, setSearchTerm] = useState('');
   const [buttonTerm, setButtonTerm] = useState('')
-
+  const {id} = useParams();
   useEffect(() => {
     fetchFunc().then(data => course.setFuncs(data))
+    fetchOneFunc(id).then(data => setFunc(data));
+}, [course,id])
 
-}, [course])
-
+  // useEffect( () => {
+  //   fetchOneFunc(id).then(data => setFunc(data));
+  // },[id]);
 
 const filteredFuncs = course.funcs.filter(func => {
   if(buttonTerm ==='Все'){
@@ -68,43 +76,16 @@ const filteredFuncs = course.funcs.filter(func => {
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
                
-                   <Nav variant="pills" className="flex-column">
+                   <Nav variant="pills" className="flex-column"> 
                   {filteredFuncs.map(func =>
                     <Nav.Item key={func.id} className="item2">
-                      <Nav.Link eventKey={func.id}>{func.name}</Nav.Link>
+                      <Nav.Link eventKey={func.id} onClick={() => navigate.apply(+'/'+func.id)}>{func.name}</Nav.Link>
                     </Nav.Item>
                   )}
                 </Nav>
               
             </Col>          
-            <Col sm={9}>
-            <div className="pils">
-                <Tab.Content className="content">
-                    {course.funcs.map(func =>
-                        <Tab.Pane key={func.id} eventKey={func.id}>
-                          <h3> Функция "{func.name}"</h3>
-                            {func.description}
-                            <h5>
-                            Синтаксис
-                            </h5>
-                            <div className="primer">{func.script}</div>
-                            <h5>
-                            Пример 1
-                            </h5>
-                            <p>{func.example1Info}</p>
-                            <div className="primer">{func.example1}</div>
-                            <h5>
-                            Пример 2
-                            </h5>
-                            <p>{func.example2Info}</p>
-                            <div className="primer">{func.example2}</div>
-             
-                        </Tab.Pane>
-                    )}
-                </Tab.Content>
-                </div>
-            </Col>
-            
+           <GuideBook></GuideBook>
         </Row>
     </Tab.Container>
 </Card>

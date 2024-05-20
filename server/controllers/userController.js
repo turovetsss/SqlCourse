@@ -44,7 +44,20 @@ class UserController {
       return res.json({token});
   }
 
+  async getOne(req, res) {
+    const id = req.body
+    const users = await User.findOne(
+        {
+            where: id,
+        },
+    )
+      return res.json(users)
+      }
 
+async getAll(req,res){
+  const users = await User.findAll()
+  return res.json(users)
+}
   async check(req, res) {
       const token = generateJwt(req.user.id, req.user.name, req.user.email, req.user.role)
       return res.json({token})

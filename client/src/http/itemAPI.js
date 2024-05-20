@@ -12,15 +12,34 @@ export const deleteFunc = async (func) => {
     const {data} = await $authHost.post('api/func/delete', func)
     return data
 }
-export const createFunc = async (func) => {
-    //в response помещаем ответ
-    const {data} = await $authHost.post('api/func', func)
-    return data
+export const createFunc= async (func) => {
+  const {data} = await $authHost.post('api/func', func)
+  return data
 }
+
 export const fetchFunc = async () => {//getTypes
     //в response помещаем ответ
     const {data} = await $host.get('api/func')
     return data
+}
+//user
+export const fetchOneUser = async (id) => {
+  const {data} = await $host.get(`api/user/${id}`);
+  return data;
+}
+export const fetchUser = async () => {//getTypes
+  //в response помещаем ответ
+  const {data} = await $host.get('api/user')
+  return data
+}
+export const fetchOneFunc = async (id) => {
+const {data} = await $host.get(`api/func/${id}`);
+return data;
+}
+
+export const updateFunces = async (id) => {
+  const {data} = await $host.post(`api/func/`+id);
+  return data;
 }
 
 //TRAINER 

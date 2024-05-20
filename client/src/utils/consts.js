@@ -4,6 +4,7 @@ export const REGISTRATION_ROUTE='/registry';
 export const ACCOUNT_ROUTE='/account';
 export const COURSE_ROUTE='/course';
 export const GUIDE_ROUTE='/guide';
+export const GUIDEBOOK_ROUTE='/guidebook';
 export const SANDBOX_ROUTE='/sandbox';
 export const TRAINER_ROUTE='/trainer';
 export const COURSEPAGE_ROUTE ='/coursepage'

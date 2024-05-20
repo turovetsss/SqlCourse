@@ -18,8 +18,11 @@ export const Navbarr= observer( () => {
     localStorage.removeItem('token');
     // Дополнительные шаги, если нужно, например, перенаправление на страницу входа
     navigate('/login');
-
+  }
+const alertIsAuth=()=>{
+ alert('Тренажер доступен только авторизованным пользователям!')
 }
+
 
   return( <>
 <Navbar className="navv">
@@ -57,8 +60,8 @@ export const Navbarr= observer( () => {
     <Navbar.Brand className='navbrand'href="#home">SQL</Navbar.Brand>
     <Nav className="me-left">
     <Nav.Link className='navlink' href="http://localhost:3000/course">Курс</Nav.Link>
-      <Nav.Link className='navlink' href="http://localhost:3000/trainer">Тренажер</Nav.Link>
-      <Nav.Link className='navlink' href="http://localhost:3000/sandbox">Песочница</Nav.Link>
+      <Nav.Link className='navlink' href=""   onClick={() => alertIsAuth()} >Тренажер</Nav.Link>
+      <Nav.Link className='navlink' href=""   onClick={() => alertIsAuth()}>Песочница</Nav.Link>
       <Nav.Link className='navlink' href="http://localhost:3000/guide">Справочник</Nav.Link>
     </Nav>
     <Nav className="me-right">

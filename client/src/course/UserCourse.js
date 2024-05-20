@@ -1,7 +1,7 @@
 import {makeAutoObservable} from "mobx";
 import {jwtDecode} from "jwt-decode";
 
-export default class UserStore {
+export default class UserCourse{
     constructor() {
         this._isAuth = false;
         this._user = {};

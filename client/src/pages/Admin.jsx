@@ -21,7 +21,7 @@ export const Admin= observer(() => {
     console.log(value)
     useEffect(() => {
       fetchFunc().then(data => course.setFuncs(data))
-      fetchTrainer().then(data=>course.setTrainers(data))
+      fetchTrainer().then(data=> course.setTrainers(data))
   }, [course])
 
   const removeFunc = (id) => {
@@ -65,10 +65,7 @@ export const Admin= observer(() => {
           <th>Тип</th>
           <th>Описание</th>
           <th>Скрипт</th>
-          <th>Пример</th>
-          <th>Пример 1</th>
-          <th>Пример</th>
-          <th>Пример 2</th>
+
           <th>Действия</th>
         </tr>  
       </thead>
@@ -80,10 +77,6 @@ export const Admin= observer(() => {
                             <td>{func.type}</td>
           <td>{func.description}</td>
           <td>{func.script}</td>
-          <td>{func.example1Info}</td>
-          <td>{func.example1}</td>
-          <td>{func.example2Info}</td>
-          <td>{func.example2}</td>
           <td><Button className='btn' onChange={e => setValue(func.id)} onClick={() => removeFunc(func.id)}>-</Button> <Button className='btn'   onClick={() => setFuncEditVisible(true)}
             >Настройки</Button>  <EditFunc show={funcEditVisible} onHide={() => setFuncEditVisible(false)}/> </td>
                         </tr>
