@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext,useEffect} from 'react';
 import Container from 'react-bootstrap/Container';
 import { Context } from '../../index';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -6,10 +6,12 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import {observer} from "mobx-react-lite";
 import {useNavigate} from "react-router-dom";
+import {fetchUser} from "../../http/itemAPI.js";
 
 import './Navbarr.css'
 export const Navbarr= observer( () => {
   const {user} = useContext(Context)//для разных пользователей навбар будет отображаться по разному
+  const {course} = useContext(Context)
   const navigate = useNavigate()
   const logOut = () =>{
     user.setUser({})
@@ -22,6 +24,10 @@ export const Navbarr= observer( () => {
 const alertIsAuth=()=>{
  alert('Тренажер доступен только авторизованным пользователям!')
 }
+useEffect(() => {
+  fetchUser().then(data=> course.setUsers(data))
+}, [course])
+
 
 
   return( <>
@@ -38,7 +44,7 @@ const alertIsAuth=()=>{
     <Nav className="me-right">
     <Dropdown  data-bs-theme="light" height="100px">
         <Dropdown.Toggle id="dropdown-button-light-example1" variant="first">
-        <div className='div-account'><img width="30" height="30" src="https://img.icons8.com/small/30/000000/user.png" alt="user"/>user.name</div>
+         {course.users.map(user => <div className='div-account'><img width="30" height="30" src="https://img.icons8.com/small/30/000000/user.png" alt="user"/>{user.name}</div>   )}
         </Dropdown.Toggle>
 
         <Dropdown.Menu>

@@ -66,11 +66,12 @@ const changeInfo = (key, value, number) => {
                 <Form>
                   <label htmlFor="select">Выберите раздел</label>
                 <select className='select-option' onChange={handleDropdownChange}>
-  <option value="Основное">Основное</option>
-  <option value="Строки">Строки</option>
-  <option value="математика">Математика</option>
-  <option value="Даты">Даты</option>
-  <option value="Объединения">Объединения</option>
+                <option value="Основное" disabled></option>
+                <option value="Основное">Основное</option>
+                <option value="Строки">Строки</option>
+                 <option value="математика">Математика</option>
+                 <option value="Даты">Даты</option>
+                 <option value="Объединения">Объединения</option>
 </select>
                     <Form.Control className='mt-2 mb-2'
                         value={value}
@@ -87,8 +88,9 @@ const changeInfo = (key, value, number) => {
                         onChange={e => setScript(e.target.value)}
                         placeholder={"Введите скрипт функции"}
                     />
+                     <hr/>
                     <p>Также нужно добавить пару примеров:</p>
-                       <hr/>
+                      
                   
                     {/*Characteristics*/}
                     <Button

@@ -3,7 +3,7 @@ import {Button} from "react-bootstrap";
 import CreateFunc from "../components/modals/CreateFunc";
 import CreateTrainer from "../components/modals/CreateTrainer";
 import Table from 'react-bootstrap/Table';
-import {fetchFunc,deleteFunc, deleteTrainer,fetchTrainer} from "../http/itemAPI";
+import {fetchFunc,deleteFunc, deleteTrainer,fetchTrainer,fetchUser} from "../http/itemAPI";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import {Context} from "../index";
@@ -22,6 +22,7 @@ export const Admin= observer(() => {
     useEffect(() => {
       fetchFunc().then(data => course.setFuncs(data))
       fetchTrainer().then(data=> course.setTrainers(data))
+      fetchUser().then(data=> course.setUsers(data))
   }, [course])
 
   const removeFunc = (id) => {
@@ -113,8 +114,28 @@ export const Admin= observer(() => {
       <Tab eventKey="longer-tab" title="Курс">
         Информация о курсе
       </Tab>
-      <Tab eventKey="contact" title="Пользователи">
-        Пользователи и рейтинги
+      <Tab eventKey="user" title="Пользователи">
+      <Table striped bordered hover variant="light">
+      <thead>
+        <tr>
+          <th>id </th>
+          <th>Имя</th>
+          <th>Логин</th>
+          <th>Присоединился</th>
+        </tr>  
+      </thead>
+      <tbody>
+      {course.users.map(user =>
+                        <tr key={user.id} >
+                          <td>{user.id}</td>
+                            <td>{user.name}</td>
+                            <td>{user.email}</td>
+                            <td>{new Date(user.createdAt).toLocaleDateString()}</td>
+          <td> </td>
+                        </tr>
+                    )}
+      </tbody>
+    </Table>
       </Tab>
     </Tabs>
         <div className="admin-panel">

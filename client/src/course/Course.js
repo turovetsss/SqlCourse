@@ -6,7 +6,7 @@ export default class СourseCourse {
     this._trainers = []
     this._brands = []
     this._items = []
-
+  this._users=[]
     //selectedTypes
     //selectedBarnds
 
@@ -21,6 +21,12 @@ setFuncs(funcs){
 }
 get funcs(){
     return this._funcs
+}
+setUsers(users){
+  this._users = users
+}
+get users(){
+  return this._users
 }
 
 setTrainers(trainers){
