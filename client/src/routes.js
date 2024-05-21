@@ -1,5 +1,5 @@
 
-import { ACCOUNT_ROUTE, ADMIN_ROUTE, COURSE_ROUTE, GUIDEBOOK_ROUTE,COURSEPAGE_ROUTE,GUIDE_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SANDBOX_ROUTE, TRAINER_ROUTE } from './utils/consts';
+import { ACCOUNT_ROUTE, ADMIN_ROUTE, COURSE_ROUTE, GUIDEBOOK_ROUTE,COURSEPAGE_ROUTE,GUIDE_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SANDBOX_ROUTE, TRAINER_ROUTE, FUNC_ROUTE } from './utils/consts';
 import { Account } from "./pages/Account.jsx";
 import { Admin } from "./pages/Admin.jsx";
 import { Auth }  from './pages/Auth.js';
@@ -20,8 +20,9 @@ export const authRoutes=[
  }
 ]
 export const publicRoutes=[
-  {
-    path: GUIDEBOOK_ROUTE,
+
+   {
+    path: FUNC_ROUTE+ '/:id',
     Component: GuideBook
    },
   {

@@ -8,6 +8,10 @@ body::-webkit-scrollbar-thumb {
   background-color: rgb(49, 19, 57);    /* цвет плашки */
   border-radius: 20px;       /* закругления плашки */
 }
+.flex{
+  display: flex;
+  margin: 20px;
+}
 .book{
   padding: 15px;
   border-radius: 20px;
@@ -38,9 +42,9 @@ body::-webkit-scrollbar-thumb {
   border:none;
  color:rgb(250, 250, 250);
  background-color:rgb(149, 116, 219);
- padding:5px 20px;
+ padding:5px 10px 5px 10px;
  transition: 0.4s;
- margin: 5px;
+ margin-bottom: 10px;
 }
 .title-group{
   display: flex;
@@ -49,20 +53,22 @@ h1{
   display: flex;
 }
 .button-group{
-  padding: 0px;
+  display: flex;
 }
 .input-group{
   display: flex;
   width: 160px;
+  color: black;
   margin-right: 5px;
   border-radius: 10px;
-  border:none;
- color:rgb(250, 250, 250);
+  border: none;
  background-color:rgb(231, 227, 241);
- padding:5px 20px;
+ padding: 10px;
+
+height: 33px;
  transition: 0.4s;
- margin: 10px;
 }
+
 .group:hover{
   border:none;
   color: rgb(255, 255, 255);
@@ -83,7 +89,14 @@ h1{
   background-color: rgb(230, 229, 229);
 }
 .item2{
-  padding:5px
+  padding:10px;
+  margin: 10px;
+  color:gray;
+  font-size: 20px;
+  border-radius: 8px;
+}
+.item2:hover{
+ color:black;
 }
 .col1{
   border-right: 1px solid grey;

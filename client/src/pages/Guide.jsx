@@ -9,21 +9,18 @@ import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import { Container } from 'react-bootstrap';
-import {fetchFunc,fetchOneFunc} from "../http/itemAPI";
+import {fetchFunc} from "../http/itemAPI";
 import './css/Guide.css'
 import { Navbarr } from "../components/Navbarr";
-import { GuideBook } from './GuideBook';
+import FuncList from '../components/FuncList';
 export const Guide = observer(() => {
   const {course} = useContext(Context)
-  const navigate = useNavigate()
-  const [func, setFunc] = useState({info: []});    
+  const navigate = useNavigate() 
   const [searchTerm, setSearchTerm] = useState('');
   const [buttonTerm, setButtonTerm] = useState('')
-  const {id} = useParams();
   useEffect(() => {
     fetchFunc().then(data => course.setFuncs(data))
-    fetchOneFunc(id).then(data => setFunc(data));
-}, [course,id])
+}, [])
 
   // useEffect( () => {
   //   fetchOneFunc(id).then(data => setFunc(data));
@@ -57,6 +54,13 @@ const filteredFuncs = course.funcs.filter(func => {
    
     </div>
     <div className="button-group">
+    <input 
+                  type="text" 
+                  className='input-group' 
+                  placeholder='Поиск'
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
     <button className="group" value={'Все'}  onClick={(e) => setButtonTerm('Все')}>Все</button>
         <button className="group" value={'Основные'}  onClick={(e) => setButtonTerm("Основные")}>Основные</button>
         <button className="group" value={'Математика'}  onClick={(e) => setButtonTerm("Математика")}>Математика</button>
@@ -65,30 +69,14 @@ const filteredFuncs = course.funcs.filter(func => {
         <button className="group" value={'Объединения'} onClick={(e) => setButtonTerm("Объединения")}>Объединения</button>
       </div>
     <Card className="card2">
-    <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-        <Row>
-            <Col sm={3} className='col1'>
-            <input 
-                  type="text" 
-                  className='input-group' 
-                  placeholder='Поиск'
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-               
-                   <Nav variant="pills" className="flex-column"> 
-                  {filteredFuncs.map(func =>
-                    <Nav.Item key={func.id} className="item2">
-                      <Nav.Link eventKey={func.id} onClick={() => navigate.apply(+'/'+func.id)}>{func.name}</Nav.Link>
-                    </Nav.Item>
-                  )}
-                </Nav>
-              
-            </Col>          
-           <GuideBook></GuideBook>
-        </Row>
-    </Tab.Container>
-</Card>
+    <div >
+      
+            <div  className='col1'>
+            <FuncList></FuncList>
+            </div>          
+       </div>
+       </Card>
+     
    </div>
     </div>
     </div>

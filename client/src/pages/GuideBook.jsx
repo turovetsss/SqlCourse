@@ -1,24 +1,21 @@
 import React, {useContext,useEffect,useState} from 'react';
 import Tab from 'react-bootstrap/Tab';
 import {Context} from "../index";
-import {useParams,useNavigate} from 'react-router-dom';
-import {observer} from "mobx-react-lite";
-import {GUIDE_ROUTE} from "../utils/consts";
+import {useParams} from 'react-router-dom';
 import Col from 'react-bootstrap/Col';
-import Nav from 'react-bootstrap/Nav';
+import { Container } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
-import { Container } from 'react-bootstrap';
-import {fetchFunc,fetchOneFunc} from "../http/itemAPI";
-import './css/Guide.css'
+import {fetchOneFunc} from "../http/itemAPI";
 import { Navbarr } from "../components/Navbarr";
-export const GuideBook = observer(() => {
+import './css/Guide.css'
+export const GuideBook = () => {
   const {course} = useContext(Context)
-  const [funcs, setFuncs] = useState({info: []});    
-  const {id} = useParams();
+  const [func, setFunc] = useState({info: []})
+  const {id} = useParams()
   useEffect(() => {
-    fetchOneFunc(id).then(data => setFuncs(data));
-}, [course,id])
+      fetchOneFunc(id).then(data => setFunc(data))
+  }, [])
 
   // useEffect( () => {
   //   fetchOneFunc(id).then(data => setFunc(data));
@@ -26,43 +23,43 @@ export const GuideBook = observer(() => {
 
 
   return(<>
-            <Col sm={9}>
-            <div className="pils">
-                <Tab.Content className="content">
-                    {course.funcs.map(func =>
-                        <Tab.Pane key={func.id} func={course} eventKey={func.id}>
+  <Navbarr />
+    <div className="background-radial-gradient overflow-hidden">
+    <Container className='position-relative'>
+    <div id="radius-shape-1" className="position-absolute rounded-circle shadow-5-strong"></div>
+    <div id="radius-shape-3" className="position-absolute rounded-circle shadow-5-strong"></div>
+    <div id="radius-shape-4" className="position-absolute rounded-circle shadow-5-strong"></div>
+          <div id="radius-shape-2" className="position-absolute shadow-5-strong"></div>
+
+          </Container>
+    <div> 
+    <div style={{padding:'20px 280px'}}className="background-radial-gradient overflow-hidden"> 
+    <div className="title-group">
+   <div><a href={'/'}>Справочник</a> --- {func.name}</div>
+    </div>
+    <Card className="card2">
+     
                           <h3> Функция "{func.name}"</h3>
                             {func.description}
                             <h5>
                             Синтаксис
                             </h5>
                             <div className="primer">{func.script}</div>
-                            <h5>
-                            Пример 1
-                            </h5>
-                            <p>{func.example1Info}</p>
-                            <div className="primer">{func.example1}</div>
-                            <h5>
-                            Пример 2
-                            </h5>
-                            <p>{func.example2Info}</p>
-                            <div className="primer">{func.example2}</div>
-             
-                        </Tab.Pane>
-                    )}
-                    <p>Характеристики</p>
-                    <Row className="d-flex flex-column m-3">
+                        
+                
                 <h1>Характеристики</h1>
-                {funcs.info.map((info, index) =>
-                    <Row key={info.id} style={{background: index % 2 === 0 ? 'lightgray' : 'transparent', padding: 10}}>
+                {func.info.map((info, index) =>
+                    <div  className="primer" key={info.id} >
                         {info.title}: {info.description}
-                    </Row>
+                    </div >
                 )}
-            </Row>
-                </Tab.Content>
-                </div>
-            </Col>
+         
+          </Card>
+       
+     </div>
+     </div>
+   </div>
+              
           </>
   );
-}
-);
+};

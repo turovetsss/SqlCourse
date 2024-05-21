@@ -18,7 +18,8 @@ export const Auth= observer(() => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const click = async () => {
-      let data;
+      let data;  
+  
       try {
           if (isLogin){
               data = await login(email, password)
@@ -26,7 +27,7 @@ export const Auth= observer(() => {
               alert("C возвращением!")
               
           }else{
-              data = await registration(email, password)
+              data = await registration(name,email, password)
               console.log(data)
               alert("Добро пожаловать!")
           }
@@ -35,7 +36,6 @@ export const Auth= observer(() => {
           navigate(COURSE_ROUTE)
       }catch (e) {
           alert(e.response.data.message)
-    
       }
   
     }
@@ -74,7 +74,7 @@ export const Auth= observer(() => {
                  <Form.Label className="text-center">
                    Имя
                  </Form.Label>
-                 <Form.Control type="email" placeholder="Введите имя"  value={name} onChange={e => setName(e.target.value)}/>
+                 <Form.Control type="text" placeholder="Введите имя"  value={name} onChange={e => setName(e.target.value)}/>
                </Form.Group> 
                 }
                         <Form.Group className="mb-2" controlId="formBasicEmail">

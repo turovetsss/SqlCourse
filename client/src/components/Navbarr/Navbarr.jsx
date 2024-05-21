@@ -9,6 +9,7 @@ import {useNavigate} from "react-router-dom";
 import {fetchUser} from "../../http/itemAPI.js";
 
 import './Navbarr.css'
+import { GUIDE_ROUTE } from '../../utils/consts.js';
 export const Navbarr= observer( () => {
   const {user} = useContext(Context)//для разных пользователей навбар будет отображаться по разному
   const {course} = useContext(Context)
@@ -39,7 +40,7 @@ useEffect(() => {
     <Nav.Link className='navlink' href="http://localhost:3000/course">Курс</Nav.Link>
       <Nav.Link className='navlink' href="http://localhost:3000/trainer">Тренажер</Nav.Link>
       <Nav.Link className='navlink' href="http://localhost:3000/sandbox">Песочница</Nav.Link>
-      <Nav.Link className='navlink' href="http://localhost:3000/guide">Справочник</Nav.Link>
+      <a href={GUIDE_ROUTE}><Nav.Link className='navlink'>Справочник</Nav.Link></a>
     </Nav>
     <Nav className="me-right">
     <Dropdown  data-bs-theme="light" height="100px">
@@ -68,7 +69,7 @@ useEffect(() => {
     <Nav.Link className='navlink' href="http://localhost:3000/course">Курс</Nav.Link>
       <Nav.Link className='navlink' href=""   onClick={() => alertIsAuth()} >Тренажер</Nav.Link>
       <Nav.Link className='navlink' href=""   onClick={() => alertIsAuth()}>Песочница</Nav.Link>
-      <Nav.Link className='navlink' href="http://localhost:3000/guide">Справочник</Nav.Link>
+      <Nav.Link className='navlink' href={GUIDE_ROUTE}>Справочник</Nav.Link>
     </Nav>
     <Nav className="me-right">
     <a href="http://localhost:3000/login"><button className='nav-link-login' >Вход</button></a>

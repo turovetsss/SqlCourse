@@ -13,13 +13,15 @@ const Account = sequelize.define('account',{
   id:{type:DataTypes.INTEGER,primaryKey:true,autoIncrement:true},
   trainerSolution:{type:DataTypes.INTEGER,defaultValue: 0}
 })
-const Func = sequelize.define('func',{
-  id:{type:DataTypes.INTEGER,primaryKey:true,autoIncrement:true},
-  type:{type:DataTypes.STRING,allowNull:false},
-  name:{type:DataTypes.STRING,allowNull:false},
-  description:{type:DataTypes.STRING,allowNull:false},
- script:{type:DataTypes.STRING,allowNull:false},
+const Func = sequelize.define('func', {
+  id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+  type: {type: DataTypes.STRING, unique: true, allowNull: false},
+  name: {type: DataTypes.STRING, allowNull: false},
+  description: {type: DataTypes.STRING, allowNull: false},
+  script: {type: DataTypes.STRING, allowNull: false},
 })
+
+
 
 const Trainer = sequelize.define('trainer',{
   id:{type:DataTypes.INTEGER,primaryKey:true,autoIncrement:true},

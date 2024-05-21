@@ -1,21 +1,25 @@
 const{Func}=require('../models/models')
 const{FuncInfo}=require('../models/models')
+
 const ApiError = require('../error/ApiError')
 class FuncController{
-  async create(req,res,next){
+  async create(req, res, next) {
     try {
-      let {type,name,description,script,info} = req.body;
-      const func = await Func.create({type,name,description,script});
+      let { type, name, description, script, info } = req.body;
+      const func = await Func.create({ type, name, description, script });
+      
       if (info) {
-        info = JSON.parse(info)
+        info = JSON.parse(info);
         info.forEach(i =>
-            FuncInfo.create({
-                title: i.title,
-                description: i.description,
-                funcId: func.id
-            })
+          FuncInfo.create({
+            title: i.title,
+            description: i.description,
+            funcId: func.id
+          })
         )
-    }
+      }
+      
+      
 
     return res.json(func)
   } catch (e) {
@@ -35,15 +39,15 @@ async edit(req, res){
 }
 
  
-    async getOne(req, res) {
-      const id = req.body
-      const funcs = await Func.findOne(
+    async getOne(req, res) {//не трогать!
+      const {id} = req.params
+      const func = await Func.findOne(
           {
-              where: id,
+              where: {id},
               include: [{model: FuncInfo, as: 'info'}]
           },
       )
-        return res.json(funcs)
+        return res.json(func)
         }
   
   async getAll(req,res){

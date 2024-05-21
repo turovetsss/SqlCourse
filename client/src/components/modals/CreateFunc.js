@@ -7,7 +7,6 @@ import {json} from 'react-router-dom';
 import { createFunc, updateFunces} from "../../http/itemAPI";
 import './CreateFunc.css'
 const CreateFunc= observer(({show, onHide}) =>{
-
   const[type, setType] = useState('')
   const [value, setValue] = useState('')
   const [script,setScript]=useState('')
@@ -23,33 +22,24 @@ const removeInfo = (number) => {
 const changeInfo = (key, value, number) => {
   setInfo(info.map(i => i.number === number ? {...i, [key]: value} : i))
 }
-  const handleDropdownChange = (event) => {
-    setType(event.target.value)
+  const handleDropdownChange = (e) => {
+    setType(e.target.value)
   }
-
+  
   const addFunc = () => {
-         createFunc({name: value, description:description,type:type, script:script,info:info}).then(data => {
-             setValue('')
-             setDescription('')
-             setType('')
-             setScript('')
-             setInfo( JSON.stringify(info))
-             onHide()
-             alert('Задача добавлена успешно')
-             window.location.reload();
-         })
+    const formData = new FormData()
+    try{
+      formData.append('type',JSON.stringify(type))
+     formData.append('name',JSON.stringify(value))
+      formData.append('description',JSON.stringify(description))
+      formData.append('script',JSON.stringify(script))
+      formData.append('info',JSON.stringify(info))
+      
+        createFunc(formData).then(data => onHide())
+    } catch(e){
+        alert(e)
     }
-// const addFunc = () => {
-//      const formData = new FormData();
-//      formData.append('type',type)
-//      formData.append('name',value)
-//      formData.append('description',description)
-//      formData.append('script', script)
-//      formData.append('info',JSON.stringify(info))
-//    createFunc(formData).then(data=> onHide())
-//     alert('Задача добавлена успешно')
-//     ///window.location.reload();
-//  }
+}
 
     return (
         <Modal

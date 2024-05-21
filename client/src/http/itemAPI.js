@@ -17,6 +17,7 @@ export const createFunc= async (func) => {
   return data
 }
 
+
 export const fetchFunc = async () => {//getTypes
     //в response помещаем ответ
     const {data} = await $host.get('api/func')
@@ -33,8 +34,8 @@ export const fetchUser = async () => {//getTypes
   return data
 }
 export const fetchOneFunc = async (id) => {
-const {data} = await $host.get(`api/func/${id}`);
-return data;
+  const {data} = await $host.get('api/func/' + id)
+  return data
 }
 
 export const updateFunces = async (id) => {
