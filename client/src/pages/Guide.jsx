@@ -9,7 +9,7 @@ import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import { Container } from 'react-bootstrap';
-import {fetchFunc} from "../http/itemAPI";
+import {fetchFuncs} from "../http/itemAPI";
 import './css/Guide.css'
 import { Navbarr } from "../components/Navbarr";
 import FuncList from '../components/FuncList';
@@ -19,22 +19,22 @@ export const Guide = observer(() => {
   const [searchTerm, setSearchTerm] = useState('');
   const [buttonTerm, setButtonTerm] = useState('')
   useEffect(() => {
-    fetchFunc().then(data => course.setFuncs(data))
+    fetchFuncs().then(data => course.setFuncs(data))
 }, [])
 
   // useEffect( () => {
   //   fetchOneFunc(id).then(data => setFunc(data));
   // },[id]);
 
-const filteredFuncs = course.funcs.filter(func => {
-  if(buttonTerm ==='Все'){
-   console.log('hui')  
-   return func.name.replaceAll() && func.name.toLowerCase().includes(searchTerm.toLowerCase());
-  }
-  else{
-  return func.type.toLowerCase().includes(buttonTerm.toLowerCase()) && func.name.toLowerCase().includes(searchTerm.toLowerCase());
-  }
-});
+// const filteredFuncs = course.funcs.filter(func => {
+//   if(buttonTerm ==='Все'){
+//    console.log('hui')  
+//    return func.name.replaceAll() && func.name.toLowerCase().includes(searchTerm.toLowerCase());
+//   }
+//   else{
+//   return func.type.toLowerCase().includes(buttonTerm.toLowerCase()) && func.name.toLowerCase().includes(searchTerm.toLowerCase());
+//   }
+// });
 
 
   return(<>

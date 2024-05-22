@@ -44,17 +44,20 @@ export const GuideBook = () => {
                             <h5>
                             Синтаксис
                             </h5>
-                            <div className="primer">{func.script}</div>
+                            <div className="primer">{func.example}</div>
                         
                 
                 <h1>Характеристики</h1>
                 {func.info.map((info, index) =>
+                <div className="div">{info.title}
                     <div  className="primer" key={info.id} >
-                        {info.title}: {info.description}
+                        
+                         {info.description}
                     </div >
+                  </div>
                 )}
          
-          </Card>
+          </Card> 
        
      </div>
      </div>

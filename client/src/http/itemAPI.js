@@ -1,5 +1,15 @@
 import {$authHost, $host} from "./index";
 
+//TYPE
+export const createType = async (type) => {
+  const {data} = await $host.post('api/type', type)
+  return data
+}
+
+export const fetchTypes = async () => {
+  const {data} = await $host.get('api/type')
+  return data
+}
 
 //FUNC
 export const editFunc = async (func) => {
@@ -12,17 +22,22 @@ export const deleteFunc = async (func) => {
     const {data} = await $authHost.post('api/func/delete', func)
     return data
 }
-export const createFunc= async (func) => {
-  const {data} = await $authHost.post('api/func', func)
+export const createFunc = async (func) => {
+  const {data} = await $host.post('api/func',func)
   return data
 }
+// export const fetchFuncs = async () => {//getTypes
+//   //в response помещаем ответ
+//   const {data} = await $host.get('api/func')
+//   return data
+// }
 
-
-export const fetchFunc = async () => {//getTypes
-    //в response помещаем ответ
-    const {data} = await $host.get('api/func')
-    return data
-}
+ export const fetchFuncs = async (typeId) => {//getTypes
+   const {data} = await $host.get('api/func', {params: {
+     typeId
+   }})
+   return data
+ }
 //user
 export const fetchOneUser = async (id) => {
   const {data} = await $host.get(`api/user/${id}`);
@@ -38,10 +53,6 @@ export const fetchOneFunc = async (id) => {
   return data
 }
 
-export const updateFunces = async (id) => {
-  const {data} = await $host.post(`api/func/`+id);
-  return data;
-}
 
 //TRAINER 
 export const deleteTrainer = async (trainer) => {

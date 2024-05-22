@@ -1,44 +1,40 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect,useState} from 'react';
 import Modal from "react-bootstrap/Modal";
-import {Row, Col} from "react-bootstrap";
+import {Row, Col,Dropdown} from "react-bootstrap";
 import {observer} from "mobx-react-lite";
 import {Button, Form,} from "react-bootstrap";
-import {json} from 'react-router-dom';
-import { createFunc, updateFunces} from "../../http/itemAPI";
+import {Context} from "../../index";
+import {fetchTypes ,createFunc} from "../../http/itemAPI.js";
 import './CreateFunc.css'
 const CreateFunc= observer(({show, onHide}) =>{
+  const {course} = useContext(Context)
   const[type, setType] = useState('')
-  const [value, setValue] = useState('')
-  const [script,setScript]=useState('')
+  const [name, setName] = useState('')
+  const [example,setExample]=useState('')
   const [description, setDescription] = useState('')
   const [info, setInfo] = useState([])
-
-const addInfo = () => {
-  setInfo([...info, {title: '', description: '', number: Date.now()}])
+  useEffect(() => {
+    fetchTypes().then(data => course.setTypes(data))
+}, [])
+  const addInfo = () => {
+    setInfo([...info, {title: '', description: '', number: Date.now()}])
 }
 const removeInfo = (number) => {
-  setInfo(info.filter(i => i.number !== number))
+    setInfo(info.filter(i => i.number !== number))
 }
 const changeInfo = (key, value, number) => {
-  setInfo(info.map(i => i.number === number ? {...i, [key]: value} : i))
+    setInfo(info.map(i => i.number === number ? {...i, [key]: value} : i))
 }
-  const handleDropdownChange = (e) => {
-    setType(e.target.value)
-  }
-  
+
   const addFunc = () => {
     const formData = new FormData()
-    try{
-      formData.append('type',JSON.stringify(type))
-     formData.append('name',JSON.stringify(value))
-      formData.append('description',JSON.stringify(description))
-      formData.append('script',JSON.stringify(script))
-      formData.append('info',JSON.stringify(info))
-      
-        createFunc(formData).then(data => onHide())
-    } catch(e){
-        alert(e)
-    }
+    formData.append('funcType',type)
+    formData.append('name',name)
+    formData.append('description',description)
+    formData.append('example',example)
+    formData.append('typeId', course.selectedType.id)
+    formData.append('info',JSON.stringify(info))
+      createFunc(formData).then(data=> onHide())
 }
 
     return (
@@ -54,18 +50,26 @@ const changeInfo = (key, value, number) => {
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                  <label htmlFor="select">Выберите раздел</label>
-                <select className='select-option' onChange={handleDropdownChange}>
-                <option value="Основное" disabled></option>
-                <option value="Основное">Основное</option>
-                <option value="Строки">Строки</option>
-                 <option value="математика">Математика</option>
-                 <option value="Даты">Даты</option>
-                 <option value="Объединения">Объединения</option>
-</select>
+                   <Dropdown className="mt-2 mb-2">
+                        <Dropdown.Toggle>{course.selectedType.name||"выберите"}</Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            {course.types.map(type =>
+                                <Dropdown.Item
+                                    onClick={() => course.setSelectedType(type)}
+                                    key={type.id}
+                                >
+                                    {type.name}
+                                </Dropdown.Item>
+                            )}
+                        </Dropdown.Menu>
+                    </Dropdown><Form.Control className='mt-2 mb-2'
+                        value={type}
+                        onChange={e => setType(e.target.value)}
+                        placeholder={"Введите название функции"}
+                    />
                     <Form.Control className='mt-2 mb-2'
-                        value={value}
-                        onChange={e => setValue(e.target.value)}
+                        value={name}
+                        onChange={e => setName(e.target.value)}
                         placeholder={"Введите название функции"}
                     />
                      <Form.Control className='mt-2 mb-2'
@@ -74,8 +78,8 @@ const changeInfo = (key, value, number) => {
                         placeholder={"Введите Описание функции"}
                     />
                        <Form.Control className='mt-2 mb-2'
-                        value={script}
-                        onChange={e => setScript(e.target.value)}
+                        value={example}
+                        onChange={(e) => setExample(e.target.value)}
                         placeholder={"Введите скрипт функции"}
                     />
                      <hr/>

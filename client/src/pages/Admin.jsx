@@ -2,8 +2,10 @@ import React, {useState,useEffect,useContext} from 'react';
 import {Button} from "react-bootstrap";
 import CreateFunc from "../components/modals/CreateFunc";
 import CreateTrainer from "../components/modals/CreateTrainer";
+import CreateType from "../components/modals/CreateType";
+
 import Table from 'react-bootstrap/Table';
-import {fetchFunc,deleteFunc, deleteTrainer,fetchTrainer,fetchUser} from "../http/itemAPI";
+import {fetchFuncs,fetchTypes,deleteFunc, deleteTrainer,fetchTrainer,fetchUser} from "../http/itemAPI";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import {Context} from "../index";
@@ -11,19 +13,24 @@ import {observer} from "mobx-react-lite";
 
 import './css/Admin.css'
 import { AdminNavbar } from '../components/AdminNavbar';
-import EditFunc from '../components/modals/EditFunc';
 export const Admin= observer(() => {
   const {course} = useContext(Context)
   const [value, setValue] = useState('')
-  const[funcEditVisible,setFuncEditVisible]=useState(false)
     const [funcVisible, setFuncVisible] = useState(false)
+    const [typeVisible, setTypeVisible] = useState(false)
     const [trainerVisible, setTrainerVisible] = useState(false)
     console.log(value)
     useEffect(() => {
-      fetchFunc().then(data => course.setFuncs(data))
+      fetchFuncs().then(data=> course.setFuncs(data))
+    
+    //   fetchFuncs(null).then(data => {
+    //     course.setFuncs(data.rows)
+    // })
       fetchTrainer().then(data=> course.setTrainers(data))
       fetchUser().then(data=> course.setUsers(data))
   }, [course])
+ 
+
 
   const removeFunc = (id) => {
     console.log(id)
@@ -57,11 +64,14 @@ export const Admin= observer(() => {
       fill
     >
       <Tab className='hehehe' eventKey="home" title="Справочник">
+      <CreateType show={typeVisible} onHide={() => setTypeVisible(false)}/>
+       
       <Table striped bordered hover variant="light">
       <thead>
         <tr>
           <th>id <Button className='btn'   onClick={() => setFuncVisible(true)}
-            >+</Button>  <CreateFunc show={funcVisible} onHide={() => setFuncVisible(false)}/></th>
+            >+</Button>  <CreateFunc show={funcVisible} onHide={() => setFuncVisible(false)}/><Button className='btn'   onClick={() => setTypeVisible(true)}
+            >++</Button>  <CreateType show={typeVisible} onHide={() => setTypeVisible(false)}/></th>
           <th>Название</th>
           <th>Тип</th>
           <th>Описание</th>
@@ -75,11 +85,10 @@ export const Admin= observer(() => {
                         <tr key={func.id} >
                           <td>{func.id}</td>
                             <td>{func.name}</td>
-                            <td>{func.type}</td>
+                            <td>{func.funcType}</td>
           <td>{func.description}</td>
-          <td>{func.script}</td>
-          <td><Button className='btn' onChange={e => setValue(func.id)} onClick={() => removeFunc(func.id)}>-</Button> <Button className='btn'   onClick={() => setFuncEditVisible(true)}
-            >Настройки</Button>  <EditFunc show={funcEditVisible} onHide={() => setFuncEditVisible(false)}/> </td>
+          <td><Button className='btn' onChange={e => setValue(func.id)} onClick={() => removeFunc(func.id)}>-</Button> <Button className='btn'
+            >Настройки</Button>   </td>
                         </tr>
                     )}
       </tbody>

@@ -2,20 +2,32 @@ import {makeAutoObservable} from "mobx";
 
 export default class СourseCourse {
   constructor(){
+    this._types = []
     this._funcs = []
     this._trainers = []
+    this._selectedType = {}
     this._brands = []
     this._items = []
   this._users=[]
     //selectedTypes
     //selectedBarnds
 
-    this._setSelectedType = {}//для хранения выбранного типа
-
     makeAutoObservable(this)
 }
 
+setTypes(types) {
+  this._types = types
+}
+setSelectedType(type) {
+  this._selectedType = type
+}
+get selectedType() {
+  return this._selectedType
+}
 
+get types() {
+  return this._types
+}
 setFuncs(funcs){
     this._funcs = funcs
 }
@@ -36,21 +48,9 @@ get trainers(){
   return this._trainers
 }
 
-setSelectedType(type){ //setter
-    this._setSelectedType = type
-}
-get selectedType(){ //getter
-    return this._setSelectedType
-}
 
 
-setBrands(brands){
-    this._brands = brands
-}
-//геттер и сеттеры для переменных
-get brands(){
-    return this._brands
-}
+
 
 setItems(item){
     this._items = item

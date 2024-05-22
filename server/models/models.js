@@ -15,12 +15,35 @@ const Account = sequelize.define('account',{
 })
 const Func = sequelize.define('func', {
   id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-  type: {type: DataTypes.STRING, unique: true, allowNull: false},
+  funcType: {type: DataTypes.STRING, unique: true, allowNull: false},
   name: {type: DataTypes.STRING, allowNull: false},
   description: {type: DataTypes.STRING, allowNull: false},
-  script: {type: DataTypes.STRING, allowNull: false},
+  example: {type: DataTypes.STRING, allowNull: false},
 })
-
+const Type = sequelize.define('type', {
+  id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+  name: {type: DataTypes.STRING, unique: true, allowNull: false},
+})
+const Book = sequelize.define('book', {
+  id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+  name: {type: DataTypes.STRING, allowNull: false},
+  description: {type: DataTypes.STRING, allowNull: false},
+})
+const BookModule = sequelize.define('book_module', {
+  id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+  name: {type: DataTypes.STRING, allowNull: false},
+})
+const BookArticle = sequelize.define('bookarticle', {
+  id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+  name: {type: DataTypes.STRING, allowNull: false},
+  title: {type: DataTypes.STRING, allowNull: false},
+})
+const BookArticleSet = sequelize.define('bookcarticle_set', {
+  id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+  title: {type: DataTypes.STRING, allowNull: false,defaultValue:"example2"},
+  description: {type: DataTypes.STRING, allowNull: false,defaultValue:"example2"},
+  img: {type: DataTypes.STRING, allowNull: false},
+})
 
 
 const Trainer = sequelize.define('trainer',{
@@ -35,19 +58,29 @@ const FuncInfo = sequelize.define('func_info', {
   title: {type: DataTypes.STRING, allowNull: false,defaultValue:"example2"},
   description: {type: DataTypes.STRING, allowNull: false,defaultValue:"example2"},
 })
-
 User.hasOne(Account)
 Account.belongsTo(User);
+
+Book.hasMany(BookModule);
+BookModule.belongsTo(Book)
+
+BookModule.hasMany(BookArticle)
+BookArticle.belongsTo(BookModule)
+
+BookArticle.hasMany(BookArticleSet, {as: 'setinfo'});
+BookArticleSet.belongsTo(BookArticle)
+
+
+Type.hasMany(Func)
+Func.belongsTo(Type)
 
 Func.hasMany(FuncInfo, {as: 'info'});
 FuncInfo.belongsTo(Func)
 
-
 Account.hasMany(Trainer),
 Trainer.belongsTo(Account)
 
-
 module.exports={
-  User,Func,Trainer,Account,FuncInfo,
+  User,Func,Trainer,Account,Type,FuncInfo,Book,BookModule,BookArticle,BookArticleSet
 }
  
