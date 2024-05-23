@@ -9,32 +9,32 @@ import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import { Container } from 'react-bootstrap';
-import {fetchFuncs} from "../http/itemAPI";
+import {fetchFuncs,fetchTypes} from "../http/itemAPI";
 import './css/Guide.css'
 import { Navbarr } from "../components/Navbarr";
 import FuncList from '../components/FuncList';
 export const Guide = observer(() => {
   const {course} = useContext(Context)
   const navigate = useNavigate() 
+  const [selectedType, setSelectedType] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [buttonTerm, setButtonTerm] = useState('')
   useEffect(() => {
     fetchFuncs().then(data => course.setFuncs(data))
-}, [])
+    fetchTypes().then(data => course.setTypes(data))
 
+}, [])
+const handleTypeClick = (type) => {
+    setSelectedType(type);
+};
   // useEffect( () => {
   //   fetchOneFunc(id).then(data => setFunc(data));
   // },[id]);
-
+  const filteredFuncs = (selectedType !== null) ? course.funcs.filter(func => func.type === selectedType) : course.funcs.filter(func => func.name.toLowerCase().includes(searchTerm.toLowerCase()));
 // const filteredFuncs = course.funcs.filter(func => {
-//   if(buttonTerm ==='Все'){
-//    console.log('hui')  
-//    return func.name.replaceAll() && func.name.toLowerCase().includes(searchTerm.toLowerCase());
-//   }
-//   else{
-//   return func.type.toLowerCase().includes(buttonTerm.toLowerCase()) && func.name.toLowerCase().includes(searchTerm.toLowerCase());
-//   }
-// });
+//   func.name.toLowerCase().includes(searchTerm.toLowerCase());
+
+//  });
 
 
   return(<>
@@ -61,13 +61,12 @@ export const Guide = observer(() => {
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
+
     <button className="group" value={'Все'}  onClick={(e) => setButtonTerm('Все')}>Все</button>
-        <button className="group" value={'Основные'}  onClick={(e) => setButtonTerm("Основные")}>Основные</button>
-        <button className="group" value={'Математика'}  onClick={(e) => setButtonTerm("Математика")}>Математика</button>
-        <button className="group" value={'Строки'} onClick={(e) => setButtonTerm("Строки")}>Строки</button>
-        <button className="group" value={'Даты'} onClick={(e) => setButtonTerm("Даты")}>Даты</button>
-        <button className="group" value={'Объединения'} onClick={(e) => setButtonTerm("Объединения")}>Объединения</button>
-      </div>
+    {course.types.map(type =>
+        <button className="group"  key={type.id} value={type.name}  onTouchMove={(e) => setButtonTerm(type.name) } >{type.name}</button>
+      )}
+     </div>
     <Card className="card2">
     <div >
       

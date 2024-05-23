@@ -5,6 +5,9 @@
   display: flex;
   width: 300px;
 }
+.etd{
+  background-color: rgb(209, 186, 231);
+}
 .btn{
     margin: 5px;
     border-radius: 10px;

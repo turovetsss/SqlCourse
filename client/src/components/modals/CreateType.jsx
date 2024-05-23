@@ -7,10 +7,18 @@ const CreateType = ({show, onHide}) => {
     const [value, setValue] = useState('')
 
     const addType = () => {
+      if(value==''){
+        alert('Заполните все поля')
+       
+      }
+      else{
         createType({name: value}).then(data => {
-            setValue('')
-            onHide()
-        })
+          setValue('')
+          onHide()
+          alert('Тип функции добавлен')
+          window.location.reload();
+      })
+      }
     }
 
     return (

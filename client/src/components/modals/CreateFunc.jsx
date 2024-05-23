@@ -27,6 +27,7 @@ const changeInfo = (key, value, number) => {
 }
 
   const addFunc = () => {
+    
     const formData = new FormData()
     formData.append('funcType',type)
     formData.append('name',name)
@@ -34,7 +35,10 @@ const changeInfo = (key, value, number) => {
     formData.append('example',example)
     formData.append('typeId', course.selectedType.id)
     formData.append('info',JSON.stringify(info))
-      createFunc(formData).then(data=> onHide())
+    createFunc(formData).then(data=> onHide())
+    alert('Функция добавлена успешно')
+    window.location.reload();
+    
 }
 
     return (
@@ -51,7 +55,7 @@ const changeInfo = (key, value, number) => {
             <Modal.Body>
                 <Form>
                    <Dropdown className="mt-2 mb-2">
-                        <Dropdown.Toggle>{course.selectedType.name||"выберите"}</Dropdown.Toggle>
+                        <Dropdown.Toggle>{course.selectedType.name||"Выберите раздел функции"}</Dropdown.Toggle>
                         <Dropdown.Menu>
                             {course.types.map(type =>
                                 <Dropdown.Item
@@ -62,11 +66,7 @@ const changeInfo = (key, value, number) => {
                                 </Dropdown.Item>
                             )}
                         </Dropdown.Menu>
-                    </Dropdown><Form.Control className='mt-2 mb-2'
-                        value={type}
-                        onChange={e => setType(e.target.value)}
-                        placeholder={"Введите название функции"}
-                    />
+                    </Dropdown>
                     <Form.Control className='mt-2 mb-2'
                         value={name}
                         onChange={e => setName(e.target.value)}
@@ -80,7 +80,7 @@ const changeInfo = (key, value, number) => {
                        <Form.Control className='mt-2 mb-2'
                         value={example}
                         onChange={(e) => setExample(e.target.value)}
-                        placeholder={"Введите скрипт функции"}
+                        placeholder={"Введите пример скрипта функции"}
                     />
                      <hr/>
                     <p>Также нужно добавить пару примеров:</p>

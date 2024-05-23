@@ -35,19 +35,19 @@ export const GuideBook = () => {
     <div> 
     <div style={{padding:'20px 280px'}}className="background-radial-gradient overflow-hidden"> 
     <div className="title-group">
-   <div><a href={'/'}>Справочник</a> --- {func.name}</div>
+   <div className='breadscam'><a href={'/'}>Справочник</a> - {func.name}</div>
     </div>
     <Card className="card2">
      
                           <h3> Функция "{func.name}"</h3>
-                            {func.description}
+                            <div className='desc'>{func.description}</div>
                             <h5>
                             Синтаксис
                             </h5>
                             <div className="primer">{func.example}</div>
                         
                 
-                <h1>Характеристики</h1>
+                <h4>Примеры</h4>
                 {func.info.map((info, index) =>
                 <div className="div">{info.title}
                     <div  className="primer" key={info.id} >

@@ -24,14 +24,10 @@ const Type = sequelize.define('type', {
   id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
   name: {type: DataTypes.STRING, unique: true, allowNull: false},
 })
-const Book = sequelize.define('book', {
-  id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-  name: {type: DataTypes.STRING, allowNull: false},
-  description: {type: DataTypes.STRING, allowNull: false},
-})
 const BookModule = sequelize.define('book_module', {
   id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
   name: {type: DataTypes.STRING, allowNull: false},
+  description: {type: DataTypes.STRING, allowNull: false,defaultValue:"example2"},
 })
 const BookArticle = sequelize.define('bookarticle', {
   id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
@@ -61,8 +57,6 @@ const FuncInfo = sequelize.define('func_info', {
 User.hasOne(Account)
 Account.belongsTo(User);
 
-Book.hasMany(BookModule);
-BookModule.belongsTo(Book)
 
 BookModule.hasMany(BookArticle)
 BookArticle.belongsTo(BookModule)
@@ -81,6 +75,6 @@ Account.hasMany(Trainer),
 Trainer.belongsTo(Account)
 
 module.exports={
-  User,Func,Trainer,Account,Type,FuncInfo,Book,BookModule,BookArticle,BookArticleSet
+  User,Func,Trainer,Account,Type,FuncInfo,BookModule,BookArticle,BookArticleSet
 }
  

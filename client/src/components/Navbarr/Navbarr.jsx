@@ -45,16 +45,15 @@ useEffect(() => {
     <Nav className="me-right">
     <Dropdown  data-bs-theme="light" height="100px">
         <Dropdown.Toggle id="dropdown-button-light-example1" variant="first">
-         {course.users.map(user => <div className='div-account'><img width="30" height="30" src="https://img.icons8.com/small/30/000000/user.png" alt="user"/>{user.name}</div>   )}
+        <div className='div-account'><img width="30" height="30" src="https://img.icons8.com/small/30/000000/user.png" alt="user"/>user</div> 
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
           <Dropdown.Item href="#/action-1" active>
-            Action
+            Курс
           </Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-          <Dropdown.Divider />
+          <Dropdown.Item href="#/action-2">Уровень</Dropdown.Item>
+      
           <Dropdown.Item href="#/action-4"><a href="http://localhost:3000/login" onClick={()=>logOut()}><button className='nav-link-login' >Выйти</button></a></Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>

@@ -25,6 +25,16 @@ class FuncController{
     }
 
 }
+async delete(req, res){
+  const {id} = req.body//из тела запроса извлекаем имя типа
+  const func = await Func.destroy(
+    {
+      where: {id:id},
+     },
+ )
+  return res.json(func)
+}
+
 async edit(req, res){
     const {type,name,description,script,example1Info,example1,example2Info,example2} = req.body;//забираем id и name из запроса
     const func = await Func.update({ type:type, name: name, description:description,script:script,example1Info:example1Info,example1:example1,example2Info:example2Info,example2 :example2 }, { where: { id: id } });

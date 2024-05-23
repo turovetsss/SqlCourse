@@ -10,3 +10,5 @@ export const TRAINER_ROUTE='/trainer';
 export const COURSEPAGE_ROUTE ='/coursepage'
 export const COURSECARD_ROUTE='./coursecard'
 export const FUNC_ROUTE = '/func'
+export const BOOKMODULE_ROUTE = '/bookmodule'
+export const BOOKARTICLE_ROUTE = '/bookarticle'

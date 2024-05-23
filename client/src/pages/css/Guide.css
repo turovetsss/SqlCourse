@@ -1,16 +1,28 @@
-body::-webkit-scrollbar {
-  width: 3px;               /* ширина scrollbar */
+
+.breadscam{
+  font-size: 28px;
+  margin-bottom: 20px;
+  color:rgb(33, 36, 36)
 }
-body::-webkit-scrollbar-track {
-  background: initial;        /* цвет дорожки */
+.cardfunc{
+  padding: 5px;
+  width: 120px;
+  border: 1px solid white;
+ 
 }
-body::-webkit-scrollbar-thumb {
-  background-color: rgb(49, 19, 57);    /* цвет плашки */
-  border-radius: 20px;       /* закругления плашки */
+.cardfunc:hover{
+  color:rgb(118, 60, 133);
+  cursor: pointer;
+}
+.mt-3{
+
 }
 .flex{
   display: flex;
   margin: 20px;
+}
+.funclist{
+  display: flex;
 }
 .book{
   padding: 15px;
@@ -21,7 +33,12 @@ body::-webkit-scrollbar-thumb {
 
   color: white;
 }
+.desc{
+  margin-top:10px;
+  margin-bottom:10px
+}
 .card2{
+  padding: 25px;
   margin-left: -50px;
   height: 616px;
   width: 800px;
@@ -85,8 +102,10 @@ height: 33px;
   margin-bottom: 10px;
   font-family:  Mono,Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
   padding: 10px;
+  font-style:italic;
+  color:rgb(190, 113, 187);
   border-radius: 10px;
-  background-color: rgb(230, 229, 229);
+  background-color: rgb(236, 235, 235);
 }
 .item2{
   padding:10px;
@@ -98,27 +117,13 @@ height: 33px;
 .item2:hover{
  color:black;
 }
-.col1{
-  border-right: 1px solid grey;
-}
-.tabfunc{
-}
-.col1 {
-  height: 100vh; /* задаем высоту элемента */
-  overflow-y: auto; /* добавляем вертикальную прокрутку */
+
+.funcitem{
+  font-weight: 600;
+  background-color: aqua;
+  max-height: 20px;
 }
 
-.col1::-webkit-scrollbar {
-  width: 3px;               /* ширина scrollbar */
-  height: auto;
-}
-.col1::-webkit-scrollbar-track {
-  background: initial;        /* цвет дорожки */
-}
-.col1::-webkit-scrollbar-thumb {
-  background-color: rgb(110, 50, 150);    /* цвет плашки */
-  border-radius: 20px;       /* закругления плашки */
-}
 .pils{
   position: absolute;
 }

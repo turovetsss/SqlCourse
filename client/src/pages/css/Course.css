@@ -31,18 +31,26 @@ box-shadow: 1px -28px 18px 0px rgba(34, 60, 80, 0.2);
   border: none;
 }
 .razdel{
-  display: flex;
+  display: block;
   align-items: center;
   padding: 30px;
 }
 .module{
+  font-size: 20px;
+  text-align: center;
+padding: 15px;
+  display: block;
   margin: 20px;
-  width: 500px;
+  transition: 0.4s;
 }
-.structure{
+.module:hover{
+  border-radius: 10px;
+  background-color: rgb(236, 232, 232);
+}
+/* .structure{
  width: 300px;
   margin: 20px
-}
+} */
 .circle{
   background-color: grey;
   transition: 0.3s;

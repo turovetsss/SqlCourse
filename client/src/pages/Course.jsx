@@ -10,7 +10,7 @@ export const Course=()=>{
       <Navbarr />
     <div>
     <div className="over"><div>
-      <div className="div-title"><h1 className="title">Учим понимать SQL лично тебя</h1></div></div>
+      <div className="div-title"><h1 className="title">Инструменты для изучения SQL</h1></div></div>
     
     <Cardd></Cardd>
   </div>

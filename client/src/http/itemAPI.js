@@ -26,6 +26,27 @@ export const createFunc = async (func) => {
   const {data} = await $host.post('api/func',func)
   return data
 }
+
+//BOOKMODULE
+export const createBookmodule = async (book_module) => {
+  const {data} = await $host.post('api/bookmodule',book_module)
+  return data
+}
+export const fetchBookmodule = async () => {//getTypes
+  //в response помещаем ответ
+  const {data} = await $host.get('api/bookmodule')
+  return data
+}
+//BOOKMODULE
+export const createBookarticle = async (bookarticle) => {
+  const {data} = await $host.post('api/bookarticle',bookarticle)
+  return data
+}
+export const fetchBookarticle = async () => {//getTypes
+  //в response помещаем ответ
+  const {data} = await $host.get('api/bookarticle')
+  return data
+}
 // export const fetchFuncs = async () => {//getTypes
 //   //в response помещаем ответ
 //   const {data} = await $host.get('api/func')
@@ -38,6 +59,7 @@ export const createFunc = async (func) => {
    }})
    return data
  }
+ 
 //user
 export const fetchOneUser = async (id) => {
   const {data} = await $host.get(`api/user/${id}`);

@@ -1,11 +1,13 @@
 import React, {useState,useEffect,useContext} from 'react';
-import {Button} from "react-bootstrap";
+import {Button, Card} from "react-bootstrap";
 import CreateFunc from "../components/modals/CreateFunc";
 import CreateTrainer from "../components/modals/CreateTrainer";
 import CreateType from "../components/modals/CreateType";
 
+import CreateArticle from "../components/modals/CreateArticle";
+
 import Table from 'react-bootstrap/Table';
-import {fetchFuncs,fetchTypes,deleteFunc, deleteTrainer,fetchTrainer,fetchUser} from "../http/itemAPI";
+import {fetchFuncs,fetchTypes,deleteFunc, deleteTrainer,fetchTrainer,fetchUser, fetchBookmodule, fetchBookarticle} from "../http/itemAPI";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import {Context} from "../index";
@@ -13,11 +15,14 @@ import {observer} from "mobx-react-lite";
 
 import './css/Admin.css'
 import { AdminNavbar } from '../components/AdminNavbar';
+import CreateBookmodule from '../components/modals/CreateModule';
 export const Admin= observer(() => {
   const {course} = useContext(Context)
   const [value, setValue] = useState('')
     const [funcVisible, setFuncVisible] = useState(false)
     const [typeVisible, setTypeVisible] = useState(false)
+    const [bookmoduleVisible, setBookmoduleVisible] = useState(false)
+    const [articleVisible, setArticleVisible] = useState(false)
     const [trainerVisible, setTrainerVisible] = useState(false)
     console.log(value)
     useEffect(() => {
@@ -26,6 +31,9 @@ export const Admin= observer(() => {
     //   fetchFuncs(null).then(data => {
     //     course.setFuncs(data.rows)
     // })
+    fetchBookmodule().then(data=> course.setBookmodules(data))
+    fetchBookarticle().then(data=> course.setBookarticles(data))
+    
       fetchTrainer().then(data=> course.setTrainers(data))
       fetchUser().then(data=> course.setUsers(data))
   }, [course])
@@ -65,18 +73,16 @@ export const Admin= observer(() => {
     >
       <Tab className='hehehe' eventKey="home" title="Справочник">
       <CreateType show={typeVisible} onHide={() => setTypeVisible(false)}/>
-       
+      <Button className='btn'   onClick={() => setFuncVisible(true)}
+            >Добавить функцию</Button>  <CreateFunc show={funcVisible} onHide={() => setFuncVisible(false)}/><Button className='btn'   onClick={() => setTypeVisible(true)}
+            >Добавить раздел</Button>  <CreateType show={typeVisible} onHide={() => setTypeVisible(false)}/>
       <Table striped bordered hover variant="light">
       <thead>
         <tr>
-          <th>id <Button className='btn'   onClick={() => setFuncVisible(true)}
-            >+</Button>  <CreateFunc show={funcVisible} onHide={() => setFuncVisible(false)}/><Button className='btn'   onClick={() => setTypeVisible(true)}
-            >++</Button>  <CreateType show={typeVisible} onHide={() => setTypeVisible(false)}/></th>
+          <th>id </th>
           <th>Название</th>
           <th>Тип</th>
           <th>Описание</th>
-          <th>Скрипт</th>
-
           <th>Действия</th>
         </tr>  
       </thead>
@@ -121,7 +127,31 @@ export const Admin= observer(() => {
     </Table>
       </Tab>
       <Tab eventKey="longer-tab" title="Курс">
-        Информация о курсе
+        <Button className='btn'   onClick={() => setBookmoduleVisible(true)}
+            >Добавить модуль</Button>  <CreateBookmodule show={bookmoduleVisible} onHide={() => setBookmoduleVisible(false)}/>
+                   <Button className='btn'   onClick={() => setArticleVisible(true)}
+       >Добавить раздел</Button>  <CreateArticle show={articleVisible} onHide={() => setArticleVisible(false)}/>
+        <Table striped bordered hover variant="white">
+        <thead>
+        <tr>
+          <th>id</th>
+          <th>Название</th>
+          <th>Описание</th>
+          <th>Разделы</th>
+        </tr>  
+      </thead>
+      <tbody>
+      {course.bookmodules.map(bookmodule =>
+                        <tr key={bookmodule.id}>
+                          <td>{bookmodule.id}</td>
+                            <td>{bookmodule.description}</td>
+                            {course.bookarticles.map(bookarticles=><div className='etd' key={bookarticles.id}>{bookarticles.name}</div> )}
+                        </tr>
+                    )}
+      </tbody>
+      </Table>
+              
+      
       </Tab>
       <Tab eventKey="user" title="Пользователи">
       <Table striped bordered hover variant="light">
@@ -131,6 +161,8 @@ export const Admin= observer(() => {
           <th>Имя</th>
           <th>Логин</th>
           <th>Присоединился</th>
+          <th>чет тут еще из профиля
+          </th>
         </tr>  
       </thead>
       <tbody>

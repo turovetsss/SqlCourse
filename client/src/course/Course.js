@@ -6,9 +6,12 @@ export default class СourseCourse {
     this._funcs = []
     this._trainers = []
     this._selectedType = {}
+    this._selectedModule = {}
     this._brands = []
     this._items = []
   this._users=[]
+  this._bookmodules=[]
+  this._bookarticles=[]
     //selectedTypes
     //selectedBarnds
 
@@ -18,16 +21,35 @@ export default class СourseCourse {
 setTypes(types) {
   this._types = types
 }
+get types() {
+  return this._types
+}
+setBookarticles(bookarticles){
+  this._bookarticles=bookarticles
+}
+get bookarticles(){
+   return this._bookarticles
+}
+setBookmodules(bookmodules){
+  this._bookmodules = bookmodules
+}
+get bookmodules(){
+  return this._bookmodules
+}
 setSelectedType(type) {
   this._selectedType = type
 }
 get selectedType() {
   return this._selectedType
 }
-
-get types() {
-  return this._types
+setSelectedModule(module) {
+  this._selectedModule = module
 }
+get selectedModule() {
+  return this._selectedModule
+}
+
+
 setFuncs(funcs){
     this._funcs = funcs
 }
