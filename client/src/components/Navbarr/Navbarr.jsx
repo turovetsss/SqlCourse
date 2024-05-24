@@ -40,7 +40,7 @@ useEffect(() => {
     <Nav.Link className='navlink' href="http://localhost:3000/course">Курс</Nav.Link>
       <Nav.Link className='navlink' href="http://localhost:3000/trainer">Тренажер</Nav.Link>
       <Nav.Link className='navlink' href="http://localhost:3000/sandbox">Песочница</Nav.Link>
-      <a href={GUIDE_ROUTE}><Nav.Link className='navlink'>Справочник</Nav.Link></a>
+      <Nav.Link className='navlink' href={GUIDE_ROUTE}>Справочник</Nav.Link>
     </Nav>
     <Nav className="me-right">
     <Dropdown  data-bs-theme="light" height="100px">

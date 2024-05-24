@@ -40,10 +40,6 @@ export const Auth= observer(() => {
   
     }
     
-      
-
-    
-
   return(<>
   <Navbarr/>
       <div className="background-radial-gradient overflow-hidden">
