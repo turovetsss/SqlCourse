@@ -62,3 +62,62 @@ a{
 .guide-card:hover{
   box-shadow: -1px 0px 10px 10px rgba(180, 94, 233, 0.2);
 }
+@media only screen and (max-width: 1200px) {
+  .course-card {
+    width: 800px;
+  }
+  .sandbox-card {
+    width: 300px;
+  }
+  .guide-card {
+    width: 500px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .course-card {
+    width: 600px;
+  }
+  .sandbox-card {
+    width: 250px;
+  }
+  .guide-card {
+    width: 400px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .course-card {
+    width: 400px;
+  }
+  .sandbox-card {
+    width: 200px;
+  }
+  .guide-card {
+    width: 300px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .course-card {
+    width: 300px;
+  }
+  .sandbox-card {
+    width: 150px;
+  }
+  .guide-card {
+    width: 250px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .course-card {
+    width: 250px;
+  }
+  .sandbox-card {
+    width: 120px;
+  }
+  .guide-card {
+    width: 200px;
+  }
+}

@@ -24,7 +24,7 @@ const Type = sequelize.define('type', {
   id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
   name: {type: DataTypes.STRING, unique: true, allowNull: false},
 })
-const BookModule = sequelize.define('book_module', {
+const BookModule = sequelize.define('bookmodule', {
   id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
   name: {type: DataTypes.STRING, allowNull: false},
   description: {type: DataTypes.STRING, allowNull: false,defaultValue:"example2"},
@@ -34,7 +34,7 @@ const BookArticle = sequelize.define('bookarticle', {
   name: {type: DataTypes.STRING, allowNull: false},
   title: {type: DataTypes.STRING, allowNull: false},
 })
-const BookArticleSet = sequelize.define('bookcarticle_set', {
+const BookArticleSet = sequelize.define('bookcarticleset', {
   id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
   title: {type: DataTypes.STRING, allowNull: false,defaultValue:"example2"},
   description: {type: DataTypes.STRING, allowNull: false,defaultValue:"example2"},

@@ -30,11 +30,11 @@ const changeInfo = (key, value, number) => {
     const formData = new FormData()
     formData.append('name',name)
     formData.append('title',title)
-    formData.append('book_moduleId', course.selectedModule.id)
+    formData.append('bookmoduleId', course.selectedModule.id)
     formData.append('info',JSON.stringify(info))
     createBookarticle(formData).then(data=> onHide())
-    alert('Статья добавлена успешно')
-    window.location.reload();
+    // alert('Статья добавлена успешно')
+    // window.location.reload();
     
 }
 const selectFile = e => {

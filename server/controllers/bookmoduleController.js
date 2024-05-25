@@ -11,10 +11,15 @@ class BookmoduleController{
     const bookmodule = await BookModule.findAll()
     return res.json(bookmodule)
   }
-  async getOne(req,res){
-
+  async getOne(req, res) {
+    const {id} = req.params
+    const bookmodule = await BookModule.findOne(
+        {
+            where: {id}
+          },
+    )
+    return res.json(bookmodule)
   }
-
   async delete(req, res){
     const {id} = req.body//из тела запроса извлекаем имя типа
     const bookmodule = await BookModule.destroy({where: {id: id}})

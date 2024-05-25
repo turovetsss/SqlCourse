@@ -1,3 +1,27 @@
-.course-page{
-  background-color: cadetblue;
+.card3{
+  padding: 25px;
+  margin-left: 0px;
+  height: 616px;
+  width: 950px;
+  display: flex;
+  border-radius: 15px;
+}
+.etd2{
+  display: block;
+  padding: 10px;
+  transition: 0.3s;
+  background-color: rgb(209, 186, 231);
+}
+.etd2:hover{
+  background-color: aqua;
+}
+.course-book{
+  display: flex;
+}
+.breadscam-module{
+  border-radius: 10px;
+  padding: 25px;
+  height: 400px;
+  width: 300px;
+  border-radius: 15px;
 }

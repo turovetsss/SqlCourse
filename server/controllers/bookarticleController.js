@@ -8,15 +8,15 @@ const ApiError = require('../error/ApiError')
 class BookarticleController{
   async create(req, res, next) {
     try {
-        let {name, title, book_moduleId,setinfo} = req.body
-        const bookarticle = await BookArticle.create({name, book_moduleId, title});
+        let {name, title, bookmoduleId, setinfo} = req.body
+        const bookarticle = await BookArticle.create({name, bookmoduleId, title});
 
         if (setinfo) {
-            info = JSON.parse(info)
+            setinfo = JSON.parse(info)
             const {img} = req.files
             let fileName = uuid.v4() + ".jpg"
             img.mv(path.resolve(__dirname, '..', 'static', fileName))
-            info.forEach(i =>
+            setinfo.forEach(i =>
                 BookArticleSet.create({
                     title: i.title,
                     description: i.description,
@@ -48,6 +48,7 @@ async getOne(req, res) {
   )
   return res.json(bookarticle)
 }
+
 // async getAll(req, res) {
 //    let {typedId} = req.query
 //    let funcs;

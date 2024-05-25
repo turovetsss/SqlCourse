@@ -2,6 +2,7 @@ import React from "react";
 import { Navbarr } from "../components/Navbarr";
 import { Cardd } from "../components/Card";
 import { CourseCard } from "../components/CourseCard";
+import ModuleList from "../components/moduleList";
 import "./css/Course.css";
 export const Course=()=>{
   return(
@@ -16,6 +17,7 @@ export const Course=()=>{
   </div>
   <div className="over2">
     <CourseCard/>
+    <ModuleList></ModuleList>
     </div>
     </div></div>
     </div>

@@ -1,5 +1,8 @@
 import React, {useState,useEffect,useContext} from 'react';
 import {Button, Card} from "react-bootstrap";
+import Col from 'react-bootstrap/Col';
+import Nav from 'react-bootstrap/Nav';
+import Row from 'react-bootstrap/Row';
 import CreateFunc from "../components/modals/CreateFunc";
 import CreateTrainer from "../components/modals/CreateTrainer";
 import CreateType from "../components/modals/CreateType";
@@ -64,7 +67,32 @@ export const Admin= observer(() => {
   }
     return (<><AdminNavbar></AdminNavbar>
       <div>
-     
+      <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+      <Row>
+        <Col sm={3}>
+          <Nav variant="pills" className="flex-column">
+            <Nav.Item>
+              <Nav.Link eventKey="first">Справочник</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="second">Тренажер</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="third">Курс</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="fourth">Пользователи</Nav.Link>
+            </Nav.Item>
+          </Nav>
+        </Col>
+        <Col sm={5}>
+          <Tab.Content>
+            <Tab.Pane eventKey="first">First tab content</Tab.Pane>
+            <Tab.Pane eventKey="second">Second tab content</Tab.Pane>
+          </Tab.Content>
+        </Col>
+      </Row>
+    </Tab.Container>
             <Tabs
       defaultActiveKey="home"
       id="fill-tab-example"
@@ -141,14 +169,20 @@ export const Admin= observer(() => {
         </tr>  
       </thead>
       <tbody>
-      {course.bookmodules.map(bookmodule =>
-                        <tr key={bookmodule.id}>
-                          <td>{bookmodule.id}</td>
-                            <td>{bookmodule.description}</td>
-                            {course.bookarticles.map(bookarticles=><div className='etd' key={bookarticles.id}>{bookarticles.name}</div> )}
-                        </tr>
-                    )}
-      </tbody>
+  {course.bookmodules.map(bookmodule =>
+    <tr key={bookmodule.id}>
+      <td>{bookmodule.id}</td>
+      <td>{bookmodule.name}</td>
+      <td>{bookmodule.description}</td>
+      {course.bookarticles.filter(bookarticle => bookarticle.bookmoduleId === bookmodule.id)
+        .map(bookarticle => 
+          <div className='etd' key={bookarticle.id}>
+            {bookarticle.name}
+          </div>
+        )}
+    </tr>
+  )}
+</tbody>
       </Table>
               
       
