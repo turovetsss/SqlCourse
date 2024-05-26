@@ -16,14 +16,14 @@ const CreateArticle= observer(({show, onHide}) =>{
     fetchBookmodule().then(data => course.setBookmodules(data))
 }, [])
   const addInfo = () => {
-    setInfo([...info, { title: "", description: "", number: Date.now(), image: null }]);
+    setInfo([...info, { title: "", description: "", number: Date.now(), image: "1.jpg" }]);
   };
 
 const removeInfo = (number) => {
-  setInfo(setInfo.filter(i => i.number !== number))
+  setInfo(info.filter(i => i.number !== number))
 }
 const changeInfo = (key, value, number) => {
-  setInfo(setInfo.map(i => i.number === number ? {...i, [key]: value} : i))
+  setInfo(info.map(i => i.number === number ? {...i, [key]: value} : i))
 }
 
   const addArticle = () => {
@@ -32,7 +32,7 @@ const changeInfo = (key, value, number) => {
     formData.append('name',name)
     formData.append('title',title)
     formData.append('bookmoduleId', course.selectedModule.id)
-    formData.append('info',JSON.stringify(info))
+    formData.append('setinfo',JSON.stringify(info))
     createBookarticle(formData).then(data=> onHide())
     // alert('Статья добавлена успешно')
     // window.location.reload();
@@ -79,8 +79,7 @@ const selectFile = e => {
                     />
                        
                      <hr/>
-
-                    {/*Characteristics*/}
+                       {/*Characteristics*/}
                     <Button
                         variant={"outline-dark"}
                         onClick={addInfo}

@@ -10,12 +10,10 @@ import './css/CoursePage.css'
 export const CoursePage=() =>{
   const {course} = useContext(Context)
   const [bookmodule, setBookmodules] = useState('')
-  const [bookarticle, setBookarticles] = useState('')
+  const [bookarticle, setBookarticles] = useState({setinfo: []})
   const {id} = useParams()
   useEffect(() => {
-    fetchBookarticle().then(data=> course.setBookarticles(data))
     fetchOneBookarticle(id).then(data => setBookarticles(data))
-      fetchOneModule(id).then(data => setBookmodules(data))
   }, [])
 
 
@@ -26,7 +24,7 @@ export const CoursePage=() =>{
     <Container className='position-relative'>
 
           </Container>
-   <div style={{padding:'10px 50px'}}className="background-radial-gradient overflow-hidden"> 
+   {/* <div style={{padding:'10px 50px'}}className="background-radial-gradient overflow-hidden"> 
    <div className="course-book">
    <div className='breadscam-module'><a href={'/course'}>Курс</a> - {bookmodule.name}
    {course.bookarticles.filter(bookarticle => bookarticle.bookmoduleId === bookmodule.id)
@@ -37,16 +35,22 @@ export const CoursePage=() =>{
             {bookarticle.title}
           </div>
         )}
-   </div>
+   </div> */}
      
    <Card className="card3">
      <div>Статья {bookarticle.name}</div>
      <div>Статья {bookarticle.description}</div>
-     
+     {bookarticle.setinfo.map((info, index) =>
+                <div className="div">{info.title}
+                    <div  className="primer" key={info.id} >
+                        
+                         {info.description}
+                    </div >
+                  </div>
+                )}
+         
 </Card> 
 </div>
-   </div>
-   </div>
    </>
   );
 };

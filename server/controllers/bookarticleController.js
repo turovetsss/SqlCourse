@@ -1,53 +1,68 @@
 const uuid = require('uuid')
-const path = require('path');
-const{BookArticle}=require('../models/models')
-const{BookArticleSet}=require('../models/models')
-const{BookModule}=require('../models/models')
+const {BookArticle} = require('../models/models')
+const {BookArticleSet} = require('../models/models')
+const {BookModule} = require('../models/models')
 
 const ApiError = require('../error/ApiError')
-class BookarticleController{
+
+class BookarticleController {
   async create(req, res, next) {
     try {
-        let {name, title, bookmoduleId, setinfo} = req.body
-        const bookarticle = await BookArticle.create({name, bookmoduleId, title});
+        let { name, title, bookmoduleId, setinfo } = req.body;
 
-        if (info) {
-            setinfo = JSON.parse(setinfo)
-            const {img} = req.files
-            let fileName = uuid.v4() + ".jpg"
-            img.mv(path.resolve(__dirname, '..', 'static', fileName))
-            setinfo.forEach(i =>
-                BookArticleSet.create({
+        const bookArticle = await BookArticle.create({ name, bookmoduleId, title });
+
+        if (setinfo) {
+            setinfo = JSON.parse(setinfo);
+
+            const bookArticleSetPromises = setinfo.map(async i => {
+                const imgName = uuid.v4() + ".jpg";
+                const bookArticleSet = await BookArticleSet.create({
                     title: i.title,
                     description: i.description,
-                    img : i.file,
-                    bookarticleId: bookarticle.id
-                })
-            )
+                    imgName,
+                    imgData: i.imgData,
+                    bookarticleId: bookArticle.id
+                });
+
+                return bookArticleSet;
+            });
+
+            const createdSets = await Promise.all(bookArticleSetPromises);
+            
+            return res.json({ bookArticle, bookArticleSets: createdSets });
         }
 
-        return res.json(bookarticle)
+        return res.json(bookArticle);
     } catch (e) {
-        next(ApiError.badRequest(e.message))
+        next(ApiError.badRequest(e.message));
+    }
+}
+    async edit(req, res) {
+        const {type, name, description, script, example1Info, example1, example2Info, example2} = req.body;//забираем id и name из запроса
+        const func = await Func.update({
+            type: type,
+            name: name,
+            description: description,
+            script: script,
+            example1Info: example1Info,
+            example1: example1,
+            example2Info: example2Info,
+            example2: example2
+        }, {where: {id: id}});
+        return res.json(func);
     }
 
-}
-async edit(req, res){
-    const {type,name,description,script,example1Info,example1,example2Info,example2} = req.body;//забираем id и name из запроса
-    const func = await Func.update({ type:type, name: name, description:description,script:script,example1Info:example1Info,example1:example1,example2Info:example2Info,example2 :example2 }, { where: { id: id } });
-    return res.json(func);
-}
-
-async getOne(req, res) {
-  const {id} = req.params
-  const bookarticle = await BookArticle.findOne(
-      {
-          where: {id},
-          include: [{model: BookArticleSet, as: 'setinfo'}]
-      },
-  )
-  return res.json(bookarticle)
-}
+    async getOne(req, res) {
+        const {id} = req.params
+        const bookarticle = await BookArticle.findOne(
+            {
+                where: {id},
+                include: [{model: BookArticleSet, as: 'setinfo'}]
+            },
+        )
+        return res.json(bookarticle)
+    }
 
 // async getAll(req, res) {
 //    let {typedId} = req.query
@@ -60,10 +75,11 @@ async getOne(req, res) {
 //    }
 //    return res.json(funcs)
 //  }
- async getAll(req,res){
-      const bookarticle = await BookArticle.findAll()
-      return res.json(bookarticle)
-        }
+    async getAll(req, res) {
+        const bookarticle = await BookArticle.findAll()
+        return res.json(bookarticle)
+    }
 
 }
+
 module.exports = new BookarticleController()

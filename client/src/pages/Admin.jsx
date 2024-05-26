@@ -67,32 +67,7 @@ export const Admin= observer(() => {
   }
     return (<><AdminNavbar></AdminNavbar>
       <div>
-      <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-      <Row>
-        <Col sm={3}>
-          <Nav variant="pills" className="flex-column">
-            <Nav.Item>
-              <Nav.Link eventKey="first">Справочник</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="second">Тренажер</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="third">Курс</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="fourth">Пользователи</Nav.Link>
-            </Nav.Item>
-          </Nav>
-        </Col>
-        <Col sm={5}>
-          <Tab.Content>
-            <Tab.Pane eventKey="first">First tab content</Tab.Pane>
-            <Tab.Pane eventKey="second">Second tab content</Tab.Pane>
-          </Tab.Content>
-        </Col>
-      </Row>
-    </Tab.Container>
+      
             <Tabs
       defaultActiveKey="home"
       id="fill-tab-example"

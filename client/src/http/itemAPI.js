@@ -45,12 +45,11 @@ export const fetchOneBookarticle = async (id) => {
   const {data} = await $host.get('api/bookarticle/' + id)
   return data
 }
-
-//BOOKMODULE
 export const createBookarticle = async (bookarticle) => {
   const {data} = await $host.post('api/bookarticle',bookarticle)
   return data
 }
+//BOOKMODULE
 export const fetchBookarticle = async () => {//getTypes
   //в response помещаем ответ
   const {data} = await $host.get('api/bookarticle')
