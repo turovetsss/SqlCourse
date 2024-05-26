@@ -5,7 +5,7 @@ import './Card.css'
 import { COURSECARD_ROUTE, SANDBOX_ROUTE, TRAINER_ROUTE } from "../../utils/consts";
 export const Cardd=()=>{
   return(
-    <> <a href={COURSECARD_ROUTE}><Card className='course-card' >
+    <div className="card-container"> <a href={COURSECARD_ROUTE}><Card className='course-card' >
     <Card.Body>
       <div className="title-card">
       <Card.Title>Вводный курс по SQL</Card.Title> <div className="button-arrow">⭢</div>
@@ -39,6 +39,6 @@ export const Cardd=()=>{
     <div className="sandbox-area"> SELECT </div>
       </Card.Text>
        </Card.Body>
-  </Card></a></div></>
+  </Card></a></div></div>
   )
 }

@@ -2,9 +2,9 @@ import React, {useContext, useEffect,useState} from 'react';
 import Modal from "react-bootstrap/Modal";
 import {Row, Col,Dropdown} from "react-bootstrap";
 import {observer} from "mobx-react-lite";
-import {Button, Form,} from "react-bootstrap";
+import {Button, Form} from "react-bootstrap";
 import {Context} from "../../index";
-import {fetchTypes ,fetchBookmodule,createBookarticle} from "../../http/itemAPI.js";
+import {fetchBookmodule,createBookarticle} from "../../http/itemAPI.js";
 import './CreateFunc.css'
 const CreateArticle= observer(({show, onHide}) =>{
   const {course} = useContext(Context)
@@ -16,13 +16,14 @@ const CreateArticle= observer(({show, onHide}) =>{
     fetchBookmodule().then(data => course.setBookmodules(data))
 }, [])
   const addInfo = () => {
-    setInfo([...info, {title: '', description: '',img: file, number: Date.now()}])
-}
+    setInfo([...info, { title: "", description: "", number: Date.now(), image: null }]);
+  };
+
 const removeInfo = (number) => {
-    setInfo(info.filter(i => i.number !== number))
+  setInfo(setInfo.filter(i => i.number !== number))
 }
 const changeInfo = (key, value, number) => {
-    setInfo(info.map(i => i.number === number ? {...i, [key]: value} : i))
+  setInfo(setInfo.map(i => i.number === number ? {...i, [key]: value} : i))
 }
 
   const addArticle = () => {

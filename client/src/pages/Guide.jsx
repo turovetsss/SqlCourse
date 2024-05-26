@@ -1,12 +1,7 @@
 import React, {useContext,useEffect,useState} from 'react';
-import Tab from 'react-bootstrap/Tab';
 import {Context} from "../index";
-import {useParams,useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {observer} from "mobx-react-lite";
-import {GUIDEBOOK_ROUTE} from "../utils/consts";
-import Col from 'react-bootstrap/Col';
-import Nav from 'react-bootstrap/Nav';
-import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import { Container } from 'react-bootstrap';
 import {fetchFuncs,fetchTypes} from "../http/itemAPI";

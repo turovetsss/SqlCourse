@@ -16,9 +16,20 @@
 }
 .over{
 
-  padding: 70px 100px;
+  padding: 50px 350px;
+  
 }
+@media only screen and (max-width: 1400px) {
+  .over {
+    padding: 50px 100px; }
+}
+@media only screen and (max-width: 1000px) {
+  .over {
+    padding: 30px 80px; }
+}
+
 .over2{
+
   -webkit-box-shadow: 1px -28px 18px 0px rgba(34, 60, 80, 0.2);
 -moz-box-shadow: 1px -28px 18px 0px rgba(34, 60, 80, 0.2);
 box-shadow: 1px -28px 18px 0px rgba(34, 60, 80, 0.2);
@@ -29,6 +40,12 @@ box-shadow: 1px -28px 18px 0px rgba(34, 60, 80, 0.2);
 .over2-card{
   border-radius: 15px;
   border: none;
+}
+.course{
+  color: #fff;
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgb(103, 64, 155) 100%); 
+  overflow: hidden;
+
 }
 .razdel{
   display: block;

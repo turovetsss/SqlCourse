@@ -10,7 +10,7 @@ import CreateType from "../components/modals/CreateType";
 import CreateArticle from "../components/modals/CreateArticle";
 
 import Table from 'react-bootstrap/Table';
-import {fetchFuncs,fetchTypes,deleteFunc, deleteTrainer,fetchTrainer,fetchUser, fetchBookmodule, fetchBookarticle} from "../http/itemAPI";
+import {fetchFuncs,deleteFunc, deleteTrainer,fetchTrainer,fetchUser, fetchBookmodule, fetchBookarticle} from "../http/itemAPI";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import {Context} from "../index";

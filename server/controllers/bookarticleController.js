@@ -11,8 +11,8 @@ class BookarticleController{
         let {name, title, bookmoduleId, setinfo} = req.body
         const bookarticle = await BookArticle.create({name, bookmoduleId, title});
 
-        if (setinfo) {
-            setinfo = JSON.parse(info)
+        if (info) {
+            setinfo = JSON.parse(setinfo)
             const {img} = req.files
             let fileName = uuid.v4() + ".jpg"
             img.mv(path.resolve(__dirname, '..', 'static', fileName))
@@ -20,7 +20,7 @@ class BookarticleController{
                 BookArticleSet.create({
                     title: i.title,
                     description: i.description,
-                    img : i.img,
+                    img : i.file,
                     bookarticleId: bookarticle.id
                 })
             )

@@ -2,13 +2,14 @@ import React from "react";
 import { Navbarr } from "../components/Navbarr";
 import { Cardd } from "../components/Card";
 import { CourseCard } from "../components/CourseCard";
-import ModuleList from "../components/moduleList";
 import "./css/Course.css";
+import ArticleList from "../components/articleList";
 export const Course=()=>{
   return(
     <div>
-    <div className="color-white background-radial-gradient overflow-hidden">
+    <div className="course">
       <Navbarr />
+      
     <div>
     <div className="over"><div>
       <div className="div-title"><h1 className="title">Инструменты для изучения SQL</h1></div></div>
@@ -17,7 +18,7 @@ export const Course=()=>{
   </div>
   <div className="over2">
     <CourseCard/>
-    <ModuleList></ModuleList>
+    <ArticleList></ArticleList>
     </div>
     </div></div>
     </div>

@@ -41,6 +41,10 @@ export const fetchOneModule = async (id) => {
   const {data} = await $host.get('api/bookmodule/' + id)
   return data
 }
+export const fetchOneBookarticle = async (id) => {
+  const {data} = await $host.get('api/bookarticle/' + id)
+  return data
+}
 
 //BOOKMODULE
 export const createBookarticle = async (bookarticle) => {

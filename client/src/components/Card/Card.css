@@ -7,6 +7,10 @@
   margin-bottom: 30px;
   margin-top: 30px;
 }
+.card-container{
+  align-items: center;
+  
+}
 a{
   text-decoration: none;
 }
@@ -21,6 +25,13 @@ a{
   padding: 5px 10px;
   margin-left: auto;
   display: flex;
+}
+@media only screen and (max-width: 768px) {
+  .button-arrow {
+    font-size: 16px;
+    padding: 3px 6px;
+    margin-left: 0;
+  }
 }
 .body-card{
   display: flex;
