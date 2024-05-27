@@ -16,14 +16,14 @@ const CreateArticle= observer(({show, onHide}) =>{
     fetchBookmodule().then(data => course.setBookmodules(data))
 }, [])
   const addInfo = () => {
-    setInfo([...info, { title: "", description: "", number: Date.now(), image: "1.jpg" }]);
+    setInfo([...info, { title: "", description: "", imgData: null, number: Date.now() }]);
   };
 
 const removeInfo = (number) => {
   setInfo(info.filter(i => i.number !== number))
 }
 const changeInfo = (key, value, number) => {
-  setInfo(info.map(i => i.number === number ? {...i, [key]: value} : i))
+  setInfo(info.map(i => i.number === number||value ? {...i, [key]: value} : i))
 }
 
   const addArticle = () => {
@@ -32,11 +32,16 @@ const changeInfo = (key, value, number) => {
     formData.append('name',name)
     formData.append('title',title)
     formData.append('bookmoduleId', course.selectedModule.id)
-    formData.append('setinfo',JSON.stringify(info))
+    formData.append('setinfo',JSON.stringify(info)) // inputFile - это input для загрузки файла
+
     createBookarticle(formData).then(data=> onHide())
     // alert('Статья добавлена успешно')
     // window.location.reload();
     
+}
+const handleFileChange = (e) => {
+  const file = e.target.files[0];
+  setFile(file);
 }
 const selectFile = e => {
   setFile(e.target.files[0])
@@ -101,11 +106,7 @@ const selectFile = e => {
                                     onChange={(e) => changeInfo('description', e.target.value, i.number)}
                                     placeholder="Введите описание"
                                 />
-                      <Form.Control
-                        className="mt-3"
-                        type="file"
-                        onChange={selectFile}
-                    />
+                    <input type="file"  value={i.image} onChange={handleFileChange} />
                             <Col md={4}>
                                 <Button
                                     onClick={() => removeInfo(i.number)}

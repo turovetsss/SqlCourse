@@ -20,7 +20,7 @@ const filteredTraners = course.trainers.filter(trainer => {
 
 
   return(
-    <><Navbarr /> <div className="background-radial-gradient overflow-hidden"><div className="content"><div className="task-list"><div className="title-cont"><h2 className='title'>Доступные задания 
+    <><Navbarr /> <div className="course"><div className="content"><div className="task-list"><div className="title-cont"><h2 className='title'>Доступные задания 
     </h2>  <input 
                   type="text" 
                   className='input-group2' 

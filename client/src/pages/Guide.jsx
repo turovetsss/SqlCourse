@@ -6,6 +6,8 @@ import Card from 'react-bootstrap/Card';
 import { Container } from 'react-bootstrap';
 import {fetchFuncs,fetchTypes} from "../http/itemAPI";
 import './css/Guide.css'
+
+import "./css/Course.css";
 import { Navbarr } from "../components/Navbarr";
 import FuncList from '../components/FuncList';
 export const Guide = observer(() => {
@@ -34,7 +36,8 @@ const handleTypeClick = (type) => {
 
   return(<>
 <Navbarr />
-    <div className="background-radial-gradient overflow-hidden">
+<div className="course">
+  
     <Container className='position-relative'>
     <div id="radius-shape-1" className="position-absolute rounded-circle shadow-5-strong"></div>
     <div id="radius-shape-3" className="position-absolute rounded-circle shadow-5-strong"></div>
@@ -43,7 +46,7 @@ const handleTypeClick = (type) => {
 
           </Container>
     <div> 
-    <div style={{padding:'20px 280px'}}className="background-radial-gradient overflow-hidden"> 
+    <div style={{padding:'100px 550px'}}> 
     <div className="title-group">
     <h1 className='title'>Справочник по функциям</h1>
    
@@ -74,6 +77,7 @@ const handleTypeClick = (type) => {
    </div>
     </div>
     </div>
+   
     </>
   );
 }

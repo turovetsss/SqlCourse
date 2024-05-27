@@ -3,6 +3,8 @@ const {BookArticle} = require('../models/models')
 const {BookArticleSet} = require('../models/models')
 const {BookModule} = require('../models/models')
 
+const fs = require('fs');
+
 const ApiError = require('../error/ApiError')
 
 class BookarticleController {
@@ -13,25 +15,31 @@ class BookarticleController {
         const bookArticle = await BookArticle.create({ name, bookmoduleId, title });
 
         if (setinfo) {
-            setinfo = JSON.parse(setinfo);
+          setinfo = JSON.parse(setinfo);
+          const bookArticleSets = [];
+        
+      
+for (let i = 0; i < setinfo.length; i++) {
+    const imgName = uuid.v4() + ".jpg";
+    const imgData = setinfo[i]; // Assuming setinfo contains the image data as Blob
+    
+    const imgDataAsBase64 = imgData.toString('base64');
+    
+        const bookArticleSet = await BookArticleSet.create({
+               title: i.title,
+              description: i.description,
+               imgName,
+                imgData: imgDataAsBase64,
+        bookarticleId: bookArticle.id
+       });
+      bookArticleSets.push(bookArticleSet);
+            }
 
-            const bookArticleSetPromises = setinfo.map(async i => {
-                const imgName = uuid.v4() + ".jpg";
-                const bookArticleSet = await BookArticleSet.create({
-                    title: i.title,
-                    description: i.description,
-                    imgName,
-                    imgData: i.imgData,
-                    bookarticleId: bookArticle.id
-                });
+       const createdSets = await Promise.all(bookArticleSets);
 
-                return bookArticleSet;
-            });
-
-            const createdSets = await Promise.all(bookArticleSetPromises);
-            
-            return res.json({ bookArticle, bookArticleSets: createdSets });
+        return res.json({ bookArticle, bookArticleSets: createdSets });
         }
+
 
         return res.json(bookArticle);
     } catch (e) {

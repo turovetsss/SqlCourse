@@ -45,10 +45,13 @@ export const CoursePage=() =>{
                     <div  className="primer" key={info.id} >
                         
                          {info.description}
+                      
                     </div >
+                  
+                    <img alt="" src="data:image/gif;base64,R0lGODdhAQABAPAAAP8AAAAAACwAAAAAAQABAAACAkQBADs=" />
+                    <img src={`data:image/jpeg;base64,${info.imgData}`} alt="hello" />
                   </div>
                 )}
-         
 </Card> 
 </div>
    </>
