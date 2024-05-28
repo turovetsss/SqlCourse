@@ -3,8 +3,8 @@ const ApiError = require('../error/ApiError')
 
 class TrainerController{
   async create(req,res){
-    const {description,solution,complexity,solved} = req.body
-    const func = await Trainer.create({description,solution,complexity,solved})
+    const {description,solution} = req.body
+    const func = await Trainer.create({description,solution})
     return res.json(func)
   }
   async getAll(req,res){

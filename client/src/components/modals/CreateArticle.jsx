@@ -14,39 +14,37 @@ const CreateArticle= observer(({show, onHide}) =>{
   const [info, setInfo] = useState([])
   useEffect(() => {
     fetchBookmodule().then(data => course.setBookmodules(data))
-}, [])
-  const addInfo = () => {
+}, []);
+const addInfo = () => {
     setInfo([...info, { title: "", description: "", imgData: null, number: Date.now() }]);
-  };
+};
 
 const removeInfo = (number) => {
   setInfo(info.filter(i => i.number !== number))
 }
 const changeInfo = (key, value, number) => {
-  setInfo(info.map(i => i.number === number||value ? {...i, [key]: value} : i))
+  setInfo(info.map(i => i.number === number ? {...i, [key]: value} : i))
 }
-
-  const addArticle = () => {
-    
+const addArticle = () => {
     const formData = new FormData()
     formData.append('name',name)
     formData.append('title',title)
     formData.append('bookmoduleId', course.selectedModule.id)
     formData.append('setinfo',JSON.stringify(info)) // inputFile - это input для загрузки файла
-
     createBookarticle(formData).then(data=> onHide())
     // alert('Статья добавлена успешно')
     // window.location.reload();
-    
 }
-const handleFileChange = (e) => {
+const selectFile = (e, number) => {
   const file = e.target.files[0];
-  setFile(file);
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    const base64 = event.target.result;
+    setInfo(info.map(i => i.number === number ? {...i, image: file.name, imgData: base64} : i));
+  }
+  reader.readAsDataURL(file);
 }
-const selectFile = e => {
-  setFile(e.target.files[0])
-}
-    return (
+return (
         <Modal
             show={show}
             onHide={onHide}
@@ -106,8 +104,8 @@ const selectFile = e => {
                                     onChange={(e) => changeInfo('description', e.target.value, i.number)}
                                     placeholder="Введите описание"
                                 />
-                    <input type="file"  value={i.image} onChange={handleFileChange} />
-                            <Col md={4}>
+                      <input type="file" onChange={(e) => selectFile(e, i.number)} />
+        <Col md={4}>
                                 <Button
                                     onClick={() => removeInfo(i.number)}
                                     variant={"outline-danger"}
@@ -125,6 +123,6 @@ const selectFile = e => {
             </Modal.Footer>
         </Modal>
     );
-})
+});
 
 export default CreateArticle;

@@ -1,12 +1,12 @@
 import React,{useContext,useEffect,useState} from 'react';
 import "./css/Trainer.css"
-import {Context} from "../index";
+import {Context} from "../index"; 
 import {useParams} from 'react-router-dom';
 import {fetchOneModule,fetchBookarticle, fetchOneBookarticle} from "../http/itemAPI";
 import { Container } from 'react-bootstrap';
 import { Card } from 'react-bootstrap';
 import { Navbarr } from "../components/Navbarr";
-import './css/CoursePage.css'
+import './css/CoursePage.css';
 export const CoursePage=() =>{
   const {course} = useContext(Context)
   const [bookmodule, setBookmodules] = useState('')
@@ -15,8 +15,15 @@ export const CoursePage=() =>{
   useEffect(() => {
     fetchOneBookarticle(id).then(data => setBookarticles(data))
   }, [])
-
-
+  function arrayBufferToBase64(buffer) {
+    let binary = '';
+    let bytes = new Uint8Array(buffer);
+    let len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
+  }
   return(
   <>
     <Navbarr />
@@ -43,13 +50,10 @@ export const CoursePage=() =>{
      {bookarticle.setinfo.map((info, index) =>
                 <div className="div">{info.title}
                     <div  className="primer" key={info.id} >
-                        
                          {info.description}
                       
                     </div >
-                  
-                    <img alt="" src="data:image/gif;base64,R0lGODdhAQABAPAAAP8AAAAAACwAAAAAAQABAAACAkQBADs=" />
-                    <img src={`data:image/jpeg;base64,${info.imgData}`} alt="hello" />
+                    <img src={`${info.imgData}`} alt="hello" className='imgstyle'/>
                   </div>
                 )}
 </Card> 

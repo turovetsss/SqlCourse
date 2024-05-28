@@ -15,6 +15,10 @@
 .etd2:hover{
   background-color: aqua;
 }
+.imgstyle{
+  width: 50px;
+  height: 50px;
+}
 .course-book{
   display: flex;
 }

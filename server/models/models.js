@@ -39,15 +39,16 @@ const BookArticleSet = sequelize.define('bookcarticleset', {
   title: {type: DataTypes.STRING, allowNull: false,defaultValue:"example2"},
   description: {type: DataTypes.STRING, allowNull: false,defaultValue:"example2"},
   imgName: {type: DataTypes.STRING, allowNull: true},
-  imgData: {type: DataTypes.BLOB, allowNull: true},
+  imgData: {type: DataTypes.TEXT('long'), allowNull: true},
 })
-
+const TrainerAccount = sequelize.define('traineraccount',{
+  id:{type:DataTypes.INTEGER,primaryKey:true,autoIncrement:true},
+  solved:{type:DataTypes.BOOLEAN,allowNull:false},
+})
 const Trainer = sequelize.define('trainer',{
   id:{type:DataTypes.INTEGER,primaryKey:true,autoIncrement:true},
   description:{type:DataTypes.STRING,allowNull:false},
   solution:{type:DataTypes.STRING,allowNull:false},
-  complexity:{type:DataTypes.STRING,allowNull:false},
-  solved:{type:DataTypes.STRING},
 })
 const FuncInfo = sequelize.define('func_info', {
   id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
@@ -75,6 +76,6 @@ Account.hasMany(Trainer),
 Trainer.belongsTo(Account)
 
 module.exports={
-  User,Func,Trainer,Account,Type,FuncInfo,BookModule,BookArticle,BookArticleSet
+  User,Func,Trainer,Account,Type,FuncInfo,BookModule,BookArticle,BookArticleSet,TrainerAccount
 }
  
