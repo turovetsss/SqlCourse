@@ -105,3 +105,11 @@ export const createTrainerAccount = async (traineraccount) => {
   const {data} = await $host.post('api/traineraccount',traineraccount)
   return data
 }
+
+//STUDENT
+
+export const createQuery = async (query) => {
+  //в response помещаем ответ
+  const {data} = await $authHost.post('api/students/sandbox', query)
+  return data
+}

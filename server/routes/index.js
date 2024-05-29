@@ -8,6 +8,7 @@ const typeRouter=require('./typeRoutes')
 const bookmoduleRouter=require('./bookmoduleRouter')
 const bookarticleRouter=require('./bookarticleRouter')
 const traineraccountRouter=require('./traineraccountRouter')
+const studentsRouter=require('./studentRouter')
 router.use('/user',userRouter)
 router.use('/type',typeRouter)
 router.use('/func',funcRouter)
@@ -16,6 +17,8 @@ router.use('/bookarticle',bookarticleRouter)
 router.use('/trainer',trainerRouter)
 router.use('/traineraccount',traineraccountRouter)
 router.use('/account',accountRouter)
+router.use('/students', studentsRouter)
+
 
 module.exports = router 
  

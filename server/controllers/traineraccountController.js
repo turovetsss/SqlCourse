@@ -15,14 +15,13 @@ class TrainerAccountController{
           })
       )
   }
-    return res.json(traineraccount)
+   return res.json(traineraccount)
   }
   async getAll(req,res){
     const trainers = await TrainerAccount.findAll()
     return res.json(trainers)
   }
   async getOne(req,res){
-
   }
 
   async delete(req, res){

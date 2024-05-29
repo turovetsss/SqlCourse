@@ -59,6 +59,35 @@ const TraineeList = sequelize.define('traineelist', {
   id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
   solution: {type: DataTypes.STRING, allowNull: false,defaultValue:"example2"},
 })
+
+const Student = sequelize.define('student', {
+  id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+  },
+  name: {
+      type: DataTypes.STRING,
+      allowNull: false
+  },
+  surname: {
+      type: DataTypes.STRING,
+      allowNull: false
+  },
+  group: {
+      type: DataTypes.STRING,
+      allowNull: false
+  },
+  mark: {
+      type: DataTypes.STRING,
+      allowNull: false
+  },
+  birthday: {
+      type: DataTypes.DATE,
+      allowNull: false
+  }
+});
+
 User.hasOne(Account)
 Account.belongsTo(User);
 
@@ -85,6 +114,6 @@ Account.hasMany(Trainer),
 Trainer.belongsTo(Account)
 
 module.exports={
-  User,Func,Trainer,Account,Type,FuncInfo,BookModule,BookArticle,BookArticleSet,TrainerAccount,TraineeList
+  User,Func,Trainer,Account,Type,FuncInfo,BookModule,BookArticle,BookArticleSet,TrainerAccount,TraineeList,Student, sequelize
 }
  
