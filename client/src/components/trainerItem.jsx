@@ -74,7 +74,7 @@ const Solution = () => {
             <input 
               key={index} 
               type="text" 
-              value={info[index]?.solution || ''} 
+              value={info[index]?.solution || ''}  
               onChange={(e) => changeInfo(index, e.target.value)} 
               placeholder={"Введите информацию"} 
             />
