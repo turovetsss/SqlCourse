@@ -100,3 +100,8 @@ export const fetchTrainer = async () => {//getTypes
   const {data} = await $host.get('api/trainer')
   return data
 }
+
+export const createTrainerAccount = async (traineraccount) => {
+  const {data} = await $host.post('api/traineraccount',traineraccount)
+  return data
+}

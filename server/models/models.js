@@ -43,7 +43,7 @@ const BookArticleSet = sequelize.define('bookcarticleset', {
 })
 const TrainerAccount = sequelize.define('traineraccount',{
   id:{type:DataTypes.INTEGER,primaryKey:true,autoIncrement:true},
-  solved:{type:DataTypes.BOOLEAN,allowNull:false},
+  solved:{type:DataTypes.STRING,allowNull:false,defaultValue:"false"},
 })
 const Trainer = sequelize.define('trainer',{
   id:{type:DataTypes.INTEGER,primaryKey:true,autoIncrement:true},
@@ -55,9 +55,18 @@ const FuncInfo = sequelize.define('func_info', {
   title: {type: DataTypes.STRING, allowNull: false,defaultValue:"example2"},
   description: {type: DataTypes.STRING, allowNull: false,defaultValue:"example2"},
 })
+const TraineeList = sequelize.define('traineelist', {
+  id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+  solution: {type: DataTypes.STRING, allowNull: false,defaultValue:"example2"},
+})
 User.hasOne(Account)
 Account.belongsTo(User);
 
+Account.hasOne(TrainerAccount);
+TrainerAccount.belongsTo(Account)
+
+TrainerAccount.hasMany(TraineeList, {as: 'traineelist'});
+TraineeList.belongsTo(TrainerAccount)
 
 BookModule.hasMany(BookArticle)
 BookArticle.belongsTo(BookModule)
@@ -76,6 +85,6 @@ Account.hasMany(Trainer),
 Trainer.belongsTo(Account)
 
 module.exports={
-  User,Func,Trainer,Account,Type,FuncInfo,BookModule,BookArticle,BookArticleSet,TrainerAccount
+  User,Func,Trainer,Account,Type,FuncInfo,BookModule,BookArticle,BookArticleSet,TrainerAccount,TraineeList
 }
  

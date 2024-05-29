@@ -5,6 +5,7 @@ import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 import { Navbarr } from "../components/Navbarr";
 import {fetchTrainer} from "../http/itemAPI";
+import TrainerList from '../components/trainerList';
 export const Trainer= observer(() =>{
 
   const {course} = useContext(Context)
@@ -33,7 +34,8 @@ const filteredTraners = course.trainers.filter(trainer => {
                          </div> </ListGroup.Item>
 
                     )} 
-  </ListGroup> </div>
+  </ListGroup>
+  <TrainerList></TrainerList></div>
   <div className="filter"><h4>Статус</h4> 
   <div className="check">
     <div className="check-item">

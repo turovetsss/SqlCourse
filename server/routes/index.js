@@ -7,13 +7,14 @@ const trainerRouter=require('./trainerRouter')
 const typeRouter=require('./typeRoutes')
 const bookmoduleRouter=require('./bookmoduleRouter')
 const bookarticleRouter=require('./bookarticleRouter')
-
+const traineraccountRouter=require('./traineraccountRouter')
 router.use('/user',userRouter)
 router.use('/type',typeRouter)
 router.use('/func',funcRouter)
 router.use('/bookmodule',bookmoduleRouter)
 router.use('/bookarticle',bookarticleRouter)
 router.use('/trainer',trainerRouter)
+router.use('/traineraccount',traineraccountRouter)
 router.use('/account',accountRouter)
 
 module.exports = router 
