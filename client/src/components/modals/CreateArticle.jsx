@@ -32,8 +32,8 @@ const addArticle = () => {
     formData.append('bookmoduleId', course.selectedModule.id)
     formData.append('setinfo',JSON.stringify(info)) // inputFile - это input для загрузки файла
     createBookarticle(formData).then(data=> onHide())
-    // alert('Статья добавлена успешно')
-    // window.location.reload();
+    alert('Статья добавлена успешно')
+    window.location.reload();
 }
 const selectFile = (e, number) => {
   const file = e.target.files[0];
@@ -95,14 +95,12 @@ return (
                                 <Form.Control
                                     value={i.title}
                                     onChange={(e) => changeInfo('title', e.target.value, i.number)}
-                                    placeholder="Введите название"
+                                    placeholder="Введите заголовок"
                                 />
-                           
-                           
-                                <Form.Control
+                                <textarea  rows="5" cols="33"
                                     value={i.description}
                                     onChange={(e) => changeInfo('description', e.target.value, i.number)}
-                                    placeholder="Введите описание"
+                                    placeholder="Введите информацию/примеры"
                                 />
                       <input type="file" onChange={(e) => selectFile(e, i.number)} />
         <Col md={4}>

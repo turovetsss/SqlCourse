@@ -1,28 +1,52 @@
-.card3{
+
+.course-breadcrumbs {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.breadcrumb-link {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.breadcrumb-separator {
+  margin: 0 10px;
+}
+
+.card3 {
   padding: 25px;
   margin-left: 0px;
   height: 616px;
   width: 950px;
   display: flex;
   border-radius: 15px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.etd2{
+
+.etd2 {
   display: block;
   padding: 10px;
   transition: 0.3s;
   background-color: rgb(209, 186, 231);
 }
-.etd2:hover{
+
+.etd2:hover {
   background-color: aqua;
 }
-.imgstyle{
+
+.imgstyle {
   width: 50px;
   height: 50px;
 }
-.course-book{
+
+.course-book {
   display: flex;
 }
-.breadscam-module{
+
+.breadscam-module {
   border-radius: 10px;
   padding: 25px;
   height: 400px;

@@ -13,12 +13,10 @@ export const Course=()=>{
     <div>
     <div className="over"><div>
       <div className="div-title"><h1 className="title">Инструменты для изучения SQL</h1></div></div>
-    
     <Cardd></Cardd>
   </div>
   <div className="over2">
     <CourseCard/>
-    <ArticleList></ArticleList>
     </div>
     </div></div>
     </div>

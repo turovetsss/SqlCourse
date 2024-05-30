@@ -15,7 +15,7 @@ const Account = sequelize.define('account',{
 })
 const Func = sequelize.define('func', {
   id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-  funcType: {type: DataTypes.STRING, unique: true, allowNull: false},
+  funcType: {type: DataTypes.STRING, allowNull: false},
   name: {type: DataTypes.STRING, allowNull: false},
   description: {type: DataTypes.STRING, allowNull: false},
   example: {type: DataTypes.STRING, allowNull: false},

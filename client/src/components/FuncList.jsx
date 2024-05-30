@@ -11,7 +11,7 @@ const FuncList = observer(() => {
             {course.funcs.map(func =>
                 <FuncItem key={func.id} func={func}/>
             )}
-        </Row>
+        </Row> 
     );
 });
 

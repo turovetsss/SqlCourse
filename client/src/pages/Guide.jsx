@@ -24,32 +24,20 @@ export const Guide = observer(() => {
 const handleTypeClick = (type) => {
     setSelectedType(type);
 };
-  // useEffect( () => {
-  //   fetchOneFunc(id).then(data => setFunc(data));
-  // },[id]);
-  const filteredFuncs = (selectedType !== null) ? course.funcs.filter(func => func.type === selectedType) : course.funcs.filter(func => func.name.toLowerCase().includes(searchTerm.toLowerCase()));
-// const filteredFuncs = course.funcs.filter(func => {
-//   func.name.toLowerCase().includes(searchTerm.toLowerCase());
-
-//  });
-
 
   return(<>
 <Navbarr />
 <div className="course">
-  
     <Container className='position-relative'>
     <div id="radius-shape-1" className="position-absolute rounded-circle shadow-5-strong"></div>
     <div id="radius-shape-3" className="position-absolute rounded-circle shadow-5-strong"></div>
     <div id="radius-shape-4" className="position-absolute rounded-circle shadow-5-strong"></div>
           <div id="radius-shape-2" className="position-absolute shadow-5-strong"></div>
-
           </Container>
     <div> 
     <div style={{padding:'100px 550px'}}> 
     <div className="title-group">
     <h1 className='title'>Справочник по функциям</h1>
-   
     </div>
     <div className="button-group">
     <input 
@@ -67,13 +55,11 @@ const handleTypeClick = (type) => {
      </div>
     <Card className="card2">
     <div >
-      
             <div  className='col1'>
             <FuncList></FuncList>
             </div>          
        </div>
        </Card>
-     
    </div>
     </div>
     </div>

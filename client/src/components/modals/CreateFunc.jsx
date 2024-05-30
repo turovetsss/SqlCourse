@@ -36,8 +36,8 @@ const changeInfo = (key, value, number) => {
     formData.append('typeId', course.selectedType.id)
     formData.append('info',JSON.stringify(info))
     createFunc(formData).then(data=> onHide())
-    alert('Функция добавлена успешно')
-    window.location.reload();
+    // alert('Функция добавлена успешно')
+    // window.location.reload();
     
 }
 
