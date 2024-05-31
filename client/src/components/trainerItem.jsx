@@ -22,7 +22,7 @@ const Task = observer(({ task, onSolve, onProgress, show, onHide }) => {
     try {
       const response = await solveTask({
         taskId: task.id,
-        userId: '1',
+        userId: '1', 
         solution: solution,
       });
 
@@ -31,8 +31,10 @@ const Task = observer(({ task, onSolve, onProgress, show, onHide }) => {
       if (onSolve) {
         onSolve(response.solved);
       }
-    } catch (error) {
-      setErrorMessage(error.message);
+      setSolution(''); 
+      setErrorMessage(''); 
+    } catch (e) {
+      setErrorMessage(e.response.data.message);
     }
   };
 
@@ -70,11 +72,7 @@ const Task = observer(({ task, onSolve, onProgress, show, onHide }) => {
           {showResult && (
             <div>
               <h3>Результат:</h3>
-              {isSolved ? (
-                <div className="success">Задача решена!</div>
-              ) : (
-                <div className="success">Задача решена!</div>
-              )}
+                <div className="success">Задача решена</div>
             </div>
           )}
           {errorMessage && (
