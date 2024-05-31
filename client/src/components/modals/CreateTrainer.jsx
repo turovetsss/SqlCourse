@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Modal from "react-bootstrap/Modal";
 import {observer} from "mobx-react-lite";
 import {Button, Form} from "react-bootstrap";
-import { createTrainer} from "../../http/itemAPI";
+import { createTask} from "../../http/itemAPI";
 import './CreateFunc.css'
 const CreateTrainer= observer(({show, onHide}) =>{
   const [solution, setSolution] = useState('')
@@ -10,7 +10,7 @@ const CreateTrainer= observer(({show, onHide}) =>{
 
 
   const addTrainer = () => {
-      createTrainer({solution: solution, description:description}).then(data => {
+      createTask({solution: solution, description:description}).then(data => {
           setSolution('')
           setDescription('')
           onHide()

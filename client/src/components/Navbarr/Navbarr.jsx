@@ -45,7 +45,7 @@ useEffect(() => {
     <Nav className="me-right">
     <Dropdown  data-bs-theme="light" height="100px">
         <Dropdown.Toggle id="dropdown-button-light-example1" variant="first">
-        <div className='div-account'><img width="30" height="30" src="https://img.icons8.com/small/30/000000/user.png" alt="user"/>user</div> 
+        <div className='div-account'><img width="30" height="30" src="https://img.icons8.com/small/30/000000/user.png" alt="user"/>{user.name}</div> 
         </Dropdown.Toggle>
 
         <Dropdown.Menu>

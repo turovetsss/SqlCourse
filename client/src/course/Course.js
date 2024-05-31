@@ -4,7 +4,7 @@ export default class СourseCourse {
   constructor(){
     this._types = []
     this._funcs = []
-    this._trainers = []
+    this._tasks = []
     this._selectedType = {}
     this._selectedModule = {}
     this._brands = []
@@ -63,11 +63,11 @@ get users(){
   return this._users
 }
 
-setTrainers(trainers){
-  this._trainers = trainers 
+setTasks(tasks){
+  this._tasks = tasks
 }
-get trainers(){
-  return this._trainers
+get tasks(){
+  return this._tasks
 }
 
 

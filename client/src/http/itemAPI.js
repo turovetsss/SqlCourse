@@ -90,21 +90,17 @@ export const deleteTrainer = async (trainer) => {
   const {data} = await $authHost.post('api/trainer/delete', trainer)
   return data
 }
-export const createTrainer = async (trainer) => {
+export const createTask = async (task) => {
   //в response помещаем ответ
-  const {data} = await $authHost.post('api/trainer', trainer)
+  const {data} = await $authHost.post('api/task', task)
   return data
 }
-export const fetchTrainer = async () => {//getTypes
+export const fetchTask = async () => {//getTypes
   //в response помещаем ответ
-  const {data} = await $host.get('api/trainer')
+  const {data} = await $host.get('api/task')
   return data
 }
 
-export const createTrainerAccount = async (traineraccount) => {
-  const {data} = await $host.post('api/traineraccount',traineraccount)
-  return data
-}
 
 //STUDENT
 
@@ -113,3 +109,18 @@ export const createQuery = async (query) => {
   const {data} = await $authHost.post('api/students/sandbox', query)
   return data
 }
+
+
+
+export const solveTask = async (task) => {
+  //в response помещаем ответ
+  const {data} = await $authHost.put('api/task/solve', task)
+  return data
+}
+
+export const fetchProgress = async (task) => {
+  //в response помещаем ответ
+  const {data} = await $authHost.post('api/task/progress', task)
+  return data
+}
+

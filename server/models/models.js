@@ -41,24 +41,30 @@ const BookArticleSet = sequelize.define('bookcarticleset', {
   imgName: {type: DataTypes.STRING, allowNull: true},
   imgData: {type: DataTypes.TEXT('long'), allowNull: true},
 })
-const TrainerAccount = sequelize.define('traineraccount',{
-  id:{type:DataTypes.INTEGER,primaryKey:true,autoIncrement:true},
-  solved:{type:DataTypes.STRING,allowNull:false,defaultValue:"false"},
-})
-const Trainer = sequelize.define('trainer',{
-  id:{type:DataTypes.INTEGER,primaryKey:true,autoIncrement:true},
-  description:{type:DataTypes.STRING,allowNull:false},
-  solution:{type:DataTypes.STRING,allowNull:false},
-})
+
 const FuncInfo = sequelize.define('func_info', {
   id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
   title: {type: DataTypes.STRING, allowNull: false,defaultValue:"example2"},
   description: {type: DataTypes.STRING, allowNull: false,defaultValue:"example2"},
 })
-const TraineeList = sequelize.define('traineelist', {
+
+const Task = sequelize.define('task', {
   id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-  solution: {type: DataTypes.STRING, allowNull: false,defaultValue:"example2"},
-})
+  description: {type: DataTypes.STRING, allowNull: false},
+  condition: {type: DataTypes.TEXT('tiny'), allowNull: false},
+  solution: {type: DataTypes.TEXT('medium'), allowNull: false}
+});
+
+const TaskUser = sequelize.define('taskUser', {
+  id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+  solved: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
+  taskId: {type: DataTypes.INTEGER, allowNull: false}
+});
+
+const SolvedUserTaskList = sequelize.define('solvedUserTaskList', {
+  id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+  solution: {type: DataTypes.STRING, allowNull: false, defaultValue: "example2"}
+});
 
 const Student = sequelize.define('student', {
   id: {
@@ -88,14 +94,17 @@ const Student = sequelize.define('student', {
   }
 });
 
+User.hasMany(TaskUser)
+TaskUser.belongsTo(User);
+
+Task.hasMany(TaskUser);
+TaskUser.belongsTo(Task);
+
+TaskUser.hasMany(SolvedUserTaskList, {as: 'userSolvedList'});
+SolvedUserTaskList.belongsTo(TaskUser);
+
 User.hasOne(Account)
 Account.belongsTo(User);
-
-Account.hasOne(TrainerAccount);
-TrainerAccount.belongsTo(Account)
-
-TrainerAccount.hasMany(TraineeList, {as: 'traineelist'});
-TraineeList.belongsTo(TrainerAccount)
 
 BookModule.hasMany(BookArticle)
 BookArticle.belongsTo(BookModule)
@@ -110,10 +119,10 @@ Func.belongsTo(Type)
 Func.hasMany(FuncInfo, {as: 'info'});
 FuncInfo.belongsTo(Func)
 
-Account.hasMany(Trainer),
-Trainer.belongsTo(Account)
 
 module.exports={
-  User,Func,Trainer,Account,Type,FuncInfo,BookModule,BookArticle,BookArticleSet,TrainerAccount,TraineeList,Student, sequelize
+  User,Func,Account,Type,Task,
+  TaskUser,
+  SolvedUserTaskList,FuncInfo,BookModule,BookArticle,BookArticleSet,Student, sequelize
 }
  

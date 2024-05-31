@@ -4,19 +4,19 @@ import "./css/Trainer.css"
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 import { Navbarr } from "../components/Navbarr";
-import {fetchTrainer} from "../http/itemAPI";
+import {fetchTask} from "../http/itemAPI";
 import TrainerList from '../components/trainerList';
 export const Trainer= observer(() =>{
 
   const {course} = useContext(Context)
   const [searchTerm, setSearchTerm] = useState('');
   useEffect(() => {
-    fetchTrainer().then(data => course.setTrainers(data))
+    fetchTask().then(data => course.setTasks(data))
 
 }, [course])
-const filteredTraners = course.trainers.filter(trainer => {
-  return trainer.description.toLowerCase().includes(searchTerm.toLowerCase());
-});
+// const filteredTraners = course.tasks.filter(task => {
+//   return task.description.toLowerCase().includes(searchTerm.toLowerCase());
+// });
 
 
 
@@ -29,11 +29,11 @@ const filteredTraners = course.trainers.filter(trainer => {
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />  </div><ListGroup className="list">
-     {filteredTraners.map(trainer =>
+     {/* {filteredTraners.map(trainer =>
                            <ListGroup.Item key={trainer.id}  className="item"><div className="name">#{trainer.id} {trainer.description}</div><div className="high"> Сложность: {trainer.complexity} 
                          </div> </ListGroup.Item>
 
-                    )} 
+                    )}  */}
   </ListGroup>
   <TrainerList></TrainerList></div>
   <div className="filter"><h4>Статус</h4> 

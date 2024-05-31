@@ -10,7 +10,7 @@ import CreateType from "../components/modals/CreateType";
 import CreateArticle from "../components/modals/CreateArticle";
 
 import Table from 'react-bootstrap/Table';
-import {fetchFuncs,deleteFunc, deleteTrainer,fetchTrainer,fetchUser, fetchBookmodule, fetchBookarticle} from "../http/itemAPI";
+import {fetchFuncs,deleteFunc, deleteTrainer,fetchTask,fetchUser, fetchBookmodule, fetchBookarticle} from "../http/itemAPI";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import {Context} from "../index";
@@ -37,7 +37,7 @@ export const Admin= observer(() => {
     fetchBookmodule().then(data=> course.setBookmodules(data))
     fetchBookarticle().then(data=> course.setBookarticles(data))
     
-      fetchTrainer().then(data=> course.setTrainers(data))
+      fetchTask().then(data=> course.setTasks(data))
       fetchUser().then(data=> course.setUsers(data))
   }, [course])
  
@@ -116,14 +116,12 @@ export const Admin= observer(() => {
         </tr>  
       </thead>
       <tbody>
-      {course.trainers.map(trainer =>
-                        <tr key={trainer.id} >
-                          <td>{trainer.id}</td>
-                            <td>{trainer.description}</td>
-                            <td>{trainer.solution}</td>
-          <td>{trainer.complexity}</td>
-          <td>{trainer.solved}</td>
-          <td><Button className='btn' onChange={e => setValue(trainer.id)} onClick={() => removeTrainer(trainer.id)}>-</Button> <Button className='btn' >Настройки</Button> </td>
+      {course.tasks.map(task =>
+                        <tr key={task.id} >
+                          <td>{task.id}</td>
+                            <td>{task.description}</td>
+                            <td>{task.condition}</td>
+          <td><Button className='btn' onChange={e => setValue(task.id)} onClick={() => removeTrainer(task.id)}>-</Button> <Button className='btn' >Настройки</Button> </td>
                         </tr>
                     )}
       </tbody>

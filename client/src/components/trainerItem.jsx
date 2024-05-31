@@ -1,96 +1,97 @@
-import React, { useState } from 'react';
-import {Card} from "react-bootstrap";
-import {Button} from "react-bootstrap";
-import {useNavigate} from "react-router-dom"
-import {TRAINER_ROUTE} from "../utils/consts";
-import '../pages/css/Guide.css';
-import {createTrainerAccount} from "../http/itemAPI.js";
-import Modal from 'react-bootstrap/Modal'; // Импортируем Modal
-const TrainerItem = ({trainer},{show, onHide}) => {
-  const navigate = useNavigate();
-  const [solved, setSolved] = useState('');
-  const [showModal, setShowModal] = useState(false); // Состояние для модального окна
-  const [info, setInfo] = useState([])
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../index";
+import { useNavigate } from "react-router-dom";
+import { observer } from "mobx-react-lite";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import { fetchTask, solveTask, fetchProgress } from "../http/itemAPI";
+// import "./css/Task.css";
+
+const Task = observer(({ task, onSolve, onProgress, show, onHide }) => {
+  const { course } = useContext(Context);
+  const [showModal, setShowModal] = useState(false); 
+  const [solution, setSolution] = useState("");
+  const [isSolved, setIsSolved] = useState(false);
+  const [showResult, setShowResult] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
-  const addInfo = () => {
-    setInfo([...info, {solution: '', traineraccountId:trainer.id, number: Date.now()}])
-}
-const changeInfo = (index, value) => {
-  setInfo(prevInfo => {
-    const updatedInfo = [...prevInfo];
-    updatedInfo[index] = { number: index, solution: value };
-    return updatedInfo;
-  });
-};
 
+  const handleSubmit = async () => {
+    try {
+      const response = await solveTask({
+        taskId: task.id,
+        userId: '1',
+        solution: solution,
+      });
 
-const Solution = () => {
-  console.log("solution:", trainer.solution);
+      setIsSolved(response.solved);
+      setShowResult(true);
+      if (onSolve) {
+        onSolve(response.solved);
+      }
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
+  };
 
-  const isCorrect = info.every(item => item.solution === trainer.solution); 
-
-  if (isCorrect) {
-    alert('Ура!');
-    const addTrainerAccount = () => {
-      const formData = new FormData();
-      formData.append('solved', "true")
-      formData.append('trainerId', trainer.id);
-      formData.append('traineelist', JSON.stringify(info));
-      createTrainerAccount(formData).then(data => onHide());
-      // alert('Функция добавлена успешно');
-      // window.location.reload(); 
-    };
-    addTrainerAccount();
-    handleCloseModal();
-  } else {
-    alert('Неверно! Попробуйте еще раз.');
-  }
-};
-
-    return (
-      <div>
-      <Card className='cardfunc' onClick={handleShowModal}> 
+  return (
+    <div>
+      <div className='cardfunc' onClick={handleShowModal}> 
         <div>
           <div>
-            <div>{trainer.description}</div>
+            <div>{task.description}</div>
           </div>
         </div>
-      </Card>
+      </div>
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Задача</Modal.Title>
+          <Modal.Title>Задача {task.id}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>{trainer.description}</p> 
-          <p>{trainer.solution}</p>
-          <Button
-                        variant={"outline-dark"}
-                        onClick={addInfo}
-                    >
-                        Добавить новое свойство
-                    </Button>
-                    {info.map((_, index) => (
-            <input 
-              key={index} 
-              type="text" 
-              value={info[index]?.solution || ''}  
-              onChange={(e) => changeInfo(index, e.target.value)} 
-              placeholder={"Введите информацию"} 
+          <div>
+            <h3>Описание:</h3>
+            {task.description}
+          </div>
+          <div>
+            <h3>Условие:</h3>
+            <pre>{task.condition}</pre>
+          </div>
+          <div>
+            <h3>Ваше решение:</h3>
+            <textarea
+              className="task-textarea"
+              value={solution}
+              onChange={(e) => setSolution(e.target.value)}
+              placeholder="Введите ваше решение"
             />
-          ))}
+          </div>
+          {showResult && (
+            <div>
+              <h3>Результат:</h3>
+              {isSolved ? (
+                <div className="success">Задача решена!</div>
+              ) : (
+                <div className="success">Задача решена!</div>
+              )}
+            </div>
+          )}
+          {errorMessage && (
+            <div className="error">Ошибка: {errorMessage}</div>
+          )}
         </Modal.Body>
         <Modal.Footer>
-          <button variant="secondary" onClick={handleCloseModal}>
+          <Button variant="secondary" onClick={handleCloseModal}>
             Закрыть
-          </button>
-          <button variant="primary"  onClick={Solution}>
-            Проверить решение
-          </button>
+          </Button>
+          <Button variant="primary" onClick={handleSubmit}>
+            Отправить
+          </Button>
         </Modal.Footer>
       </Modal>
+   
     </div>
-    );
-};
-
-export default TrainerItem;
+  );
+});
+export default Task;
