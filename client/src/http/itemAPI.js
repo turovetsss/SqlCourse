@@ -70,7 +70,7 @@ export const fetchBookarticle = async () => {//getTypes
  
 //user
 export const fetchOneUser = async (id) => {
-  const {data} = await $host.get(`api/user/${id}`);
+  const {data} = await $host.get(`api/user/` + id);
   return data;
 }
 export const fetchUser = async () => {//getTypes
@@ -118,9 +118,9 @@ export const solveTask = async (task) => {
   return data
 }
 
-export const fetchProgress = async (task) => {
+export const fetchProgress = async (id) => {
   //в response помещаем ответ
-  const {data} = await $authHost.post('api/task/progress', task)
+  const {data} = await $authHost.get('api/task/progress' + id)
   return data
 }
 

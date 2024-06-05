@@ -20,7 +20,7 @@ export const Sandbox = () => {
         },
         body: JSON.stringify({ query: sqlCode })
       });
-
+     
       if (!response.ok) {
         const error = await response.json();
         setOutput(error.message);
@@ -85,7 +85,7 @@ export const Sandbox = () => {
             <button className='button-sql' onClick={executeQuery}>Выполнить</button>
           </div>
       </div>
-      <div className="output">
+      <div className='output'>
         {output}
       </div>
     </div>

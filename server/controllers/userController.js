@@ -61,7 +61,9 @@ async getAll(req,res){
   async check(req, res) {
       const token = generateJwt(req.user.id, req.user.name, req.user.email, req.user.role)
       return res.json({token})
-  }}
+  }
+}
+  
 
 
 module.exports = new UserController();

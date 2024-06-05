@@ -11,27 +11,26 @@ import {fetchUser} from "../../http/itemAPI.js";
 import './Navbarr.css'
 import { GUIDE_ROUTE } from '../../utils/consts.js';
 export const Navbarr= observer( () => {
-  const {user} = useContext(Context)//для разных пользователей навбар будет отображаться по разному
+  const {user} = useContext(Context)
   const {course} = useContext(Context)
   const navigate = useNavigate()
   const logOut = () =>{
     user.setUser({})
     user.setIsAuth(false)
-    // Удаление токена из localStorage (или cookies)
     localStorage.removeItem('token');
-    // Дополнительные шаги, если нужно, например, перенаправление на страницу входа
     navigate('/login');
   }
 const alertIsAuth=()=>{
  alert('Тренажер доступен только авторизованным пользователям!')
 }
-useEffect(() => {
-  fetchUser().then(data=> course.setUsers(data))
-}, [course])
+const userId=user.user.name
+// useEffect(() => {
+//   fetchUser().then(data=> course.setUsers(data))
+// }, [course])
 
 
 
-  return( <>
+return( <>
 <Navbar className="navv">
 {user.isAuth ?
   <Container>
@@ -45,12 +44,12 @@ useEffect(() => {
     <Nav className="me-right">
     <Dropdown  data-bs-theme="light" height="100px">
         <Dropdown.Toggle id="dropdown-button-light-example1" variant="first">
-        <div className='div-account'><img width="30" height="30" src="https://img.icons8.com/small/30/000000/user.png" alt="user"/>{user.name}</div> 
+        <div className='div-account'><img width="30" height="30" src="https://img.icons8.com/small/30/000000/user.png" alt="user"/></div> 
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
           <Dropdown.Item href="#/action-1" active>
-            Курс
+          {userId}
           </Dropdown.Item>
           <Dropdown.Item href="#/action-2">Уровень</Dropdown.Item>
       

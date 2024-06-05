@@ -34,7 +34,7 @@ export default class UserCourse{
         return this._isAuth;
     }
 
-    get User() {
+    get user() {
         return this._user;
     }
 }

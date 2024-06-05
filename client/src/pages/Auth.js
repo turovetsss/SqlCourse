@@ -17,8 +17,50 @@ export const Auth = observer(() => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [nameError, setNameError] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+
+    const validateName = (name) => {
+        setName(name);
+        if (name.trim() === '') {
+            setNameError('Имя не может быть пустым.');
+        } else {
+            setNameError('');
+        }
+    };
+
+    const validateEmail = (email) => {
+        setEmail(email);
+        if (email.trim() === '') {
+            setEmailError('Пожалуйста, введите email.');
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+            setEmailError('Неверный формат email.');
+        } else {
+            setEmailError('');
+        }
+    };
+
+    const validatePassword = (password) => {
+        setPassword(password);
+        if (password.trim() === '') {
+            setPasswordError('Пароль не может быть пустым.');
+        } else if (password.length < 8) {
+            setPasswordError('Пароль должен быть не менее 8 символов.');
+        } else {
+            setPasswordError('');
+        }
+    };
 
     const click = async () => {
+        validateName(name);
+        validateEmail(email);
+        validatePassword(password);
+
+        if (nameError || emailError || passwordError) {
+            return;
+        }
+
         try {
             let data;
             if (isLogin) {
@@ -56,19 +98,22 @@ export const Auth = observer(() => {
                                                     <Form.Group className="mb-2" controlId="formBasicName">
                                                         <Form.Label className="text-center">Имя</Form.Label>
                                                         <Form.Control type="text" placeholder="Введите имя" value={name}
-                                                                      onChange={e => setName(e.target.value)}/>
+                                                                      onChange={e => validateName(e.target.value)}/>
+                                                        {nameError && <div className="error">{nameError}</div>}
                                                     </Form.Group>
                                                 )}
                                                 <Form.Group className="mb-2" controlId="formBasicEmail">
                                                     <Form.Label className="text-center">Email</Form.Label>
                                                     <Form.Control type="email" placeholder="Введите email" value={email}
-                                                                  onChange={e => setEmail(e.target.value)}/>
+                                                                  onChange={e => validateEmail(e.target.value)}/>
+                                                    {emailError && <div className="error">{emailError}</div>}
                                                 </Form.Group>
                                                 <Form.Group className="mb-2" controlId="formBasicPassword">
                                                     <Form.Label>Пароль</Form.Label>
                                                     <Form.Control type="password" placeholder="Введите пароль"
                                                                   value={password}
-                                                                  onChange={e => setPassword(e.target.value)}/>
+                                                                  onChange={e => validatePassword(e.target.value)}/>
+                                                    {passwordError && <div className="error">{passwordError}</div>}
                                                 </Form.Group>
                                                 <div className="d-grid">
                                                     <Button className="bbb" type="button"

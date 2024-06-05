@@ -5,13 +5,13 @@ import {Button, Form} from "react-bootstrap";
 import { createTask} from "../../http/itemAPI";
 import './CreateFunc.css'
 const CreateTrainer= observer(({show, onHide}) =>{
-  const [solution, setSolution] = useState('')
+  const [condition, setCondition] = useState('')
   const [description, setDescription] = useState('')
 
 
   const addTrainer = () => {
-      createTask({solution: solution, description:description}).then(data => {
-          setSolution('')
+      createTask({description:description,condition:condition}).then(data => {
+          setCondition('')
           setDescription('')
           onHide()
           alert('Задача добавлена успешно')
@@ -39,8 +39,8 @@ const CreateTrainer= observer(({show, onHide}) =>{
                         placeholder={"Введите описание"}
                     />
                      <Form.Control className='mt-2 mb-2'
-                        value={solution}
-                        onChange={e => setSolution(e.target.value)}
+                        value={condition}
+                        onChange={e => setCondition(e.target.value)}
                         placeholder={"Введите Описание "}
                     />
                     

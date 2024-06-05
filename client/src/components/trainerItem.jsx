@@ -6,15 +6,15 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { fetchTask, solveTask, fetchProgress } from "../http/itemAPI";
 // import "./css/Task.css";
-
+import {check} from "../http/userAPI";
 const Task = observer(({ task, onSolve, onProgress, show, onHide }) => {
   const { course } = useContext(Context);
+  const { user } = useContext(Context);
   const [showModal, setShowModal] = useState(false); 
   const [solution, setSolution] = useState("");
   const [isSolved, setIsSolved] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
 
@@ -22,7 +22,7 @@ const Task = observer(({ task, onSolve, onProgress, show, onHide }) => {
     try {
       const response = await solveTask({
         taskId: task.id,
-        userId: '1', 
+        userId: user.user.id, 
         solution: solution,
       });
 
@@ -37,6 +37,10 @@ const Task = observer(({ task, onSolve, onProgress, show, onHide }) => {
       setErrorMessage(e.response.data.message);
     }
   };
+
+  useEffect(() => {
+    console.log(user.id, user.name);
+  }, [user]);
 
   return (
     <div>
