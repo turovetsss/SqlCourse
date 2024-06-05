@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Navbarr } from "../components/Navbarr";
+import { Card, ListGroup ,ListGroupItem} from 'react-bootstrap';
 import './css/Sandbox.css'
 export const Sandbox = () => {
   const [sqlCode, setSqlCode] = useState('');
@@ -62,14 +63,27 @@ export const Sandbox = () => {
     <>
       <Navbarr></Navbarr>
     <div className="sandbox-container">
-      <div className="code-editor">
-        <textarea 
-          ref={codeRef} 
-          value={sqlCode} 
-          onChange={handleCodeChange} 
-          placeholder="Введите SQL-запрос" 
-        />
-        <button  className='button-sql'onClick={executeQuery}>Выполнить</button>
+      <div>
+        <ListGroup className='table-list'>
+        <ListGroup.Item className='list-title'>Students</ListGroup.Item>
+        <ListGroup.Item className='list-item'><div >id</div><div className='data-type'>int</div></ListGroup.Item>
+        <ListGroup.Item  className='list-item'><div >Name</div><div className='data-type'>int</div></ListGroup.Item>
+        <ListGroup.Item  className='list-item'><div >Surname </div><div className='data-type'>int</div></ListGroup.Item>
+        <ListGroup.Item  className='list-item'><div >Group</div><div className='data-type'>int</div></ListGroup.Item>
+        <ListGroup.Item  className='list-item'><div >Mark</div><div className='data-type'>int</div></ListGroup.Item>
+        <ListGroup.Item  className='list-item'><div >Birthday</div><div className='data-type'>int</div></ListGroup.Item>
+        </ListGroup>
+      </div>
+       <div className="code-editor">
+          <div className="editor-container">
+            <textarea
+              ref={codeRef}
+              value={sqlCode}
+              onChange={handleCodeChange}
+              placeholder="Введите SQL-запрос"
+            />
+            <button className='button-sql' onClick={executeQuery}>Выполнить</button>
+          </div>
       </div>
       <div className="output">
         {output}

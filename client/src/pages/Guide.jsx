@@ -35,7 +35,7 @@ const handleTypeClick = (type) => {
           <div id="radius-shape-2" className="position-absolute shadow-5-strong"></div>
           </Container>
     <div> 
-    <div style={{padding:'100px 550px'}}> 
+    <div style={{padding:'100px 300px'}}> 
     <div className="title-group">
     <h1 className='title'>Справочник по функциям</h1>
     </div>

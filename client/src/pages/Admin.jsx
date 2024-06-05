@@ -1,5 +1,5 @@
 import React, {useState,useEffect,useContext} from 'react';
-import {Button, Card} from "react-bootstrap";
+import {Button, Card, TabPane} from "react-bootstrap";
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
@@ -67,15 +67,27 @@ export const Admin= observer(() => {
   }
     return (<><AdminNavbar></AdminNavbar>
       <div>
-      
-            <Tabs
-      defaultActiveKey="home"
-      id="fill-tab-example"
-      className="mb-3 overflow-visible"
-      fill
-    >
-      <Tab className='hehehe' eventKey="home" title="Справочник">
-      <CreateType show={typeVisible} onHide={() => setTypeVisible(false)}/>
+      <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+      <Row>
+        <Col  className='pills-tab' sm={3}>
+          <Nav variant="pills" className="flex-column">
+            <Nav.Item className='items'>
+              <Nav.Link eventKey="first">Справочик</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="second">Задачник</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="third">Курс</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="fourth">Пользователи</Nav.Link>
+            </Nav.Item>
+          </Nav>
+        </Col>
+        <Col sm={9}>
+          <Tab.Content>
+            <Tab.Pane eventKey="first"><CreateType show={typeVisible} onHide={() => setTypeVisible(false)}/>
       <Button className='btn'   onClick={() => setFuncVisible(true)}
             >Добавить функцию</Button>  <CreateFunc show={funcVisible} onHide={() => setFuncVisible(false)}/><Button className='btn'   onClick={() => setTypeVisible(true)}
             >Добавить раздел</Button>  <CreateType show={typeVisible} onHide={() => setTypeVisible(false)}/>
@@ -102,9 +114,8 @@ export const Admin= observer(() => {
                     )}
       </tbody>
     </Table>
-      </Tab >
-      <Tab eventKey="profile" title="Тренажер">
-      <Table striped bordered hover variant="light">
+    </Tab.Pane>
+            <Tab.Pane eventKey="second"><Table striped bordered hover variant="light">
       <thead>
         <tr>
           <th>id <Button className='btn'   onClick={() => setTrainerVisible(true)}
@@ -125,10 +136,8 @@ export const Admin= observer(() => {
                         </tr>
                     )}
       </tbody>
-    </Table>
-      </Tab>
-      <Tab eventKey="longer-tab" title="Курс">
-        <Button className='btn'   onClick={() => setBookmoduleVisible(true)}
+    </Table></Tab.Pane>
+    <Tab.Pane eventKey='third'>   <Button className='btn'   onClick={() => setBookmoduleVisible(true)}
             >Добавить модуль</Button>  <CreateBookmodule show={bookmoduleVisible} onHide={() => setBookmoduleVisible(false)}/>
                    <Button className='btn'   onClick={() => setArticleVisible(true)}
        >Добавить раздел</Button>  <CreateArticle show={articleVisible} onHide={() => setArticleVisible(false)}/>
@@ -156,12 +165,8 @@ export const Admin= observer(() => {
     </tr>
   )}
 </tbody>
-      </Table>
-              
-      
-      </Tab>
-      <Tab eventKey="user" title="Пользователи">
-      <Table striped bordered hover variant="light">
+      </Table></Tab.Pane>
+    <Tab.Pane eventKey='fourth'> <Table striped bordered hover variant="light">
       <thead>
         <tr>
           <th>id </th>
@@ -183,15 +188,12 @@ export const Admin= observer(() => {
                         </tr>
                     )}
       </tbody>
-    </Table>
-      </Tab>
-    </Tabs>
-        <div className="admin-panel">
-     
-       
-       
-        </div>
-        </div>
+    </Table> </Tab.Pane>
+          </Tab.Content>
+        </Col>
+      </Row>
+    </Tab.Container>
+          </div>
         </>
     );
 })
