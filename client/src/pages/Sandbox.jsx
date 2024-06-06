@@ -5,6 +5,7 @@ import './css/Sandbox.css'
 export const Sandbox = () => {
   const [sqlCode, setSqlCode] = useState('');
   const [output, setOutput] = useState('');
+  const [queryExecuted, setQueryExecuted] = useState(false); 
   const codeRef = useRef(null);
 
   const handleCodeChange = (e) => {
@@ -12,18 +13,20 @@ export const Sandbox = () => {
   };
 
   const executeQuery = async () => {
+    setQueryExecuted(true); // Set queryExecuted to true immediately on execution
     try {
-      const response = await fetch('http://localhost:7000/api/students/sandbox', { 
+      const response = await fetch('http://localhost:7000/api/students/sandbox', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ query: sqlCode })
       });
-     
+
       if (!response.ok) {
         const error = await response.json();
         setOutput(error.message);
+        setQueryExecuted(false); // Reset queryExecuted to false on error
         return;
       }
 
@@ -52,6 +55,7 @@ export const Sandbox = () => {
       );
     } catch (error) {
       setOutput(error.toString());
+      setQueryExecuted(false); // Reset queryExecuted to false on error
     }
   };
 
@@ -75,9 +79,10 @@ export const Sandbox = () => {
           <button className='button-sql' onClick={executeQuery}>Выполнить</button>
         </div>
         <div className='output'>
-      {output}
-    </div>
-    </div>
+          {queryExecuted && <div className="success">Запрос выполнен</div>} 
+          {output}
+        </div>
+     </div>
     
     </div>
     <div className='table-cont'>
