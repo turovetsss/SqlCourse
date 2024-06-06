@@ -88,12 +88,12 @@ export const Sandbox = () => {
     <div className='table-cont'>
       <ListGroup className='table-list2'>
       <ListGroup.Item className='list-title'>Таблица Students</ListGroup.Item>
-      <ListGroup.Item className='list-item'><div >id</div><div className='data-type'>int</div></ListGroup.Item>
-      <ListGroup.Item  className='list-item'><div >Name</div><div className='data-type'>int</div></ListGroup.Item>
-      <ListGroup.Item  className='list-item'><div >Surname </div><div className='data-type'>int</div></ListGroup.Item>
-      <ListGroup.Item  className='list-item'><div >Group</div><div className='data-type'>int</div></ListGroup.Item>
-      <ListGroup.Item  className='list-item'><div >Mark</div><div className='data-type'>int</div></ListGroup.Item>
-      <ListGroup.Item  className='list-item'><div >Birthday</div><div className='data-type'>int</div></ListGroup.Item>
+      <ListGroup.Item className='list-item'><div >id</div><div className='data-type'>INTEGER</div></ListGroup.Item>
+      <ListGroup.Item  className='list-item'><div >Name</div><div className='data-type'>STRING</div></ListGroup.Item>
+      <ListGroup.Item  className='list-item'><div >Surname </div><div className='data-type'>STRING</div></ListGroup.Item>
+      <ListGroup.Item  className='list-item'><div >Group</div><div className='data-type'>STRING</div></ListGroup.Item>
+      <ListGroup.Item  className='list-item'><div >Mark</div><div className='data-type'>STRING</div></ListGroup.Item>
+      <ListGroup.Item  className='list-item'><div >Birthday</div><div className='data-type'>DATE</div></ListGroup.Item>
       </ListGroup>
       <ListGroup className='table-list2'>
       <ListGroup.Item className='list-title'>        <h4 className='title3'> Доступные запросы:</h4></ListGroup.Item>

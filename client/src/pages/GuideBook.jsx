@@ -15,14 +15,9 @@ export const GuideBook = () => {
       fetchOneFunc(id).then(data => setFunc(data))
   }, [])
 
-  // useEffect( () => {
-  //   fetchOneFunc(id).then(data => setFunc(data));
-  // },[id]);
-
-
   return(<>
   <Navbarr />
-    <div className="background-radial-gradient overflow-hidden">
+  <div className="course">
     <Container className='position-relative'>
     <div id="radius-shape-1" className="position-absolute rounded-circle shadow-5-strong"></div>
     <div id="radius-shape-3" className="position-absolute rounded-circle shadow-5-strong"></div>
@@ -31,7 +26,7 @@ export const GuideBook = () => {
 
           </Container>
     <div> 
-    <div style={{padding:'20px 350px'}}className="background-radial-gradient overflow-hidden"> 
+    <div style={{padding:'20px 350px'}}> 
     <div className="title-group">
    <div className='breadscam'><a href={'/'}>Справочник</a> / {func.name}</div>
     </div>

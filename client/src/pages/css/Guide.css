@@ -104,6 +104,11 @@ height: 33px;
   color: rgb(255, 255, 255);
   background-color:rgb(224, 213, 244);
 }
+.group.active {
+  background-color: #a75f7d; /* Or any color you prefer */
+  color: white;
+
+} 
 .content{
   padding: 20px;
   overflow: hidden; /* скрываем вертикальную прокрутку */
