@@ -5,7 +5,8 @@
 }
 
 .breadcrumb-link {
-  color: #333;
+  color: #8b8a8a;
+  font-size: 18px;
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
@@ -23,7 +24,7 @@
   margin-top: 50px;
   padding: 25px;
   margin-left: 200px;
-  height: 616px;
+  height: 100%;
   margin-left: 150px;
   width: 1150px;
   display: flex;

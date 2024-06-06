@@ -63,7 +63,7 @@ margin-top: 50px;
   box-shadow: -1px 0px 10px 10px rgba(238, 237, 239, 0.2);
 }
 .task-list{
-  margin-left: 40px;
+  margin-left: 250px;
 }
 .check-in{
   color: blueviolet;
@@ -94,3 +94,44 @@ input[type="checkbox"]:checked {
 input[type="checkbox"] {
   margin-right: 4px;
 }
+
+
+.task-card {
+  background-color: #f5f5f5; 
+  border-radius: 10px; 
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  transition: box-shadow 0.2s ease; 
+}
+.task-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.task-card-content {
+  background-color: #fff;
+  padding: 15px;
+  color: #807d7d;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease; 
+}
+
+.task-card-content:hover {
+  background-color: #e1dde2; 
+}
+
+.task-id {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.task-description {
+  font-size: 1em;
+  margin-top: 5px;
+}
+
+.solved {
+  background-color: #d4edda; 
+}
+

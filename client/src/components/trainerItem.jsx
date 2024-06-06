@@ -43,14 +43,16 @@ const Task = observer(({ task, onSolve, onProgress, show, onHide }) => {
   }, [user]);
 
   return (
-    <div className="just">
-      {!isSolved && (
-        <div className="cardfunc4" onClick={handleShowModal}>
-          <div>
-            <div className="cardfunc5">{task.id}{task.description}</div>
-          </div>
-        </div>
-      )}
+    <div className="task-card">
+    {!isSolved && (
+      <div 
+        className={`task-card-content ${isSolved ? 'solved' : ''}`} 
+        onClick={handleShowModal}
+      >
+        <div className="task-id">Задача {task.id}</div>
+        <div className="task-description">{task.description}</div>
+      </div>
+    )}
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Задача {task.id}</Modal.Title>
