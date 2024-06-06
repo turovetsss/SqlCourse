@@ -1,8 +1,7 @@
-
 .sandbox-container {
   display: flex;
   height: 100%;
-  flex-direction: column;
+  flex-direction: row; 
   width: 100%;
 }
 
@@ -72,6 +71,8 @@ pre {
 .table-cont{
   margin-left: 50px;
 display: flex;
+  flex-direction: column;
+  width: 30%;
 }
 .button-sql {
   /*  */
@@ -120,4 +121,9 @@ display: flex;
 
 .result-table th {
   background-color: #f2f2f2;
-} 
+}
+.ehehe{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
