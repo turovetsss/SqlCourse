@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {COURSE_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
+import {ADMIN_ROUTE, COURSE_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
 import {useLocation, useNavigate} from "react-router-dom";
 import {Button, Card, Col, Container, Form, Row} from 'react-bootstrap';
 import {login, registration} from "../http/userAPI";
@@ -63,6 +63,7 @@ export const Auth = observer(() => {
 
         try {
             let data;
+          
             if (isLogin) {
                 data = await login(email, password);
                 alert("С возвращением!");
@@ -71,7 +72,12 @@ export const Auth = observer(() => {
             }
             user.setUser(data);
             user.setIsAuth(true);
+            if(email=='sql@mail.ru' || password =='adminadmin'){
+              navigate(ADMIN_ROUTE);
+              
+            }else{
             navigate(COURSE_ROUTE);
+            }
         } catch (e) {
             alert(e.response.data.message);
         }
