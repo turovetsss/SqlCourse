@@ -27,7 +27,10 @@ const changeInfo = (key, value, number) => {
 }
 
   const addFunc = () => {
-    
+    if ( name === '' || description === '' || example === '') {
+      alert('Все поля должны быть заполнены!');
+      return;
+    }else{
     const formData = new FormData()
     formData.append('funcType',type)
     formData.append('name',name)
@@ -36,8 +39,9 @@ const changeInfo = (key, value, number) => {
     formData.append('typeId', course.selectedType.id)
     formData.append('info',JSON.stringify(info))
     createFunc(formData).then(data=> onHide())
-    // alert('Функция добавлена успешно')
-    // window.location.reload();
+    alert('Функция добавлена успешно')
+    window.location.reload();
+    }
     
 }
 
@@ -75,7 +79,7 @@ const changeInfo = (key, value, number) => {
                      <Form.Control className='mt-2 mb-2'
                         value={description}
                         onChange={e => setDescription(e.target.value)}
-                        placeholder={"Введите Описание функции"}
+                        placeholder={"Введите Описание"}
                     />
                        <Form.Control className='mt-2 mb-2'
                         value={example}
@@ -91,7 +95,7 @@ const changeInfo = (key, value, number) => {
                         variant={"outline-dark"}
                         onClick={addInfo}
                     >
-                        Добавить новое свойство
+                        Добавить новый пример
                     </Button>
                     {info.map(i =>
                         <Row className="mt-4" key={i.number}>
@@ -99,14 +103,14 @@ const changeInfo = (key, value, number) => {
                                 <Form.Control
                                     value={i.title}
                                     onChange={(e) => changeInfo('title', e.target.value, i.number)}
-                                    placeholder="Введите название свойства"
+                                    placeholder="Введите описание"
                                 />
                             </Col>
                             <Col md={4}>
                                 <Form.Control
                                     value={i.description}
                                     onChange={(e) => changeInfo('description', e.target.value, i.number)}
-                                    placeholder="Введите описание свойства"
+                                    placeholder="Введите пример"
                                 />
                             </Col>
                             <Col md={4}>

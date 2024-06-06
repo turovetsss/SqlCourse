@@ -1,5 +1,5 @@
 import React, {useState,useEffect,useContext} from 'react';
-import {Button, Card, TabPane} from "react-bootstrap";
+import {Button, Card, ListGroupItem, TabPane} from "react-bootstrap";
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
@@ -94,13 +94,13 @@ export const Admin= observer(() => {
         <Col  className='pills-tab' sm={3}>
           <Nav variant="pills" className="flex-column">
             <Nav.Item className='items'>
-              <Nav.Link eventKey="first">Справочик</Nav.Link>
+              <Nav.Link eventKey="first">Справочник функций</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="second">Задачник</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="third">Курс</Nav.Link>
+              <Nav.Link eventKey="third">База знаний</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="fourth">Пользователи</Nav.Link>
@@ -111,14 +111,14 @@ export const Admin= observer(() => {
           <Tab.Content>
             <Tab.Pane eventKey="first"><CreateType show={typeVisible} onHide={() => setTypeVisible(false)}/>
       <Button className='btn'   onClick={() => setFuncVisible(true)}
-            >Добавить функцию</Button>  <CreateFunc show={funcVisible} onHide={() => setFuncVisible(false)}/><Button className='btn'   onClick={() => setTypeVisible(true)}
-            >Добавить раздел</Button>  <CreateType show={typeVisible} onHide={() => setTypeVisible(false)}/>
+            >+Добавить функцию </Button>  <CreateFunc show={funcVisible} onHide={() => setFuncVisible(false)}/><Button className='btn'   onClick={() => setTypeVisible(true)}
+            >+Добавить раздел функций</Button>  <CreateType show={typeVisible} onHide={() => setTypeVisible(false)}/>
       <Table striped bordered hover variant="light">
       <thead>
         <tr>
           <th>id </th>
           <th>Название</th>
-          <th>Тип</th>
+         
           <th>Описание</th>
           <th>Действия</th>
         </tr>  
@@ -128,10 +128,8 @@ export const Admin= observer(() => {
                         <tr key={func.id} >
                           <td>{func.id}</td>
                             <td>{func.name}</td>
-                            <td>{func.funcType}</td>
           <td>{func.description}</td>
-          <td><Button className='btn' onChange={e => setValue(func.id)} onClick={() => removeFunc(func.id)}>Удалить</Button> <Button className='btn'
-            >Настройки</Button>   </td>
+          <td><Button className='btndelete' onChange={e => setValue(func.id)} onClick={() => removeFunc(func.id)}>-Удалить</Button>  </td>
                         </tr>
                     )}
       </tbody>
@@ -139,12 +137,13 @@ export const Admin= observer(() => {
     </Tab.Pane>
             <Tab.Pane eventKey="second"><Table striped bordered hover variant="light">
       <thead>
+      <Button className='btn'   onClick={() => setTrainerVisible(true)}
+            >+Добавить задачу</Button> 
         <tr>
-          <th>id <Button className='btn'   onClick={() => setTrainerVisible(true)}
-            >+</Button>  <CreateTrainer show={trainerVisible} onHide={() => setTrainerVisible(false)}/></th>
+          <th>id  <CreateTrainer show={trainerVisible} onHide={() => setTrainerVisible(false)}/></th>
           <th>Задача</th>
           <th>Описание</th>
-          <th>Сложность</th>
+          <th>Решение</th>
           <th>Действия</th>
         </tr>  
       </thead>
@@ -154,37 +153,42 @@ export const Admin= observer(() => {
                           <td>{task.id}</td>
                             <td>{task.description}</td>
                             <td>{task.condition}</td>
-          <td><Button className='btn' onChange={e => setValue(task.id)} onClick={() => removeTrainer(task.id)}>Удалить</Button>  </td>
+                            <td>{task.solution}</td>
+          <td><Button className='btndelete' onChange={e => setValue(task.id)} onClick={() => removeTrainer(task.id)}>-Удалить</Button>  </td>
                         </tr>
                     )}
       </tbody>
     </Table></Tab.Pane>
     <Tab.Pane eventKey='third'>   <Button className='btn'   onClick={() => setBookmoduleVisible(true)}
-            >Добавить модуль</Button>  <CreateBookmodule show={bookmoduleVisible} onHide={() => setBookmoduleVisible(false)}/>
+            >+Добавить модуль</Button>  <CreateBookmodule show={bookmoduleVisible} onHide={() => setBookmoduleVisible(false)}/>
                    <Button className='btn'   onClick={() => setArticleVisible(true)}
-       >Добавить раздел</Button>  <CreateArticle show={articleVisible} onHide={() => setArticleVisible(false)}/>
+       >+Добавить cтатью в модуль</Button>  <CreateArticle show={articleVisible} onHide={() => setArticleVisible(false)}/>
         <Table striped bordered hover variant="white">
         <thead>
         <tr>
+          
           <th>id</th>
           <th>Название</th>
           <th>Описание</th>
-          <th>Разделы</th>
+          <th></th>
         </tr>  
       </thead>
       <tbody>
   {course.bookmodules.map(bookmodule =>
-    <tr key={bookmodule.id}>  <Button className='btn' onChange={e => setValue(bookmodule.id)} onClick={() => removeBookModule(bookmodule.id)}> Удалить</Button> 
+    <tr key={bookmodule.id}> 
       <td>{bookmodule.id}</td>
       <td>{bookmodule.name}</td>
       <td>{bookmodule.description}</td>
+      <div>Статьи:</div>
       {course.bookarticles.filter(bookarticle => bookarticle.bookmoduleId === bookmodule.id)
         .map(bookarticle => 
-          <div className='etd' key={bookarticle.id}>
-            {bookarticle.name}
-            <Button className='btn' onChange={e => setValue(bookarticle.id)} onClick={() => removeBookarticle(bookarticle.id)}> Удалить</Button> 
-          </div> 
+          <ListGroupItem className='etd' key={bookarticle.id}>
+           
+            {bookarticle.id} / {bookarticle.name}
+            <Button className='btndelete' onChange={e => setValue(bookarticle.id)} onClick={() => removeBookarticle(bookarticle.id)}>-Удалить</Button> 
+          </ListGroupItem> 
         )}
+        <td><Button className='btndelete' onChange={e => setValue(bookmodule.id)} onClick={() => removeBookModule(bookmodule.id)}>- Удалить модуль</Button></td>
     </tr>
   )}
 </tbody>

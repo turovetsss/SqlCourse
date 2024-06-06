@@ -46,13 +46,10 @@ return( <>
         <Dropdown.Toggle id="dropdown-button-light-example1" variant="first">
         <div className='div-account'><img width="30" height="30" src="https://img.icons8.com/small/30/000000/user.png" alt="user"/></div> 
         </Dropdown.Toggle>
-
         <Dropdown.Menu>
           <Dropdown.Item className='username'>
           {userId}
           </Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Уровень</Dropdown.Item>
-      
           <Dropdown.Item href="#/action-4"><a href="http://localhost:3000/login" onClick={()=>logOut()}><button className='nav-link-login' >Выйти</button></a></Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>

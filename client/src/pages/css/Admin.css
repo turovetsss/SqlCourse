@@ -8,7 +8,7 @@
 }
 
 .etd {
-  background-color: rgb(209, 186, 231);
+
 }
 
 .btn {
@@ -20,7 +20,15 @@
   padding: 5px 10px;
   transition: 0.4s;
 }
-
+.btndelete {
+  margin: 5px;
+  border-radius: 10px;
+  border: none;
+  color: rgb(250, 250, 250);
+  background-color: rgb(204, 124, 124);
+  padding: 5px 10px;
+  transition: 0.4s;
+}
 .btn:hover {
   background-color: rgb(173, 150, 222);
 }

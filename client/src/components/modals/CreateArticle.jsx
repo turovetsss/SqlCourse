@@ -26,14 +26,20 @@ const changeInfo = (key, value, number) => {
   setInfo(info.map(i => i.number === number ? {...i, [key]: value} : i))
 }
 const addArticle = () => {
+  if(name==''||title==''||course.selectedModule.id==null){
+    alert('Все поля должны быть заполнены!')
+   
+  }
+  else{
     const formData = new FormData()
     formData.append('name',name)
     formData.append('title',title)
     formData.append('bookmoduleId', course.selectedModule.id)
-    formData.append('setinfo',JSON.stringify(info)) // inputFile - это input для загрузки файла
+    formData.append('setinfo',JSON.stringify(info)) 
     createBookarticle(formData).then(data=> onHide())
     alert('Статья добавлена успешно')
     window.location.reload();
+  }
 }
 const selectFile = (e, number) => {
   const file = e.target.files[0];
@@ -73,12 +79,12 @@ return (
                     <Form.Control className='mt-2 mb-2'
                         value={name}
                         onChange={e => setName(e.target.value)}
-                        placeholder={"Введите название раздела"}
+                        placeholder={"Введите заголовок"}
                     />
                      <Form.Control className='mt-2 mb-2'
                         value={title}
                         onChange={e => setTitle(e.target.value)}
-                        placeholder={"Введите Описание функции"}
+                        placeholder={"Введите Описание"}
                     />
                        
                      <hr/>

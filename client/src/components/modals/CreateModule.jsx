@@ -9,7 +9,7 @@ const CreateBookmodule = ({show, onHide}) => {
 
     const addModule = () => {
       if(value==''||description==''){
-        alert('Заполните все поля')
+        alert('Все поля должны быть заполнены!')
        
       }
       else{
