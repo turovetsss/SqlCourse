@@ -14,7 +14,7 @@ const CreateTrainer= observer(({show, onHide}) =>{
           setCondition('')
           setDescription('')
           onHide()
-          alert('Задача добавлена успешно')
+          alert('Ваш результат записан,Задача добавлена успешно')
           window.location.reload();
       })
   }
@@ -36,12 +36,12 @@ const CreateTrainer= observer(({show, onHide}) =>{
                     <Form.Control className='mt-2 mb-2'
                         value={description}
                         onChange={e => setDescription(e.target.value)}
-                        placeholder={"Введите описание"}
+                        placeholder={"Введите Условие"}
                     />
                      <Form.Control className='mt-2 mb-2'
                         value={condition}
                         onChange={e => setCondition(e.target.value)}
-                        placeholder={"Введите Описание "}
+                        placeholder={"Введите Решение"}
                     />
                     
                 </Form>

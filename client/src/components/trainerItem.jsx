@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { fetchTask, solveTask, fetchProgress } from "../http/itemAPI";
-// import "./css/Task.css";
+import { fetchTask, solveTask, fetchProgress,deleteTask } from "../http/itemAPI";
+import "./Trainer.css";
 import {check} from "../http/userAPI";
 const Task = observer(({ task, onSolve, onProgress, show, onHide }) => {
   const { course } = useContext(Context);
@@ -25,7 +25,7 @@ const Task = observer(({ task, onSolve, onProgress, show, onHide }) => {
         userId: user.user.id, 
         solution: solution,
       });
-      
+   
       setIsSolved(response.solved);
       setShowResult(true);
       if (onSolve) {
@@ -43,14 +43,14 @@ const Task = observer(({ task, onSolve, onProgress, show, onHide }) => {
   }, [user]);
 
   return (
-    <div>
-      <div className='cardfunc' onClick={handleShowModal}> 
-        <div>
+    <div className="just">
+      {!isSolved && (
+        <div className="cardfunc4" onClick={handleShowModal}>
           <div>
-            <div>{task.description}</div>
+            <div className="cardfunc5">{task.id}{task.description}</div>
           </div>
         </div>
-      </div>
+      )}
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Задача {task.id}</Modal.Title>

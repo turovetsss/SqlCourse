@@ -1,0 +1,32 @@
+.cardfunc4{
+ 
+}
+.func-map{
+  display: flex;
+}
+.row2 {
+  display: flex; /* Make tasks display in a row */
+  justify-content: space-between; /* Distribute tasks evenly */
+}
+.just{
+  align-items: center;
+}
+.cardfunc5{
+  width:350px;
+  text-align: center;
+ background-color: rgb(241, 241, 241);
+ margin: 10px;
+border-radius: 10px;
+padding: 10px;
+transition: 0.2s;
+}
+.cardfunc5:hover{
+  background-color: rgb(218, 216, 216);
+  margin: 10px;
+ border-radius: 10px;
+ padding: 10px;
+ }
+
+.cardfunc.solved {
+  background-color: lightgreen; /* Green background for solved tasks */
+}
