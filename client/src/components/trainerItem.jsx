@@ -82,7 +82,7 @@ const Task = observer(({ task, onSolve, onProgress, show, onHide }) => {
             </div>
           )}
           {errorMessage && (
-            <div className="error">Ошибка: {errorMessage}</div>
+            <div className="error">{errorMessage}</div>
           )}
         </Modal.Body>
         <Modal.Footer>

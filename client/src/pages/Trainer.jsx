@@ -19,8 +19,13 @@ export const Trainer= observer(() =>{
 useEffect(() => {
   try{
   const fetchUserProgress = async () => {
+    if (user.user.id)  {
         const progressData = await fetchProgress(user.user.id);
         setProgress(progressData.countOfSolvedTasks);
+    }
+    else{
+      console.log('hui')
+    }
   };
   fetchUserProgress(); 
 }
