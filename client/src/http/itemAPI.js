@@ -130,7 +130,7 @@ export const solveTask = async (task) => {
 
 export const fetchProgress = async (id) => {
   //в response помещаем ответ
-  const {data} = await $authHost.get('api/task/progress' + id)
+  const {data} = await $authHost.get('api/task/progress/' + id)
   return data
 }
 

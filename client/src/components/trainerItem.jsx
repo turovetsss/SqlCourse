@@ -17,7 +17,7 @@ const Task = observer(({ task, onSolve, onProgress, show, onHide }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
-
+ console.log(user.user.id)
   const handleSubmit = async () => {
     try {
       const response = await solveTask({
@@ -25,7 +25,7 @@ const Task = observer(({ task, onSolve, onProgress, show, onHide }) => {
         userId: user.user.id, 
         solution: solution,
       });
-
+      
       setIsSolved(response.solved);
       setShowResult(true);
       if (onSolve) {

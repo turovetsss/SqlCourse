@@ -4,30 +4,41 @@ import "./css/Trainer.css"
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 import { Navbarr } from "../components/Navbarr";
-import {fetchTask} from "../http/itemAPI";
+import {fetchTask,fetchProgress} from "../http/itemAPI";
 import TrainerList from '../components/trainerList';
 export const Trainer= observer(() =>{
 
-  const {course} = useContext(Context)
-  const [searchTerm, setSearchTerm] = useState('');
+  const {course,user} = useContext(Context)
+  const [progress, setProgress] = useState(0); // State for progress
+
   useEffect(() => {
     fetchTask().then(data => course.setTasks(data))
 
 }, [course])
-// const filteredTraners = course.tasks.filter(task => {
-//   return task.description.toLowerCase().includes(searchTerm.toLowerCase());
-// });
 
+useEffect(() => {
+  try{
+  const fetchUserProgress = async () => {
+        const progressData = await fetchProgress(user.user.id);
+        setProgress(progressData.countOfSolvedTasks);
+  };
+  fetchUserProgress(); 
+}
+catch{
+  console.log('hui')
+}
+}, [user]);
 
 
   return(
-    <><Navbarr /> <div className="course"><div className="content"><div className="task-list"><div className="title-cont"><h2 className='title'>Доступные задания 
-    </h2>  </div><ListGroup className="list">
-     {/* {filteredTraners.map(trainer =>
-                           <ListGroup.Item key={trainer.id}  className="item"><div className="name">#{trainer.id} {trainer.description}</div><div className="high"> Сложность: {trainer.complexity} 
-                         </div> </ListGroup.Item>
-
-                    )}  */}
+    <><Navbarr /> <div className="course"><div className="content"><div className="task-list"><div className="title-cont"> <h2 className="title">
+    Доступные задания{" "}
+    {user.user && ( 
+      <div>
+        Прогресс: {progress} / {course.tasks.length}
+      </div>
+    )}
+  </h2> </div><ListGroup className="list">
   </ListGroup>
   <TrainerList></TrainerList></div>
 </div></div></>

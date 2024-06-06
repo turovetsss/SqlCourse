@@ -12,12 +12,18 @@ export default class СourseCourse {
   this._users=[]
   this._bookmodules=[]
   this._bookarticles=[]
+  this._taskUsers=[]
     //selectedTypes
     //selectedBarnds
 
     makeAutoObservable(this)
 }
-
+setTaskUsers(taskUsers){
+  this._taskUsers = taskUsers
+}
+get taskUsers() {
+  return this._taskUsers
+}
 setTypes(types) {
   this._types = types
 }
