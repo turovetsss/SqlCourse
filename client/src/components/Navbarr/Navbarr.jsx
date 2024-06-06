@@ -48,7 +48,7 @@ return( <>
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          <Dropdown.Item href="#/action-1" active>
+          <Dropdown.Item className='username'>
           {userId}
           </Dropdown.Item>
           <Dropdown.Item href="#/action-2">Уровень</Dropdown.Item>

@@ -65,7 +65,16 @@ class BookarticleController {
         )
         return res.json(bookarticle)
     }
-
+    async delete(req, res){
+      const {id} = req.body//из тела запроса извлекаем имя типа
+      const bookarticle = await BookArticle.destroy(
+        {
+          where: {id:id},
+         },
+     )
+      return res.json(bookarticle)
+    }
+    
 // async getAll(req, res) {
 //    let {typedId} = req.query
 //    let funcs;

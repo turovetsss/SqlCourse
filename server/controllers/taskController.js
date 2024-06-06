@@ -34,7 +34,16 @@ class TaskController {
         const tasks = await Task.findAll();
         return res.json(tasks);
     }
-
+    async delete(req, res){
+      const {id} = req.body//из тела запроса извлекаем имя типа
+      const task = await Task.destroy(
+        {
+          where: {id:id},
+         },
+     )
+      return res.json(task)
+    }
+    
     async getTask(req, res) {
         const {id} = req.params;
         const task = await Task.findOne({where: {id}});

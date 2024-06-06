@@ -3,7 +3,7 @@ import "./css/Trainer.css"
 import {Context} from "../index"; 
 import {useParams} from 'react-router-dom';
 import {fetchOneModule,fetchBookarticle, fetchOneBookarticle} from "../http/itemAPI";
-import { Container } from 'react-bootstrap';
+import { Container, ListGroupItem } from 'react-bootstrap';
 import { Card } from 'react-bootstrap';
 import { Navbarr } from "../components/Navbarr";
 import './css/CoursePage.css';
@@ -34,7 +34,8 @@ export const CoursePage=() =>{
     <>
       <Navbarr />
       <div className="background-radial-gradient overflow-hidden">
-        <div className="container">
+          <div className="card3"> 
+          <div className="container">
           <div className="course-breadcrumbs">
             <a href="/course" className="breadcrumb-link">Курс</a> 
             <span className="breadcrumb-separator">/</span>
@@ -42,11 +43,10 @@ export const CoursePage=() =>{
             <span className="breadcrumb-separator">/</span>
             <span className="breadcrumb-link">{bookarticle.name}</span>
           </div>
-          <div className="card3">
-            <h2>{bookarticle.name}</h2>
-            <p>{bookarticle.description}</p>
             {bookarticle.setinfo.map((info, index) => (
-              <div className="div" key={index}>
+              <div className='center-info' key={index}>
+                <h3>{bookarticle.name}</h3>
+                <h3>{bookarticle.description}</h3>
                 <h3>{info.title}</h3>
                 <div className="primer" key={info.id}>
                   {info.description}

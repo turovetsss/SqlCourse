@@ -2,7 +2,7 @@
 .breadscam{
   font-size: 28px;
   margin-bottom: 20px;
-  color:rgb(33, 36, 36)
+  color:rgb(249, 252, 252)
 }
 .cardfunc{
   padding: 5px;
@@ -10,8 +10,21 @@
   border: 1px solid white;
  
 }
+a{
+  color: azure;
+}
 .cardfunc:hover{
   color:rgb(118, 60, 133);
+  cursor: pointer;
+}
+.cardfunc2{
+  margin-top: 10px;
+  padding: 5px;
+  border: 1px solid white;
+  transition: 0.1s;
+}
+.cardfunc2:hover{
+  border: 2px solid rgb(195, 191, 196);
   cursor: pointer;
 }
 .mt-3{
@@ -137,5 +150,5 @@ height: 33px;
   margin: 15px auto;
 }
 .error{
-  color:rgb(175, 62, 62)
+  color:rgb(172, 86, 86)
 }

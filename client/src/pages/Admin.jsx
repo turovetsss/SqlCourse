@@ -10,7 +10,7 @@ import CreateType from "../components/modals/CreateType";
 import CreateArticle from "../components/modals/CreateArticle";
 
 import Table from 'react-bootstrap/Table';
-import {fetchFuncs,deleteFunc, deleteTrainer,fetchTask,fetchUser, fetchBookmodule, fetchBookarticle} from "../http/itemAPI";
+import {fetchFuncs,deleteFunc, deleteTask,fetchTask,fetchUser, fetchBookmodule, fetchBookarticle, deleteBookarticle, deleteBookModule} from "../http/itemAPI";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import {Context} from "../index";
@@ -47,7 +47,18 @@ export const Admin= observer(() => {
     console.log(id)
     if (id) {
       deleteFunc({id:id}).then(data=>{
-        alert("Функция успешно удалена");
+        alert("Функция удалена");
+        window.location.reload();
+      })
+    } else {
+      console.log('hui')
+    }
+  }
+  const removeBookarticle = (id) => {
+    console.log(id)
+    if (id) {
+      deleteBookarticle({id:id}).then(data=>{
+        alert("Статья удалена");
         window.location.reload();
       })
     } else {
@@ -57,8 +68,19 @@ export const Admin= observer(() => {
   const removeTrainer = (id) => {
     console.log(id)
     if (id) {
-      deleteTrainer({id:id}).then(data=>{
-        alert("Задача успешно удалена");
+      deleteTask({id:id}).then(data=>{
+        alert("Задача удалена");
+        window.location.reload();
+      })
+    } else {
+      console.log('hui')
+    }
+  }
+  const removeBookModule = (id) => {
+    console.log(id)
+    if (id) {
+      deleteBookModule({id:id}).then(data=>{
+        alert("Модуль курса удален");
         window.location.reload();
       })
     } else {
@@ -108,7 +130,7 @@ export const Admin= observer(() => {
                             <td>{func.name}</td>
                             <td>{func.funcType}</td>
           <td>{func.description}</td>
-          <td><Button className='btn' onChange={e => setValue(func.id)} onClick={() => removeFunc(func.id)}>-</Button> <Button className='btn'
+          <td><Button className='btn' onChange={e => setValue(func.id)} onClick={() => removeFunc(func.id)}>Удалить</Button> <Button className='btn'
             >Настройки</Button>   </td>
                         </tr>
                     )}
@@ -132,7 +154,7 @@ export const Admin= observer(() => {
                           <td>{task.id}</td>
                             <td>{task.description}</td>
                             <td>{task.condition}</td>
-          <td><Button className='btn' onChange={e => setValue(task.id)} onClick={() => removeTrainer(task.id)}>-</Button> <Button className='btn' >Настройки</Button> </td>
+          <td><Button className='btn' onChange={e => setValue(task.id)} onClick={() => removeTrainer(task.id)}>Удалить</Button>  </td>
                         </tr>
                     )}
       </tbody>
@@ -152,7 +174,7 @@ export const Admin= observer(() => {
       </thead>
       <tbody>
   {course.bookmodules.map(bookmodule =>
-    <tr key={bookmodule.id}>
+    <tr key={bookmodule.id}>  <Button className='btn' onChange={e => setValue(bookmodule.id)} onClick={() => removeBookModule(bookmodule.id)}> Удалить</Button> 
       <td>{bookmodule.id}</td>
       <td>{bookmodule.name}</td>
       <td>{bookmodule.description}</td>
@@ -160,7 +182,8 @@ export const Admin= observer(() => {
         .map(bookarticle => 
           <div className='etd' key={bookarticle.id}>
             {bookarticle.name}
-          </div>
+            <Button className='btn' onChange={e => setValue(bookarticle.id)} onClick={() => removeBookarticle(bookarticle.id)}> Удалить</Button> 
+          </div> 
         )}
     </tr>
   )}

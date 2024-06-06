@@ -9,7 +9,7 @@ const ArticleItem = ({ bookarticle, onClick }) => {
 
   return (
     <div className="article-item" onClick={onClick}>
-      <Card className='cardfunc'>
+      <Card className='cardfunc2'>
         <div>
           <div>
             <div>{bookarticle.name}</div>

@@ -14,12 +14,18 @@
 .breadcrumb-separator {
   margin: 0 10px;
 }
-
+.center-info{
+  width: 1000px;
+  align-items: center;
+  text-align: center;
+}
 .card3 {
+  margin-top: 50px;
   padding: 25px;
-  margin-left: 0px;
+  margin-left: 200px;
   height: 616px;
-  width: 950px;
+  margin-left: 150px;
+  width: 1150px;
   display: flex;
   border-radius: 15px;
   background-color: white;

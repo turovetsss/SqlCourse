@@ -85,9 +85,19 @@ export const fetchOneFunc = async (id) => {
 
 
 //TRAINER 
-export const deleteTrainer = async (trainer) => {
+export const deleteTask = async (task) => {
   //в response помещаем ответ
-  const {data} = await $authHost.post('api/trainer/delete', trainer)
+  const {data} = await $authHost.post('api/task/delete', task)
+  return data
+}
+export const deleteBookarticle = async (bookarticle) => {
+  //в response помещаем ответ
+  const {data} = await $authHost.post('api/bookarticle/delete', bookarticle)
+  return data
+}
+export const deleteBookModule = async (module) => {
+  //в response помещаем ответ
+  const {data} = await $authHost.post('api/bookmodule/delete', module)
   return data
 }
 export const createTask = async (task) => {

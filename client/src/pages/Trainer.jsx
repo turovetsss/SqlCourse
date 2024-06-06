@@ -22,13 +22,7 @@ export const Trainer= observer(() =>{
 
   return(
     <><Navbarr /> <div className="course"><div className="content"><div className="task-list"><div className="title-cont"><h2 className='title'>Доступные задания 
-    </h2>  <input 
-                  type="text" 
-                  className='input-group2' 
-                  placeholder='Поиск по задачам'
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />  </div><ListGroup className="list">
+    </h2>  </div><ListGroup className="list">
      {/* {filteredTraners.map(trainer =>
                            <ListGroup.Item key={trainer.id}  className="item"><div className="name">#{trainer.id} {trainer.description}</div><div className="high"> Сложность: {trainer.complexity} 
                          </div> </ListGroup.Item>
@@ -36,30 +30,6 @@ export const Trainer= observer(() =>{
                     )}  */}
   </ListGroup>
   <TrainerList></TrainerList></div>
-  <div className="filter"><h4>Статус</h4> 
-  <div className="check">
-    <div className="check-item">
-    <input type="checkbox" className="check-in"/>
-    <label  className='filter' htmlFor="checkbox">Решенные</label>
-    </div>
-    <div className="check-item">
-    <input type="checkbox"/>
-    <label  className='filter' htmlFor="checkbox">Нерешенные</label>
-    </div><hr />
-   <h4 className='filter'> Cложность </h4>  <div className="check-item">
-   <div className="check-item">
-    
-    <input type="checkbox" className="custom-checkbox" />
-    <label htmlFor="checkbox">Легкие</label>
-    </div>
-
-    <div className="check-item">
-    <input type="checkbox"/>
-    <label htmlFor="checkbox">Средние</label>
-    </div>
-    <div className="check-item">
-    <input type="checkbox"/>
-    <label htmlFor="checkbox">Сложные</label></div>
-    </div></div></div></div></div></>
+</div></div></>
   );
 });

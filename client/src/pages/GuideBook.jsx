@@ -31,9 +31,9 @@ export const GuideBook = () => {
 
           </Container>
     <div> 
-    <div style={{padding:'20px 280px'}}className="background-radial-gradient overflow-hidden"> 
+    <div style={{padding:'20px 350px'}}className="background-radial-gradient overflow-hidden"> 
     <div className="title-group">
-   <div className='breadscam'><a href={'/'}>Справочник</a> - {func.name}</div>
+   <div className='breadscam'><a href={'/'}>Справочник</a> / {func.name}</div>
     </div>
     <Card className="card2">
      

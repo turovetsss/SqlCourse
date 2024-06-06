@@ -1,8 +1,9 @@
 
 .sandbox-container {
   display: flex;
-  height: 100vh;
+  height: 100%;
   flex-direction: column;
+  width: 100%;
 }
 
 .code-editor {
@@ -12,12 +13,12 @@
   /* overflow-y: auto; */
   position: relative;
   border-radius: 10px;
-  background-color: #f5f5f5; 
   padding: 20px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .output {
+  margin-top:20px;
   flex: 1; 
   border: 1px solid #ccc;
   padding: 10px;
@@ -46,6 +47,12 @@ textarea {
   width: 20%;
   height: 15%;
   margin: 10px;
+  display: flex;
+}
+.table-list2 {
+  border-top: 3px solid #8a5fa7;
+  margin: 10px;
+  display: flex;
 }
 .list-title{
   text-align: center;
@@ -62,7 +69,10 @@ pre {
   white-space: pre-wrap;
   overflow-x: auto;
 }
-
+.table-cont{
+  margin-left: 50px;
+display: flex;
+}
 .button-sql {
   /*  */
   bottom: 10px;

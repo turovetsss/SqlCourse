@@ -63,7 +63,7 @@ export const Sandbox = () => {
     <>
       <Navbarr></Navbarr>
     <div className="sandbox-container">
-      <div>
+      <div className='table-cont'>
         <ListGroup className='table-list'>
         <ListGroup.Item className='list-title'>Students</ListGroup.Item>
         <ListGroup.Item className='list-item'><div >id</div><div className='data-type'>int</div></ListGroup.Item>
@@ -73,7 +73,15 @@ export const Sandbox = () => {
         <ListGroup.Item  className='list-item'><div >Mark</div><div className='data-type'>int</div></ListGroup.Item>
         <ListGroup.Item  className='list-item'><div >Birthday</div><div className='data-type'>int</div></ListGroup.Item>
         </ListGroup>
+        <ListGroup className='table-list2'>
+        <ListGroup.Item className='list-title'>        <h4 className='title3'> Доступные запросы:</h4></ListGroup.Item>
+        <ListGroup.Item className='list-item'>SELECT  </ListGroup.Item>
+        <ListGroup.Item  className='list-item'>UPDATE </ListGroup.Item>
+        <ListGroup.Item  className='list-item'>DELETE</ListGroup.Item>
+        <ListGroup.Item  className='list-item'>INSERT</ListGroup.Item>
+        </ListGroup>
       </div>
+      <div className="ehehe">
        <div className="code-editor">
           <div className="editor-container">
             <textarea
@@ -84,9 +92,11 @@ export const Sandbox = () => {
             />
             <button className='button-sql' onClick={executeQuery}>Выполнить</button>
           </div>
-      </div>
-      <div className='output'>
+          <div className='output'>
         {output}
+      </div>
+      </div>
+      
       </div>
     </div>
     </>
