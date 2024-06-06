@@ -141,12 +141,10 @@ class TaskController {
     async getProgress(req, res, next) {
         try {
             const {id} = req.params;
-
             const user = await User.findOne({where: {id: id}});
             if (!user) {
                 return next(ApiError.badRequest('Пользователь не найден'));
             }
-
             const countOfSolvedTasks = await TaskUser.count({where: {userId: id, solved: true}});
             return res.json({countOfSolvedTasks});
         } catch (e) {

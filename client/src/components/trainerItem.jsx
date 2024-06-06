@@ -3,6 +3,7 @@ import { Context } from "../index";
 import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import Modal from "react-bootstrap/Modal";
+import { Card, ListGroup ,ListGroupItem} from 'react-bootstrap';
 import Button from "react-bootstrap/Button";
 import { fetchTask, solveTask, fetchProgress,deleteTask } from "../http/itemAPI";
 import "./Trainer.css";
@@ -62,8 +63,12 @@ const Task = observer(({ task, onSolve, onProgress, show, onHide }) => {
             <h3>Описание:</h3>
             {task.description}
           </div>
+          <ListGroup className='table-list2'>
+      <ListGroup.Item className='list-title'>Таблица Students</ListGroup.Item>
+      <ListGroup.Item className='list-item'><div >id </div><div>|</div> <div >Name</div><div>|</div><div >Surname</div><div>|</div><div >Group </div><div>|</div><div >Mark </div><div>|</div>Birthday</ListGroup.Item>
+      </ListGroup>
           <div>
-            <h3>Условие:</h3>
+            <h3>Решение:</h3>
             <pre>{task.condition}</pre>
           </div>
           <div>
@@ -72,7 +77,7 @@ const Task = observer(({ task, onSolve, onProgress, show, onHide }) => {
               className="task-textarea"
               value={solution}
               onChange={(e) => setSolution(e.target.value)}
-              placeholder="Введите ваше решение"
+              placeholder=""
             />
           </div>
           {showResult && (
