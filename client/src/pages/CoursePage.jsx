@@ -43,11 +43,14 @@ export const CoursePage=() =>{
             <span className="breadcrumb-separator">/</span>
             <span className="breadcrumb-link">{bookarticle.name}</span>
           </div>
+          <div className="center-info">
+          <h2>{bookarticle.name}</h2>
+   
+          <div className='p-article'>{bookarticle.title}</div>
+          </div>
             {bookarticle.setinfo.map((info, index) => (
-              <div className='center-info' key={index}>
-                <h3>{bookarticle.name}</h3>
-                <h3>{bookarticle.description}</h3>
-                <h3>{info.title}</h3>
+              <div key={index}>
+                <h3 className='h3-article'>{info.title}</h3>
                 <div className="primer" key={info.id}>
                   {info.description}
                 </div>

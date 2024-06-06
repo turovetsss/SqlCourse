@@ -11,29 +11,31 @@ import {check} from "../http/userAPI";
 const Task = observer(({ task, onSolve, onProgress, show, onHide }) => {
   const { course } = useContext(Context);
   const { user } = useContext(Context);
-  const [showModal, setShowModal] = useState(false); 
+  const [showModal, setShowModal] = useState(false);
   const [solution, setSolution] = useState("");
   const [isSolved, setIsSolved] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [showSolution, setShowSolution] = useState(false); 
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
- console.log(user.user.id)
+  console.log(user.user.id)
+
   const handleSubmit = async () => {
     try {
       const response = await solveTask({
         taskId: task.id,
-        userId: user.user.id, 
+        userId: user.user.id,
         solution: solution,
       });
-   
+
       setIsSolved(response.solved);
       setShowResult(true);
       if (onSolve) {
         onSolve(response.solved);
       }
-      setSolution(''); 
-      setErrorMessage(''); 
+      setSolution('');
+      setErrorMessage('');
     } catch (e) {
       setErrorMessage(e.response.data.message);
     }
@@ -43,11 +45,15 @@ const Task = observer(({ task, onSolve, onProgress, show, onHide }) => {
     console.log(user.id, user.name);
   }, [user]);
 
+  const toggleSolution = () => {
+    setShowSolution(!showSolution);
+  };
+
   return (
     <div className="task-card">
     {!isSolved && (
-      <div 
-        className={`task-card-content ${isSolved ? 'solved' : ''}`} 
+      <div
+        className={`task-card-content ${isSolved ? 'solved' : ''}`}
         onClick={handleShowModal}
       >
         <div className="task-id">Задача {task.id}</div>
@@ -64,12 +70,16 @@ const Task = observer(({ task, onSolve, onProgress, show, onHide }) => {
             {task.description}
           </div>
           <ListGroup className='table-list2'>
-      <ListGroup.Item className='list-title'>Таблица Students</ListGroup.Item>
-      <ListGroup.Item className='list-item'><div >id </div><div>|</div> <div >Name</div><div>|</div><div >Surname</div><div>|</div><div >Group </div><div>|</div><div >Mark </div><div>|</div>Birthday</ListGroup.Item>
-      </ListGroup>
+            <ListGroup.Item className='list-title'>Таблица Students</ListGroup.Item>
+            <ListGroup.Item className='list-item'><div>id </div><div>|</div> <div>Name</div><div>|</div><div>Surname</div><div>|</div><div>Group </div><div>|</div><div>Mark </div><div>|</div>Birthday</ListGroup.Item>
+          </ListGroup>
           <div>
-            <h3>Решение:</h3>
-            <pre>{task.condition}</pre>
+            <div className="show-solution" onClick={toggleSolution}>
+              <span className="my">Показать решение</span>
+            </div>
+            {showSolution && (
+              <pre>{task.condition}</pre>
+            )}
           </div>
           <div>
             <h3>Ваше решение:</h3>
@@ -83,7 +93,7 @@ const Task = observer(({ task, onSolve, onProgress, show, onHide }) => {
           {showResult && (
             <div>
               <h3>Результат:</h3>
-                <div className="success">Задача решена</div>
+              <div className="success">Задача решена</div>
             </div>
           )}
           {errorMessage && (
@@ -99,8 +109,9 @@ const Task = observer(({ task, onSolve, onProgress, show, onHide }) => {
           </Button>
         </Modal.Footer>
       </Modal>
-   
+
     </div>
   );
 });
+
 export default Task;

@@ -13,7 +13,6 @@ const ArticleItem = ({ bookarticle, onClick }) => {
         <div>
           <div>
             <div>{bookarticle.name}</div>
-            <div>{bookarticle.title}</div>
           </div>
         </div>
       </Card>

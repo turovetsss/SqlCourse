@@ -8,6 +8,9 @@
   display: flex; /* Make tasks display in a row */
   justify-content: space-between; /* Distribute tasks evenly */
 }
+.my:hover{
+cursor: pointer;
+}
 .just{
   align-items: center;
 }

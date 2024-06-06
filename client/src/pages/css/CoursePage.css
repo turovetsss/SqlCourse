@@ -20,6 +20,15 @@
   align-items: center;
   text-align: center;
 }
+.p-article{
+  margin-top:15px;
+  font-size: 19px;
+}
+.h3-article{
+  color: #757575;
+  margin-top:10px;
+  margin-bottom: 25px;
+}
 .card3 {
   margin-top: 50px;
   padding: 25px;

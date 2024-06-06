@@ -37,7 +37,7 @@ const BookArticle = sequelize.define('bookarticle', {
 const BookArticleSet = sequelize.define('bookcarticleset', {
   id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
   title: {type: DataTypes.STRING, allowNull: false,defaultValue:"example2"},
-  description: {type: DataTypes.STRING, allowNull: false,defaultValue:"example2"},
+  description: {type: DataTypes.TEXT('long'), allowNull: false,defaultValue:"example2"},
   imgName: {type: DataTypes.STRING, allowNull: true},
   imgData: {type: DataTypes.TEXT('long'), allowNull: true},
 })

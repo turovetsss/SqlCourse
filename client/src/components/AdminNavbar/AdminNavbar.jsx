@@ -12,7 +12,7 @@ export const AdminNavbar =()=>{
 
     </Nav>
     <Nav className="me-right">
-    <a href="http://localhost:3000/registry"><button className='nav-link-reg' >Выйти</button></a>
+    <a href="http://localhost:3000/course"><button className='nav-link-reg' >На сайт</button></a>
     </Nav>
   </Container>
 </Navbar>

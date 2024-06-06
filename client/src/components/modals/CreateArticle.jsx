@@ -11,6 +11,8 @@ const CreateArticle= observer(({show, onHide}) =>{
   const [name, setName] = useState('')
   const [title,setTitle]=useState('')
   const [file,setFile]=useState(null)
+  const [errorMessage, setErrorMessage] = useState('');
+
   const [info, setInfo] = useState([])
   useEffect(() => {
     fetchBookmodule().then(data => course.setBookmodules(data))
@@ -43,10 +45,19 @@ const addArticle = () => {
 }
 const selectFile = (e, number) => {
   const file = e.target.files[0];
+
+  const maxSize = 1 * 1024 * 1024;
+
+  if (file && file.size > maxSize) {
+      setErrorMessage('Не больше 1мб.');
+      e.target.value = null;
+      return;
+  }
+
   const reader = new FileReader();
   reader.onload = (event) => {
-    const base64 = event.target.result;
-    setInfo(info.map(i => i.number === number ? {...i, image: file.name, imgData: base64} : i));
+      const base64 = event.target.result;
+      setInfo(info.map(i => i.number === number ? {...i, image: file.name, imgData: base64} : i));
   }
   reader.readAsDataURL(file);
 }
@@ -109,6 +120,7 @@ return (
                                     placeholder="Введите информацию/примеры"
                                 />
                       <input type="file" onChange={(e) => selectFile(e, i.number)} />
+                      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         <Col md={4}>
                                 <Button
                                     onClick={() => removeInfo(i.number)}
