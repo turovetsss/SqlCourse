@@ -8,7 +8,7 @@ import CreateTrainer from "../components/modals/CreateTrainer";
 import CreateType from "../components/modals/CreateType";
 
 import CreateArticle from "../components/modals/CreateArticle";
-
+import EditFunc from '../components/modals/EditFunc';
 import Table from 'react-bootstrap/Table';
 import {fetchFuncs,deleteFunc, deleteTask,fetchTask,fetchUser, fetchBookmodule, fetchBookarticle, deleteBookarticle, deleteBookModule} from "../http/itemAPI";
 import Tab from 'react-bootstrap/Tab';
@@ -24,6 +24,8 @@ export const Admin= observer(() => {
   const [value, setValue] = useState('')
     const [funcVisible, setFuncVisible] = useState(false)
     const [typeVisible, setTypeVisible] = useState(false)
+    const [funceditVisible, setFunceditVisible] = useState(false)
+    const [editFuncId, setEditFuncId] = useState('')
     const [bookmoduleVisible, setBookmoduleVisible] = useState(false)
     const [articleVisible, setArticleVisible] = useState(false)
     const [trainerVisible, setTrainerVisible] = useState(false)
@@ -54,6 +56,10 @@ export const Admin= observer(() => {
       console.log('hui')
     }
   }
+  const editFunc = (id) => {
+    console.log(id)
+    
+  };
   const removeBookarticle = (id) => {
     console.log(id)
     if (id) {
@@ -130,7 +136,16 @@ export const Admin= observer(() => {
                             <td>{func.name}</td>
           <td>{func.description}</td>
           <td><Button className='btndelete' onChange={e => setValue(func.id)} onClick={() => removeFunc(func.id)}>-Удалить</Button>  </td>
-                        </tr>
+          <Button className='btndelete' 
+        onClick={() => {
+            setEditFuncId(func.id);
+            setFuncVisible(true);
+            editFunc(func.id); 
+        }}>
+
+          Редактировать</Button>     <EditFunc show={funceditVisible} onHide={() => setFunceditVisible(false)} funcId={editFuncId} />
+           
+          </tr>
                     )}
       </tbody>
     </Table>

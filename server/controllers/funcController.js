@@ -24,9 +24,38 @@ class FuncController{
         next(ApiError.badRequest(e.message))
     }
 
+}  
+async update(req, res, next) {
+  try {
+    const { id } = req.params; 
+    let { funcType, name, description, typeId, example, info } = req.body;
+
+    const updatedFunc = await Func.update({ funcType, name, typeId, description, example }, {
+      where: { id: id } 
+    });
+
+    if (info) {
+      info = JSON.parse(info);
+
+      await FuncInfo.destroy({ where: { funcId: id } }); 
+
+      // Добавляем новую информацию
+      await Promise.all(info.map(i => 
+        FuncInfo.create({
+          title: i.title,
+          description: i.description,
+          funcId: id 
+        })
+      ));
+    }
+
+    return res.json(updatedFunc);
+  } catch (e) {
+    next(ApiError.badRequest(e.message));
+  }
 }
 async delete(req, res){
-  const {id} = req.body//из тела запроса извлекаем имя типа
+  const {id} = req.body
   const func = await Func.destroy(
     {
       where: {id:id},
@@ -51,17 +80,6 @@ async getOne(req, res) {
   )
   return res.json(func)
 }
-// async getAll(req, res) {
-//    let {typedId} = req.query
-//    let funcs;
-//    if (!typedId) {
-//            funcs = await Func.findAndCountAll()
-//  }
-//    if (typedId) {
-//        funcs= await Func.findAndCountAll({where:{typedId}})
-//    }
-//    return res.json(funcs)
-//  }
  async getAll(req,res){
       const funcs = await Func.findAll()
       return res.json(funcs)

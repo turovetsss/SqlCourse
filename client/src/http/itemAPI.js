@@ -12,11 +12,10 @@ export const fetchTypes = async () => {
 }
 
 //FUNC
-export const editFunc = async (func) => {
-  //в response помещаем ответ
-  const {data} = await $authHost.post('api/func/edit', func)
-  return data
-}
+export const updateFunc = async (funcId, func) => {
+  const { data } = await $host.put(`api/func/${funcId}`, func);
+  return data;
+};
 export const deleteFunc = async (func) => {
     //в response помещаем ответ
     const {data} = await $authHost.post('api/func/delete', func)
