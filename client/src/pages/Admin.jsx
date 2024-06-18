@@ -139,7 +139,7 @@ export const Admin= observer(() => {
           <Button className='btndelete' 
         onClick={() => {
             setEditFuncId(func.id);
-            setFuncVisible(true);
+            setFunceditVisible(true);
             editFunc(func.id); 
         }}>
 

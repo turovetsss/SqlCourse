@@ -46,19 +46,20 @@ const EditFunc = observer(({ show, onHide, funcId }) => {
       alert('Все поля должны быть заполнены!');
       return;
     } else {
-      const formData = new FormData();
-      formData.append('funcType', type);
-      formData.append('name', name);
-      formData.append('description', description);
-      formData.append('example', example);
-      formData.append('typeId', course.selectedType.id);
-      formData.append('info', JSON.stringify(info)); 
-
-      updateFunc(funcId, formData)
+      const funcData = {
+        funcType: type,
+        name: name,
+        description: description,
+        example: example,
+        typeId: course.selectedType.id,
+        info: JSON.stringify(info)
+      };
+  
+      updateFunc(funcId, funcData)
         .then(data => onHide())
         .then(() => alert('Функция обновлена успешно'))
-        .then(() => window.location.reload());
-    }
+         .then(() => window.location.reload());
+        }
   };
 
   return (
